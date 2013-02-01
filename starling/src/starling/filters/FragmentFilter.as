@@ -34,10 +34,10 @@ package starling.filters
     import starling.errors.MissingContextError;
     import starling.events.Event;
     import starling.textures.Texture;
-    import starling.utils.MatrixUtil;
-    import starling.utils.RectangleUtil;
-    import starling.utils.VertexData;
-    import starling.utils.getNextPowerOfTwo;
+    //import starling.utils.MatrixUtil;
+    //import starling.utils.RectangleUtil;
+    //import starling.utils.VertexData;
+    import starling.utils.*; //getNextPowerOfTwo;
 
     /** The FragmentFilter class is the base class for all filter effects in Starling.
      *  All other filters of this package extend this class. You can attach them to any display
@@ -198,7 +198,7 @@ package starling.filters
             var cacheTexture:Texture = null;
             var stage:Stage = object.stage;
             var context:Context3D = Starling.context;
-            var scale:Number = Starling.current.contentScaleFactor;
+            var scale:Number = Starling.contentScaleFactor;
             
             if (stage   == null) throw new Error("Filtered object must be on the stage.");
             if (context == null) throw new MissingContextError();
@@ -396,8 +396,9 @@ package starling.filters
                 resultRect.y -= mMarginY + deltaMargin;
                 resultRect.width  += 2 * (mMarginX + deltaMargin);
                 resultRect.height += 2 * (mMarginY + deltaMargin);
-                resultRect.width  = getNextPowerOfTwo(resultRect.width  * mResolution) / mResolution;
-                resultRect.height = getNextPowerOfTwo(resultRect.height * mResolution) / mResolution;
+                throw new System.NotImplementedException();
+                // resultRect.width  = getNextPowerOfTwo(resultRect.width  * mResolution) / mResolution;
+                // resultRect.height = getNextPowerOfTwo(resultRect.height * mResolution) / mResolution;
             }
         }
         

@@ -14,7 +14,7 @@ package starling.errors
     public class AbstractMethodError extends Error
     {
         /** Creates a new AbstractMethodError object. */
-        public function AbstractMethodError(message:*="", id:*=0)
+        public function AbstractMethodError(message:String="", id:int=0)
         {
             super(message, id);
         }

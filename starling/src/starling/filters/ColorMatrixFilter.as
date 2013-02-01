@@ -46,8 +46,8 @@ package starling.filters
         private var mUserMatrix:Vector.<Number>;   // offset in range 0-255
         private var mShaderMatrix:Vector.<Number>; // offset in range 0-1, changed order
         
-        private static const MIN_COLOR:Vector.<Number> = new <Number>[0, 0, 0, 0.0001];
-        private static const IDENTITY:Array = [1,0,0,0,0,  0,1,0,0,0,  0,0,1,0,0,  0,0,0,1,0];
+        private static var MIN_COLOR:Vector.<Number> = new <Number>[0, 0, 0, 0.0001];
+        private static var IDENTITY:Array = [1,0,0,0,0,  0,1,0,0,0,  0,0,1,0,0,  0,0,0,1,0];
         private static const LUMA_R:Number = 0.299;
         private static const LUMA_G:Number = 0.587;
         private static const LUMA_B:Number = 0.114;
@@ -59,7 +59,7 @@ package starling.filters
         /** Creates a new ColorMatrixFilter instance with the specified matrix. 
          *  @param matrix: a vector of 20 items arranged as a 4x5 matrix.   
          */
-        public function ColorMatrixFilter(matrix:Vector.<Number>=null)
+        public function ColorMatrixFilter(matrix:Vector.<Number>)
         {
             mUserMatrix   = new <Number>[];
             mShaderMatrix = new <Number>[];
@@ -250,7 +250,12 @@ package starling.filters
             if (value == null)
             {
                 mUserMatrix.length = 0;
-                mUserMatrix.push.apply(mUserMatrix, IDENTITY);
+                throw new System.NotImplementedException();
+                
+                //var p = mUserMatrix.push;
+                //p.apply(mUserMatrix, IDENTITY);
+                
+                //mUserMatrix.push.apply(mUserMatrix, IDENTITY);
             }
             else
             {

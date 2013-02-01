@@ -76,13 +76,13 @@ package starling.animation
          *  @param transition can be either a String (e.g. one of the constants defined in the
          *         Transitions class) or a function. Look up the 'Transitions' class for a   
          *         documentation about the required function signature. */ 
-        public function Tween(target:Object, time:Number, transition:Object="linear")        
+        public function Tween(target:Object, time:Number, transition:String="linear")        
         {
              reset(target, time, transition);
         }
 
         /** Resets the tween to its default values. Useful for pooling tweens. */
-        public function reset(target:Object, time:Number, transition:Object="linear"):Tween
+        public function reset(target:Object, time:Number, transition:String="linear"):Tween
         {
             mTarget = target;
             mCurrentTime = 0;
@@ -97,7 +97,10 @@ package starling.animation
             if (transition is String)
                 this.transition = transition as String;
             else if (transition is Function)
-                this.transitionFunc = transition as Function;
+            {
+            	throw new System.NotImplementedException();
+             //   this.transitionFunc = transition as Function;
+            }
             else 
                 throw new ArgumentError("Transition must be either a string or a function");
             
@@ -313,7 +316,7 @@ package starling.animation
         
         /** @private */
         starling_internal static function fromPool(target:Object, time:Number, 
-                                                   transition:Object="linear"):Tween
+                                                   transition:String="linear"):Tween
         {
             if (sTweenPool.length) return sTweenPool.pop().reset(target, time, transition);
             else return new Tween(target, time, transition);

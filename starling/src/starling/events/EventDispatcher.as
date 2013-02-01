@@ -132,7 +132,7 @@ package starling.events
                 for (var i:int=0; i<numListeners; ++i)
                 {
                     var listener:Function = listeners[i] as Function;
-                    var numArgs:int = listener.length;
+                    var numArgs:int = 1; //  $$TODO listener.length;
                     
                     if (numArgs == 0) listener();
                     else if (numArgs == 1) listener(event);
@@ -160,11 +160,15 @@ package starling.events
             var element:DisplayObject = this as DisplayObject;
             var length:int = 1;
             
-            if (sBubbleChains.length > 0) { chain = sBubbleChains.pop(); chain[0] = element; }
+            if (sBubbleChains.length > 0) { chain = sBubbleChains.pop(); chain.expand(1); chain[0] = element; }
             else chain = new <EventDispatcher>[element];
             
             while ((element = element.parent) != null)
+            {
+            	chain.expand(length+1);
+            
                 chain[int(length++)] = element;
+            }
 
             for (var i:int=0; i<length; ++i)
             {

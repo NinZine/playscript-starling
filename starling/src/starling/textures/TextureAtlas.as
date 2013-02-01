@@ -84,6 +84,7 @@ package starling.textures
          *  (e.g. to support a different file format). */
         protected function parseAtlasXml(atlasXml:XML):void
         {
+        #if false
             var scale:Number = mAtlasTexture.scale;
             
             for each (var subTexture:XML in atlasXml.SubTexture)
@@ -104,6 +105,8 @@ package starling.textures
                 
                 addRegion(name, region, frame);
             }
+            #endif
+            throw new System.NotImplementedException();
         }
         
         /** Retrieves a subtexture by name. Returns <code>null</code> if it is not found. */
@@ -117,7 +120,7 @@ package starling.textures
         
         /** Returns all textures that start with a certain string, sorted alphabetically
          *  (especially useful for "MovieClip"). */
-        public function getTextures(prefix:String="", result:Vector.<Texture>=null):Vector.<Texture>
+        public function getTextures(prefix:String, result:Vector.<Texture>):Vector.<Texture>
         {
             if (result == null) result = new <Texture>[];
             
@@ -129,7 +132,7 @@ package starling.textures
         }
         
         /** Returns all texture names that start with a certain string, sorted alphabetically. */
-        public function getNames(prefix:String="", result:Vector.<String>=null):Vector.<String>
+        public function getNames(prefix:String, result:Vector.<String>):Vector.<String>
         {
             if (result == null) result = new <String>[];
             

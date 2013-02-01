@@ -20,7 +20,7 @@ package starling.textures
     import starling.display.DisplayObject;
     import starling.display.Image;
     import starling.errors.MissingContextError;
-    import starling.utils.getNextPowerOfTwo;
+    import starling.utils.getNextPowerOfTwo; //getNextPowerOfTwo;
 
     /** A RenderTexture is a dynamic texture onto which you can draw any display object.
      * 
@@ -79,9 +79,10 @@ package starling.textures
             
             var nativeWidth:int  = getNextPowerOfTwo(width  * scale);
             var nativeHeight:int = getNextPowerOfTwo(height * scale);
-            mActiveTexture = Texture.empty(width, height, PMA, true, scale);
+            var texture = Texture.empty(width, height, PMA, true, scale);
             
-            super(mActiveTexture, new Rectangle(0, 0, width, height), true);
+            super(texture, new Rectangle(0, 0, width, height), true);
+            mActiveTexture = texture;
             
             mSupport = new RenderSupport();
             mSupport.setOrthographicProjection(0, 0, nativeWidth/scale, nativeHeight/scale);
@@ -122,13 +123,9 @@ package starling.textures
                              antiAliasing:int=0):void
         {
             if (object == null) return;
-            
-            if (mDrawing)
-                render();
-            else
-                drawBundled(render, antiAliasing);
-            
-            function render():void
+           throw new System.NotImplementedException();
+           /*
+            var render:Function = function():void
             {
                 mSupport.loadIdentity();
                 mSupport.blendMode = object.blendMode;
@@ -137,7 +134,14 @@ package starling.textures
                 else        mSupport.transformMatrix(object);
                 
                 object.render(mSupport, alpha);
-            }
+            };
+              
+            if (mDrawing)
+                render();
+            else
+                drawBundled(render, antiAliasing);
+            */
+           
         }
         
         /** Bundles several calls to <code>draw</code> together in a block. This avoids buffer 

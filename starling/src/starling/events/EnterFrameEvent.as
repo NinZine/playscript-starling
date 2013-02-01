@@ -20,7 +20,7 @@ package starling.events
     public class EnterFrameEvent extends Event
     {
         /** Event type for a display object that is entering a new frame. */
-        public static const ENTER_FRAME:String = "enterFrame";
+       //   public static const ENTER_FRAME:String = "enterFrame";
         
         /** Creates an enter frame event with the passed time. */
         public function EnterFrameEvent(type:String, passedTime:Number, bubbles:Boolean=false)

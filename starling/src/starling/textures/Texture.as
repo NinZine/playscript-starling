@@ -26,8 +26,7 @@ package starling.textures
     import starling.core.Starling;
     import starling.errors.AbstractClassError;
     import starling.errors.MissingContextError;
-    import starling.utils.VertexData;
-    import starling.utils.getNextPowerOfTwo;
+    import starling.utils.*; //getNextPowerOfTwo;
 
     /** <p>A texture stores the information that represents an image. It cannot be added to the
      *  display list directly; instead it has to be mapped onto a display object. In Starling, 
@@ -194,17 +193,20 @@ package starling.textures
             if (Starling.handleLostContext) 
                 concreteTexture.restoreOnLostContext(atfData);
             
-            if (async)
-                nativeTexture.addEventListener(eventType, onTextureReady);
-            
-            return concreteTexture;
-            
-            function onTextureReady(event:Event):void
+            throw new System.NotImplementedException();
+            /*
+            var onTextureReady:System.Action.<Event> = function(event:Event):void
             {
                 nativeTexture.removeEventListener(eventType, onTextureReady);
                 if (loadAsync.length == 1) loadAsync(concreteTexture);
                 else loadAsync();
-            }
+            };
+            
+            if (async)
+                nativeTexture.addEventListener(eventType, onTextureReady);
+            */
+            return concreteTexture;
+            
         }
         
         /** Creates a texture with a certain size and color.
@@ -315,7 +317,7 @@ package starling.textures
                     bounds.width = currentWidth; bounds.height = currentHeight;
                     canvas.fillRect(bounds, 0);
                     canvas.draw(data, transform, null, null, null, true);
-                    nativeTexture.uploadFromBitmapData(canvas, level++);
+                    nativeTexture.uploadFromBitmapData(canvas, uint(level++));
                     transform.scale(0.5, 0.5);
                     currentWidth  = currentWidth  >> 1;
                     currentHeight = currentHeight >> 1;

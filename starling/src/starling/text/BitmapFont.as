@@ -81,8 +81,9 @@ package starling.text
             // if no texture is passed in, we create the minimal, embedded font
             if (texture == null && fontXml == null)
             {
-                texture = MiniBitmapFont.texture;
-                fontXml = MiniBitmapFont.xml;
+            	throw new System.NotImplementedException();
+                // texture = MiniBitmapFont.texture;
+                // fontXml = MiniBitmapFont.xml;
             }
             
             mName = "unknown";
@@ -92,7 +93,7 @@ package starling.text
             mHelperImage = new Image(texture);
             mCharLocationPool = new <CharLocation>[];
             
-            if (fontXml) parseFontXml(fontXml);
+            // if (fontXml) parseFontXml(fontXml);
         }
         
         /** Disposes the texture of the bitmap font! */
@@ -101,7 +102,7 @@ package starling.text
             if (mTexture)
                 mTexture.dispose();
         }
-        
+        #if false
         private function parseFontXml(fontXml:XML):void
         {
             var scale:Number = mTexture.scale;
@@ -147,6 +148,7 @@ package starling.text
                 if (second in mChars) getChar(second).addKerning(first, amount);
             }
         }
+        #endif
         
         /** Returns a single bitmap char with a certain character ID. */
         public function getChar(charID:int):BitmapChar
@@ -229,6 +231,7 @@ package starling.text
             var containerWidth:Number;
             var containerHeight:Number;
             var scale:Number;
+            var currentY:Number;
             
             while (!finished)
             {
@@ -243,7 +246,7 @@ package starling.text
                     var lastWhiteSpace:int = -1;
                     var lastCharID:int = -1;
                     var currentX:Number = 0;
-                    var currentY:Number = 0;
+                    currentY = 0;
                     var currentLine:Vector.<CharLocation> = new <CharLocation>[];
                     
                     numChars = text.length;

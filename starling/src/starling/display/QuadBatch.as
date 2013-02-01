@@ -144,7 +144,7 @@ package starling.display
             if (newCapacity <= oldCapacity) return;
             
             mVertexData.numVertices = newCapacity * 4;
-            
+            mIndexData.expand(newCapacity*6);
             for (var i:int=oldCapacity; i<newCapacity; ++i)
             {
                 mIndexData[int(i*6  )] = i*4;
@@ -451,7 +451,7 @@ package starling.display
                     }
                 }
             }
-            else if (quad || batch)
+            else if (quad!=null || batch!=null)
             {
                 var texture:Texture;
                 var smoothing:String;
@@ -550,7 +550,8 @@ package starling.display
             // Image:
             // Each combination of tinted/repeat/mipmap/smoothing has its own fragment shader.
             
-            for each (var tinted:Boolean in [true, false])
+//            for each (var tinted:Boolean in [true, false])
+	        for each (var tinted:int in [1,0])
             {
                 vertexProgramCode = tinted ?
                     "m44 op, va0, vc1 \n" + // 4x4 matrix transform to output clipspace
@@ -566,21 +567,22 @@ package starling.display
                   :
                     "tex  oc,  v1, fs0 <???> \n";  // sample texture 0
                 
-                var smoothingTypes:Array = [
+                var smoothingTypes:Vector.<String> = [
                     TextureSmoothing.NONE,
                     TextureSmoothing.BILINEAR,
                     TextureSmoothing.TRILINEAR
                 ];
                 
-                var formats:Array = [
+                var formats:Vector.<String> = [
                     Context3DTextureFormat.BGRA,
                     Context3DTextureFormat.COMPRESSED,
                     "compressedAlpha" // use explicit string for compatibility
                 ];
                 
-                for each (var repeat:Boolean in [true, false])
+//	            for each (var repeat:Boolean in [true, false])
+                for each (var repeat:int in [1,0])
                 {
-                    for each (var mipmap:Boolean in [true, false])
+                    for each (var mipmap:int in [1,0])
                     {
                         for each (var smoothing:String in smoothingTypes)
                         {

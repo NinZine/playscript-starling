@@ -13,7 +13,7 @@ package starling.events
     import flash.utils.getQualifiedClassName;
     
     import starling.core.starling_internal;
-    import starling.utils.formatString;
+    import starling.utils.*;
     
     use namespace starling_internal;
 
@@ -108,8 +108,9 @@ package starling.events
         /** Returns a description of the event, containing type and bubble information. */
         public function toString():String
         {
-            return formatString("[{0} type=\"{1}\" bubbles={2}]", 
-                getQualifiedClassName(this).split("::").pop(), mType, mBubbles);
+        	throw new System.NotImplementedException();
+            //return formatString("[{0} type=\"{1}\" bubbles={2}]", 
+            //    getQualifiedClassName(this).split("::").pop(), mType, mBubbles);
         }
         
         /** Indicates if event will bubble. */

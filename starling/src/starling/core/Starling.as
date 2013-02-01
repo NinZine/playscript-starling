@@ -255,7 +255,8 @@ package starling.core
             if (mStage3D.context3D && mStage3D.context3D.driverInfo != "Disposed")
             {
                 mShareContext = true;
-                setTimeout(initialize, 1); // we don't call it right away, because Starling should
+                throw new System.NotImplementedException();
+                // setTimeout(initialize, 1); // we don't call it right away, because Starling should
                                            // behave the same way with or without a shared context
             }
             else
@@ -267,9 +268,10 @@ package starling.core
                     // "Context3DProfile" is only available starting with Flash Player 11.4/AIR 3.4.
                     // to stay compatible with older versions, we check if the parameter is available.
                     
-                    var requestContext3D:Function = mStage3D.requestContext3D;
-                    if (requestContext3D.length == 1) requestContext3D(renderMode);
-                    else requestContext3D(renderMode, profile);
+                    // var requestContext3D:Function = mStage3D.requestContext3D;
+                    // if (requestContext3D.length == 1) requestContext3D(renderMode);
+                    // else requestContext3D(renderMode, profile);
+                    mStage3D.requestContext3D(renderMode, profile);
                 }
                 catch (e:Error)
                 {
@@ -379,7 +381,7 @@ package starling.core
             mSupport.nextFrame();
             
             if (!mShareContext)
-                RenderSupport.clear(mStage.color, 1.0);
+                RenderSupport.context_clear(mStage.color, 1.0);
             
             var scaleX:Number = mViewPort.width  / mStage.stageWidth;
             var scaleY:Number = mViewPort.height / mStage.stageHeight;
@@ -653,7 +655,9 @@ package starling.core
             return name in programs;
         }
         
-        private function get programs():Dictionary { return contextData[PROGRAM_DATA_NAME]; }
+        var mProgramsDictionary:Dictionary = new Dictionary;
+        
+        private function get programs():Dictionary { return mProgramsDictionary; }
         
         // properties
         
@@ -667,10 +671,10 @@ package starling.core
         public function get isStarted():Boolean { return mStarted; }
         
         /** The default juggler of this instance. Will be advanced once per frame. */
-        public function get juggler():Juggler { return mJuggler; }
+        public function get this_juggler():Juggler { return mJuggler; }
         
         /** The render context of this instance. */
-        public function get context():Context3D { return mContext; }
+        public function get this_context():Context3D { return mContext; }
         
         /** A dictionary that can be used to save custom data related to the current context. 
          *  If you need to share data that is bound to a specific stage3D instance
@@ -717,7 +721,7 @@ package starling.core
         
         /** The ratio between viewPort width and stage width. Useful for choosing a different
          *  set of textures depending on the display resolution. */
-        public function get contentScaleFactor():Number
+        public function get thisContentScaleFactor():Number
         {
             return mViewPort.width / mStage.stageWidth;
         }
@@ -743,6 +747,13 @@ package starling.core
         /** Displays the statistics box at a certain position. */
         public function showStatsAt(hAlign:String="left", vAlign:String="top", scale:Number=1):void
         {
+        
+            var onRootCreated:Function = function(i:int):void
+            {
+                showStatsAt(hAlign, vAlign, scale);
+                removeEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);
+            };
+            
             if (mContext == null)
             {
                 // Starling is not yet ready - we postpone this until it's initialized.
@@ -771,11 +782,6 @@ package starling.core
                 else mStatsDisplay.y = int((stageHeight - mStatsDisplay.height) / 2);
             }
             
-            function onRootCreated():void
-            {
-                showStatsAt(hAlign, vAlign, scale);
-                removeEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);
-            }
         }
         
         /** The Starling stage object, which is the root of the display tree that is rendered. */
@@ -816,17 +822,17 @@ package starling.core
         
         /** The currently active Starling instance. */
         public static function get current():Starling { return sCurrent; }
-        
+   
         /** The render context of the currently active Starling instance. */
-        public static function get context():Context3D { return sCurrent ? sCurrent.context : null; }
+        public static function get context():Context3D { return sCurrent ? sCurrent.mContext : null; }
         
         /** The default juggler of the currently active Starling instance. */
-        public static function get juggler():Juggler { return sCurrent ? sCurrent.juggler : null; }
+        public static function get juggler():Juggler { return sCurrent ? sCurrent.mJuggler : null; }
         
         /** The contentScaleFactor of the currently active Starling instance. */
         public static function get contentScaleFactor():Number 
         {
-            return sCurrent ? sCurrent.contentScaleFactor : 1.0;
+            return sCurrent ? sCurrent.thisContentScaleFactor : 1.0;
         }
         
         /** Indicates if multitouch input should be supported. */
@@ -843,7 +849,7 @@ package starling.core
                 Multitouch.inputMode = value ? MultitouchInputMode.TOUCH_POINT :
                                                MultitouchInputMode.NONE;
         }
-        
+ 
         /** Indicates if Starling should automatically recover from a lost device context.
          *  On some systems, an upcoming screensaver or entering sleep mode may 
          *  invalidate the render context. This setting indicates if Starling should recover from 

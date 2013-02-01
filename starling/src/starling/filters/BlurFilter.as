@@ -203,8 +203,8 @@ package starling.filters
                 pixelSize = 1.0 / textureHeight;
             }
             
-            const twoSigmaSq:Number = 2 * sigma * sigma; 
-            const multiplier:Number = 1.0 / Math.sqrt(twoSigmaSq * Math.PI);
+            var twoSigmaSq:Number = 2 * sigma * sigma; 
+            var multiplier:Number = 1.0 / Math.sqrt(twoSigmaSq * Math.PI);
             
             // get weights on the exact pixels (sTmpWeights) and calculate sums (mWeights)
             

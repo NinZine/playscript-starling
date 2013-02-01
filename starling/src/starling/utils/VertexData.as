@@ -383,7 +383,7 @@ package starling.utils
             var delta:int = value - mNumVertices;
             
             for (i=0; i<delta; ++i)
-                mRawData.push(0, 0,  0, 0, 0, 1,  0, 0); // alpha should be '1' per default
+                mRawData.push(0.0, 0.0,  0.0, 0.0, 0.0, 1.0,  0.0, 0.0); // alpha should be '1' per default
             
             for (i=0; i<-(delta*ELEMENTS_PER_VERTEX); ++i)
                 mRawData.pop();

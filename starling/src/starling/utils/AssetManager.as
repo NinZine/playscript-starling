@@ -17,7 +17,7 @@ package starling.utils
     import flash.utils.ByteArray;
     import flash.utils.Dictionary;
     import flash.utils.clearTimeout;
-    import flash.utils.describeType;
+   // import flash.utils.describeType;
     import flash.utils.getQualifiedClassName;
     import flash.utils.setTimeout;
     
@@ -37,7 +37,7 @@ package starling.utils
      */    
     public class AssetManager
     {
-        private const SUPPORTED_EXTENSIONS:Vector.<String> = 
+        private var SUPPORTED_EXTENSIONS:Vector.<String> = 
             new <String>["png", "jpg", "jpeg", "atf", "mp3", "xml", "fnt"]; 
         
         private var mScaleFactor:Number;
@@ -96,7 +96,7 @@ package starling.utils
         
         /** Returns all textures that start with a certain string, sorted alphabetically
          *  (especially useful for "MovieClip"). */
-        public function getTextures(prefix:String="", result:Vector.<Texture>=null):Vector.<Texture>
+        public function getTextures(prefix:String="", result:Vector.<Texture> =null):Vector.<Texture>
         {
             if (result == null) result = new <Texture>[];
             
@@ -108,7 +108,7 @@ package starling.utils
         }
         
         /** Returns all texture names that start with a certain string, sorted alphabetically. */
-        public function getTextureNames(prefix:String="", result:Vector.<String>=null):Vector.<String>
+        public function getTextureNames(prefix:String="", result:Vector.<String> =null):Vector.<String>
         {
             if (result == null) result = new <String>[];
             
@@ -255,26 +255,40 @@ package starling.utils
          */
         public function enqueue(...rawAssets):void
         {
+#if false
+            var push:Function = function(asset:Object, name:String):void
+            {
+                if (name == null) name = getName(asset);
+                log("Enqueuing '" + name + "'");
+                
+                mRawAssets.push({ 
+                    name: name, 
+                    asset: asset 
+                });
+            };
+            
             for each (var rawAsset:Object in rawAssets)
             {
                 if (rawAsset is Array)
                 {
-                    enqueue.apply(this, rawAsset);
+                    throw new System.NotImplementedException();
+//                    enqueue.apply(this, rawAsset);
                 }
                 else if (rawAsset is Class)
                 {
+                    throw new System.NotImplementedException();
+                    /*
                     var typeXml:XML = describeType(rawAsset);
                     var childNode:XML;
                     
                     if (mVerbose)
                         log("Looking for static embedded assets in '" + 
                             (typeXml.@name).split("::").pop() + "'"); 
-                    
                     for each (childNode in typeXml.constant.(@type == "Class"))
                         push(rawAsset[childNode.@name], childNode.@name);
                     
                     for each (childNode in typeXml.variable.(@type == "Class"))
-                        push(rawAsset[childNode.@name], childNode.@name);
+                        push(rawAsset[childNode.@name], childNode.@name);*/
                 }
                 else if (getQualifiedClassName(rawAsset) == "flash.filesystem::File")
                 {
@@ -284,7 +298,9 @@ package starling.utils
                     }
                     else if (!rawAsset["isHidden"])
                     {
-                        if (rawAsset["isDirectory"])
+                        throw new System.NotImplementedException();
+
+/*                        if (rawAsset["isDirectory"])
                             enqueue.apply(this, rawAsset["getDirectoryListing"]());
                         else
                         {
@@ -293,7 +309,7 @@ package starling.utils
                                 push(rawAsset["url"]);
                             else
                                 log("Ignoring unsupported file '" + rawAsset["name"] + "'");
-                        }
+                        }*/
                     }
                 }
                 else if (rawAsset is String)
@@ -305,17 +321,8 @@ package starling.utils
                     log("Ignoring unsupported asset type: " + getQualifiedClassName(rawAsset));
                 }
             }
-            
-            function push(asset:Object, name:String=null):void
-            {
-                if (name == null) name = getName(asset);
-                log("Enqueuing '" + name + "'");
-                
-                mRawAssets.push({ 
-                    name: name, 
-                    asset: asset 
-                });
-            }
+#endif          
+
         }
         
         /** Loads all enqueued assets asynchronously. The 'onProgress' function will be called
@@ -323,9 +330,10 @@ package starling.utils
          *
          *  @param onProgress: <code>function(ratio:Number):void;</code> 
          */
-        public function loadQueue(onProgress:Function):void
+        public function loadQueue(onProgress:Object):void
         {
-            if (Starling.context == null)
+        #if false
+            if (Starling.current_context == null)
                 throw new Error("The Starling instance needs to be ready before textures can be loaded.");
             
             var xmls:Vector.<XML> = new <XML>[];
@@ -335,7 +343,7 @@ package starling.utils
             
             resume();
             
-            function resume():void
+            var resume = function():void
             {
                 currentRatio = 1.0 - (mRawAssets.length / numElements);
                 
@@ -346,16 +354,16 @@ package starling.utils
                 
                 if (onProgress != null)
                     onProgress(currentRatio);
-            }
+            };
             
-            function processNext():void
+            var processNext = function():void
             {
                 var assetInfo:Object = mRawAssets.pop();
                 clearTimeout(timeoutID);
                 loadRawAsset(assetInfo.name, assetInfo.asset, xmls, progress, resume);
-            }
+            };
             
-            function processXmls():void
+            var processXmls = function():void
             {
                 // xmls are processed seperately at the end, because the textures they reference
                 // have to be available for other XMLs. Texture atlases are processed first:
@@ -389,17 +397,19 @@ package starling.utils
                     else
                         throw new Error("XML contents not recognized: " + rootNode);
                 }
-            }
+            };
             
-            function progress(ratio:Number):void
+            var progress = function(ratio:Number):void
             {
                 onProgress(currentRatio + (1.0 / numElements) * Math.min(1.0, ratio) * 0.99);
-            }
+            };
+   #endif
         }
         
         private function loadRawAsset(name:String, rawAsset:Object, xmls:Vector.<XML>,
                                       onProgress:Function, onComplete:Function):void
         {
+ #if false
             var extension:String = null;
             
             if (rawAsset is Class)
@@ -451,18 +461,18 @@ package starling.utils
                 urlLoader.load(new URLRequest(url));
             }
             
-            function onIoError(event:IOErrorEvent):void
+            var onIoError = function(event:IOErrorEvent):void
             {
                 log("IO error: " + event.text);
                 onComplete();
-            }
+            };
             
-            function onLoadProgress(event:ProgressEvent):void
+            var onLoadProgress = function(event:ProgressEvent):void
             {
                 onProgress(event.bytesLoaded / event.bytesTotal);
-            }
+            };
             
-            function onUrlLoaderComplete(event:Event):void
+            var onUrlLoaderComplete = function(event:Event):void
             {
                 var urlLoader:URLLoader = event.target as URLLoader;
                 var bytes:ByteArray = urlLoader.data as ByteArray;
@@ -496,9 +506,9 @@ package starling.utils
                         loader.loadBytes(urlLoader.data as ByteArray, loaderContext);
                         break;
                 }
-            }
+            };
             
-            function onLoaderComplete(event:Event):void
+            var onLoaderComplete = function(event:Event):void
             {
                 event.target.removeEventListener(Event.COMPLETE, onLoaderComplete);
                 var content:Object = event.target.content;
@@ -510,7 +520,8 @@ package starling.utils
                     throw new Error("Unsupported asset type: " + getQualifiedClassName(content));
                 
                 onComplete();
-            }
+            };
+  #endif
         }
         
         // helpers
@@ -524,8 +535,8 @@ package starling.utils
             {
                 name = rawAsset is String ? rawAsset as String : (rawAsset as FileReference).name;
                 name = name.replace(/%20/g, " "); // URLs use '%20' for spaces
-                matches = /(.*[\\\/])?([\w\s\-]+)(\.[\w]{1,4})?/.exec(name);
-                
+                //matches = /(.*[\\\/])?([\w\s\-]+)(\.[\w]{1,4})?/.exec(name);
+                throw new System.NotImplementedException();
                 if (matches && matches.length == 4) return matches[2];
                 else throw new ArgumentError("Could not extract name from String '" + rawAsset + "'");
             }

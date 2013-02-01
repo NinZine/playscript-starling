@@ -15,8 +15,7 @@ package starling.events
     
     import starling.core.starling_internal;
     import starling.display.DisplayObject;
-    import starling.utils.MatrixUtil;
-    import starling.utils.formatString;
+    import starling.utils.*; //formatString;
     
     use namespace starling_internal;
 
@@ -114,8 +113,9 @@ package starling.events
         /** Returns a description of the object. */
         public function toString():String
         {
-            return formatString("Touch {0}: globalX={1}, globalY={2}, phase={3}",
-                                mID, mGlobalX, mGlobalY, mPhase);
+        	throw new System.NotImplementedException();
+            //return formatString("Touch {0}: globalX={1}, globalY={2}, phase={3}",
+            //                    mID, mGlobalX, mGlobalY, mPhase);
         }
         
         /** Creates a clone of the Touch object. */

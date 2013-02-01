@@ -86,8 +86,8 @@ package starling.events
         /** Returns a list of touches that originated over a certain target. If you pass a
          *  'result' vector, the touches will be added to this vector instead of creating a new 
          *  object. */
-        public function getTouches(target:DisplayObject, phase:String=null,
-                                   result:Vector.<Touch>=null):Vector.<Touch>
+        public function getTouches(target:DisplayObject, phase:String="",
+                                   result:Vector.<Touch> = null ):Vector.<Touch> 
         {
             if (result == null) result = new <Touch>[];
             var allTouches:Vector.<Touch> = data as Vector.<Touch>;
