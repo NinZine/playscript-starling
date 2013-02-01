@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarlingDemo", "StarlingDemo.csproj", "{45B828B4-E5F7-484E-B5F2-22D0ED0A9B3C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "starling", "..\..\starling\src\starling.csproj", "{3B3DD626-A7FA-430E-85FB-C4E553900934}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ascorlib-net_4_0_monomac", "..\..\..\mono-as3\mcs\class\ascorlib\ascorlib-net_4_0_monomac.csproj", "{EDBACFCB-2817-4A2E-8DDF-B24AEFA56352}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionScript.Dynamic-net_4_0", "..\..\..\mono-as3\mcs\class\ActionScript.Dynamic\ActionScript.Dynamic-net_4_0.csproj", "{5F7F9AF6-CE83-4F13-A25F-355DB2861D43}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Documentation|Any CPU = Documentation|Any CPU
+		Nsis|Any CPU = Nsis|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3B3DD626-A7FA-430E-85FB-C4E553900934}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B3DD626-A7FA-430E-85FB-C4E553900934}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B3DD626-A7FA-430E-85FB-C4E553900934}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B3DD626-A7FA-430E-85FB-C4E553900934}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{3B3DD626-A7FA-430E-85FB-C4E553900934}.Nsis|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B3DD626-A7FA-430E-85FB-C4E553900934}.Nsis|Any CPU.Build.0 = Debug|Any CPU
+		{3B3DD626-A7FA-430E-85FB-C4E553900934}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B3DD626-A7FA-430E-85FB-C4E553900934}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45B828B4-E5F7-484E-B5F2-22D0ED0A9B3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45B828B4-E5F7-484E-B5F2-22D0ED0A9B3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45B828B4-E5F7-484E-B5F2-22D0ED0A9B3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45B828B4-E5F7-484E-B5F2-22D0ED0A9B3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F7F9AF6-CE83-4F13-A25F-355DB2861D43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F7F9AF6-CE83-4F13-A25F-355DB2861D43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F7F9AF6-CE83-4F13-A25F-355DB2861D43}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F7F9AF6-CE83-4F13-A25F-355DB2861D43}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{5F7F9AF6-CE83-4F13-A25F-355DB2861D43}.Nsis|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F7F9AF6-CE83-4F13-A25F-355DB2861D43}.Nsis|Any CPU.Build.0 = Debug|Any CPU
+		{5F7F9AF6-CE83-4F13-A25F-355DB2861D43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F7F9AF6-CE83-4F13-A25F-355DB2861D43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDBACFCB-2817-4A2E-8DDF-B24AEFA56352}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDBACFCB-2817-4A2E-8DDF-B24AEFA56352}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDBACFCB-2817-4A2E-8DDF-B24AEFA56352}.Documentation|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDBACFCB-2817-4A2E-8DDF-B24AEFA56352}.Documentation|Any CPU.Build.0 = Debug|Any CPU
+		{EDBACFCB-2817-4A2E-8DDF-B24AEFA56352}.Nsis|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDBACFCB-2817-4A2E-8DDF-B24AEFA56352}.Nsis|Any CPU.Build.0 = Debug|Any CPU
+		{EDBACFCB-2817-4A2E-8DDF-B24AEFA56352}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDBACFCB-2817-4A2E-8DDF-B24AEFA56352}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = OpenGLLayer.csproj
+	EndGlobalSection
+EndGlobal

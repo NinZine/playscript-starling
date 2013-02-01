@@ -12,3 +12,9 @@ Release/
 
 # OS X folders
 .DS_Store
+
+# Mono
+*.pidb
+*.userprefs
+
+
