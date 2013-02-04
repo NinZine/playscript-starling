@@ -255,8 +255,7 @@ package starling.core
             if (mStage3D.context3D && mStage3D.context3D.driverInfo != "Disposed")
             {
                 mShareContext = true;
-                throw new System.NotImplementedException();
-                // setTimeout(initialize, 1); // we don't call it right away, because Starling should
+                setTimeout(initialize, 1); // we don't call it right away, because Starling should
                                            // behave the same way with or without a shared context
             }
             else
@@ -267,11 +266,9 @@ package starling.core
                 {
                     // "Context3DProfile" is only available starting with Flash Player 11.4/AIR 3.4.
                     // to stay compatible with older versions, we check if the parameter is available.
-                    
-                    // var requestContext3D:Function = mStage3D.requestContext3D;
-                    // if (requestContext3D.length == 1) requestContext3D(renderMode);
-                    // else requestContext3D(renderMode, profile);
-                    mStage3D.requestContext3D(renderMode, profile);
+                    var requestContext3D:Function = mStage3D.requestContext3D;
+                    if (requestContext3D.length == 1) requestContext3D(renderMode);
+                     else requestContext3D(renderMode, profile);
                 }
                 catch (e:Error)
                 {

@@ -59,7 +59,7 @@ package starling.filters
         /** Creates a new ColorMatrixFilter instance with the specified matrix. 
          *  @param matrix: a vector of 20 items arranged as a 4x5 matrix.   
          */
-        public function ColorMatrixFilter(matrix:Vector.<Number>)
+        public function ColorMatrixFilter(matrix:Vector.<Number> = null)
         {
             mUserMatrix   = new <Number>[];
             mShaderMatrix = new <Number>[];

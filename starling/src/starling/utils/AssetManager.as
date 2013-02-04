@@ -255,29 +255,31 @@ package starling.utils
          */
         public function enqueue(...rawAssets):void
         {
-#if false
             var push:Function = function(asset:Object, name:String):void
             {
                 if (name == null) name = getName(asset);
                 log("Enqueuing '" + name + "'");
                 
-                mRawAssets.push({ 
+                var o:Object = {name:name, asset:asset};
+                mRawAssets.push(o); 
+                
+                // ?? this doesnt compile
+             /*   mRawAssets.push({ 
                     name: name, 
                     asset: asset 
-                });
+                });*/
             };
             
             for each (var rawAsset:Object in rawAssets)
             {
                 if (rawAsset is Array)
                 {
-                    throw new System.NotImplementedException();
-//                    enqueue.apply(this, rawAsset);
+                	this.enqueue(rawAsset);
                 }
                 else if (rawAsset is Class)
                 {
-                    throw new System.NotImplementedException();
-                    /*
+					throw new System.NotImplementedException();
+                /*
                     var typeXml:XML = describeType(rawAsset);
                     var childNode:XML;
                     
@@ -288,7 +290,8 @@ package starling.utils
                         push(rawAsset[childNode.@name], childNode.@name);
                     
                     for each (childNode in typeXml.variable.(@type == "Class"))
-                        push(rawAsset[childNode.@name], childNode.@name);*/
+                        push(rawAsset[childNode.@name], childNode.@name);
+                        */
                 }
                 else if (getQualifiedClassName(rawAsset) == "flash.filesystem::File")
                 {
@@ -298,31 +301,28 @@ package starling.utils
                     }
                     else if (!rawAsset["isHidden"])
                     {
-                        throw new System.NotImplementedException();
-
-/*                        if (rawAsset["isDirectory"])
-                            enqueue.apply(this, rawAsset["getDirectoryListing"]());
-                        else
+                        if (rawAsset["isDirectory"])
+                        {
+                            this.enqueue(rawAsset["getDirectoryListing"]());
+                        } else
                         {
                             var extension:String = rawAsset["extension"].toLowerCase();
                             if (SUPPORTED_EXTENSIONS.indexOf(extension) != -1)
                                 push(rawAsset["url"]);
                             else
                                 log("Ignoring unsupported file '" + rawAsset["name"] + "'");
-                        }*/
+                        }
                     }
                 }
                 else if (rawAsset is String)
                 {
-                    push(rawAsset);
+                    push(rawAsset, null);
                 }
                 else
                 {
                     log("Ignoring unsupported asset type: " + getQualifiedClassName(rawAsset));
                 }
             }
-#endif          
-
         }
         
         /** Loads all enqueued assets asynchronously. The 'onProgress' function will be called
@@ -535,8 +535,7 @@ package starling.utils
             {
                 name = rawAsset is String ? rawAsset as String : (rawAsset as FileReference).name;
                 name = name.replace(/%20/g, " "); // URLs use '%20' for spaces
-                //matches = /(.*[\\\/])?([\w\s\-]+)(\.[\w]{1,4})?/.exec(name);
-                throw new System.NotImplementedException();
+                matches = /(.*[\\\x2F])?([\w\s\-]+)(\.[\w]{1,4})?/.exec(name);
                 if (matches && matches.length == 4) return matches[2];
                 else throw new ArgumentError("Could not extract name from String '" + rawAsset + "'");
             }

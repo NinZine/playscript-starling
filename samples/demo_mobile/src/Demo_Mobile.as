@@ -2,6 +2,7 @@ package
 {
     import flash.desktop.NativeApplication;
     import flash.display.Bitmap;
+    import flash.display.BitmapData;
     import flash.display.Sprite;
     import flash.events.Event;
     import flash.filesystem.File;
@@ -80,7 +81,9 @@ package
             // Note that we cannot embed "Default.png" (or its siblings), because any embedded
             // files will vanish from the application package, and those are picked up by the OS!
             
-            var background:Bitmap = scaleFactor == 1 ? new Background() : new BackgroundHD();
+            // var background:Bitmap = scaleFactor == 1 ? new Background() : new BackgroundHD();
+            var background:Bitmap = new Bitmap(flash.display.BitmapData.loadFromPath("DemoTexture256.png")); 
+            //var background:Bitmap = new Bitmap(flash.display.BitmapData.loadFromPath("demo/system/startup.jpg")); 
             Background = BackgroundHD = null; // no longer needed!
             
             background.x = viewPort.x;

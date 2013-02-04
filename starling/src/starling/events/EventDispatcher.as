@@ -132,7 +132,7 @@ package starling.events
                 for (var i:int=0; i<numListeners; ++i)
                 {
                     var listener:Function = listeners[i] as Function;
-                    var numArgs:int = 1; //  $$TODO listener.length;
+                    var numArgs:int = listener.length;
                     
                     if (numArgs == 0) listener();
                     else if (numArgs == 1) listener(event);
