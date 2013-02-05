@@ -274,7 +274,10 @@ package starling.utils
             {
                 if (rawAsset is Array)
                 {
-                	this.enqueue(rawAsset);
+                	var a:Array = rawAsset as Array;
+                	for each (var child:System.Object in a) {
+                		this.enqueue(child);
+                	}
                 }
                 else if (rawAsset is Class)
                 {
@@ -293,24 +296,26 @@ package starling.utils
                         push(rawAsset[childNode.@name], childNode.@name);
                         */
                 }
-                else if (getQualifiedClassName(rawAsset) == "flash.filesystem::File")
+                else if (rawAsset is flash.filesystem.File)
                 {
-                    if (!rawAsset["exists"])
+                	var file:flash.filesystem.File = rawAsset as flash.filesystem.File;
+                	
+                    if (!file.exists)
                     {
-                        log("File or directory not found: '" + rawAsset["url"] + "'");
+                        log("File or directory not found: '" + file.url + "'");
                     }
-                    else if (!rawAsset["isHidden"])
+                    else if (!file.isHidden)
                     {
-                        if (rawAsset["isDirectory"])
+                        if (file.isDirectory)
                         {
-                            this.enqueue(rawAsset["getDirectoryListing"]());
+                            this.enqueue(file.getDirectoryListing());
                         } else
                         {
-                            var extension:String = rawAsset["extension"].toLowerCase();
+                            var extension:String = file.extension.toLowerCase();
                             if (SUPPORTED_EXTENSIONS.indexOf(extension) != -1)
-                                push(rawAsset["url"]);
+                                push(file.url, null);
                             else
-                                log("Ignoring unsupported file '" + rawAsset["name"] + "'");
+                                log("Ignoring unsupported file '" + file.name + "'");
                         }
                     }
                 }
@@ -332,8 +337,7 @@ package starling.utils
          */
         public function loadQueue(onProgress:Object):void
         {
-        #if false
-            if (Starling.current_context == null)
+            if (Starling.context == null)
                 throw new Error("The Starling instance needs to be ready before textures can be loaded.");
             
             var xmls:Vector.<XML> = new <XML>[];
@@ -341,11 +345,14 @@ package starling.utils
             var currentRatio:Number = 0.0;
             var timeoutID:uint;
             
-            resume();
-            
-            var resume = function():void
+            var resume:Function;
+            var processNext:Function;
+            var processXmls:Function;
+            var progress:Function;
+
+            resume = function():void
             {
-                currentRatio = 1.0 - (mRawAssets.length / numElements);
+                currentRatio = 1.0 - (Number(mRawAssets.length) / Number(numElements));
                 
                 if (mRawAssets.length)
                     timeoutID = setTimeout(processNext, 1);
@@ -356,14 +363,14 @@ package starling.utils
                     onProgress(currentRatio);
             };
             
-            var processNext = function():void
+            processNext = function():void
             {
                 var assetInfo:Object = mRawAssets.pop();
                 clearTimeout(timeoutID);
                 loadRawAsset(assetInfo.name, assetInfo.asset, xmls, progress, resume);
             };
             
-            var processXmls = function():void
+            processXmls = function():void
             {
                 // xmls are processed seperately at the end, because the textures they reference
                 // have to be available for other XMLs. Texture atlases are processed first:
@@ -399,18 +406,85 @@ package starling.utils
                 }
             };
             
-            var progress = function(ratio:Number):void
+            progress = function(ratio:Number):void
             {
                 onProgress(currentRatio + (1.0 / numElements) * Math.min(1.0, ratio) * 0.99);
             };
-   #endif
+            
+            resume();
+            
         }
         
         private function loadRawAsset(name:String, rawAsset:Object, xmls:Vector.<XML>,
                                       onProgress:Function, onComplete:Function):void
         {
- #if false
+            var onIoError:Function;
+            var onLoadProgress:Function;
+            var onUrlLoaderComplete:Function;
+            var onLoaderComplete:Function;
             var extension:String = null;
+            
+            onIoError = function(event:IOErrorEvent):void
+            {
+                log("IO error: " + event.text);
+                onComplete();
+            };
+            
+            onLoadProgress = function(event:ProgressEvent):void
+            {
+                onProgress(event.bytesLoaded / event.bytesTotal);
+            };
+            
+            onUrlLoaderComplete = function(event:Event):void
+            {
+                var urlLoader:URLLoader = event.target as URLLoader;
+                var bytes:ByteArray = urlLoader.data as ByteArray;
+                var sound:Sound;
+                
+                urlLoader.removeEventListener(IOErrorEvent.IO_ERROR, onIoError);
+                urlLoader.removeEventListener(ProgressEvent.PROGRESS, onProgress);
+                urlLoader.removeEventListener(Event.COMPLETE, onUrlLoaderComplete);
+                
+                switch (extension)
+                {
+                    case "atf":
+                        addTexture(name, Texture.fromAtfData(bytes, mScaleFactor, mUseMipMaps, onComplete));
+                        break;
+                    case "fnt":
+                    case "xml":
+                        xmls.push(new XML(bytes));
+                        onComplete();
+                        break;
+                    case "mp3":
+                        sound = new Sound();
+                        sound.loadCompressedDataFromByteArray(bytes, bytes.length);
+                        addSound(name, sound);
+                        onComplete();
+                        break;
+                    default:
+                        var loaderContext:LoaderContext = new LoaderContext();
+                        var loader:Loader = new Loader();
+                        loaderContext.imageDecodingPolicy = ImageDecodingPolicy.ON_LOAD;
+                        loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoaderComplete);
+                        loader.loadBytes(urlLoader.data as ByteArray, loaderContext);
+                        break;
+                }
+            };
+            
+            onLoaderComplete = function(event:Event):void
+            {
+                event.target.removeEventListener(Event.COMPLETE, onLoaderComplete);
+                var content:Object = event.target.content;
+                
+                if (content is Bitmap)
+                    addTexture(name,
+                        Texture.fromBitmap(content as Bitmap, mUseMipMaps, false, mScaleFactor));
+                else
+                    throw new Error("Unsupported asset type: " + getQualifiedClassName(content));
+                
+                onComplete();
+            };
+
             
             if (rawAsset is Class)
             {
@@ -451,7 +525,7 @@ package starling.utils
             else if (rawAsset is String)
             {
                 var url:String = rawAsset as String;
-                extension = url.split(".").pop().toLowerCase();
+                extension = String(url.split(".").pop()).toLowerCase();
                 
                 var urlLoader:URLLoader = new URLLoader();
                 urlLoader.dataFormat = URLLoaderDataFormat.BINARY;
@@ -461,67 +535,6 @@ package starling.utils
                 urlLoader.load(new URLRequest(url));
             }
             
-            var onIoError = function(event:IOErrorEvent):void
-            {
-                log("IO error: " + event.text);
-                onComplete();
-            };
-            
-            var onLoadProgress = function(event:ProgressEvent):void
-            {
-                onProgress(event.bytesLoaded / event.bytesTotal);
-            };
-            
-            var onUrlLoaderComplete = function(event:Event):void
-            {
-                var urlLoader:URLLoader = event.target as URLLoader;
-                var bytes:ByteArray = urlLoader.data as ByteArray;
-                var sound:Sound;
-                
-                urlLoader.removeEventListener(IOErrorEvent.IO_ERROR, onIoError);
-                urlLoader.removeEventListener(ProgressEvent.PROGRESS, onProgress);
-                urlLoader.removeEventListener(Event.COMPLETE, onUrlLoaderComplete);
-                
-                switch (extension)
-                {
-                    case "atf":
-                        addTexture(name, Texture.fromAtfData(bytes, mScaleFactor, mUseMipMaps, onComplete));
-                        break;
-                    case "fnt":
-                    case "xml":
-                        xmls.push(new XML(bytes));
-                        onComplete();
-                        break;
-                    case "mp3":
-                        sound = new Sound();
-                        sound.loadCompressedDataFromByteArray(bytes, bytes.length);
-                        addSound(name, sound);
-                        onComplete();
-                        break;
-                    default:
-                        var loaderContext:LoaderContext = new LoaderContext();
-                        var loader:Loader = new Loader();
-                        loaderContext.imageDecodingPolicy = ImageDecodingPolicy.ON_LOAD;
-                        loader.contentLoaderInfo.addEventListener(Event.COMPLETE, onLoaderComplete);
-                        loader.loadBytes(urlLoader.data as ByteArray, loaderContext);
-                        break;
-                }
-            };
-            
-            var onLoaderComplete = function(event:Event):void
-            {
-                event.target.removeEventListener(Event.COMPLETE, onLoaderComplete);
-                var content:Object = event.target.content;
-                
-                if (content is Bitmap)
-                    addTexture(name,
-                        Texture.fromBitmap(content as Bitmap, mUseMipMaps, false, mScaleFactor));
-                else
-                    throw new Error("Unsupported asset type: " + getQualifiedClassName(content));
-                
-                onComplete();
-            };
-  #endif
         }
         
         // helpers

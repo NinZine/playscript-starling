@@ -72,7 +72,8 @@ namespace OpenGLLayer
 		{
 			if (mStage == null) {
 				// construct flash stage
-				mStage = new flash.display.Stage (960, 640);
+				// $$TODO handle resizing
+				mStage = new flash.display.Stage ( (int)this.Frame.Width, (int)this.Frame.Height);
 			}
 
 			if (mDemoMobile == null) {

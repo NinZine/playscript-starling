@@ -82,8 +82,7 @@ package
             // files will vanish from the application package, and those are picked up by the OS!
             
             // var background:Bitmap = scaleFactor == 1 ? new Background() : new BackgroundHD();
-            var background:Bitmap = new Bitmap(flash.display.BitmapData.loadFromPath("DemoTexture256.png")); 
-            //var background:Bitmap = new Bitmap(flash.display.BitmapData.loadFromPath("demo/system/startup.jpg")); 
+            var background:Bitmap = new Bitmap(flash.display.BitmapData.loadFromPath("demo/system/startupHD.jpg")); 
             Background = BackgroundHD = null; // no longer needed!
             
             background.x = viewPort.x;
