@@ -37,10 +37,10 @@ Global
 		AppStore|iPhone = AppStore|iPhone
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{155AEF28-C81F-405D-9072-9D52780E3E70}.Ad-Hoc|iPhone.ActiveCfg = Debug|Any CPU
-		{155AEF28-C81F-405D-9072-9D52780E3E70}.Ad-Hoc|iPhone.Build.0 = Debug|Any CPU
-		{155AEF28-C81F-405D-9072-9D52780E3E70}.AppStore|iPhone.ActiveCfg = Debug|Any CPU
-		{155AEF28-C81F-405D-9072-9D52780E3E70}.AppStore|iPhone.Build.0 = Debug|Any CPU
+		{155AEF28-C81F-405D-9072-9D52780E3E70}.Ad-Hoc|iPhone.ActiveCfg = Release|Any CPU
+		{155AEF28-C81F-405D-9072-9D52780E3E70}.Ad-Hoc|iPhone.Build.0 = Release|Any CPU
+		{155AEF28-C81F-405D-9072-9D52780E3E70}.AppStore|iPhone.ActiveCfg = Release|Any CPU
+		{155AEF28-C81F-405D-9072-9D52780E3E70}.AppStore|iPhone.Build.0 = Release|Any CPU
 		{155AEF28-C81F-405D-9072-9D52780E3E70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{155AEF28-C81F-405D-9072-9D52780E3E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{155AEF28-C81F-405D-9072-9D52780E3E70}.Debug|iPhone.ActiveCfg = Debug|Any CPU
@@ -178,6 +178,6 @@ Global
 		{45B828B4-E5F7-484E-B5F2-22D0ED0A9B3C} = {E26D56E8-9568-4142-91C4-98C44C7AB284}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = StarlingDemo-monomac.csproj
+		StartupItem = ..\demo_mono_ios\StarlingDemo-monotouch.csproj
 	EndGlobalSection
 EndGlobal

@@ -54,28 +54,33 @@ package OpenGLLayer
 			
 			// load bitmapdata from file       
 			var rnd = new System.Random();
-			var bd2:BitmapData = bd; //BitmapData.loadFromPath("DemoTexture256.png");
+			var bd2:BitmapData = BitmapData.loadFromPath("DemoTexture256.png");
 			var texture2:Texture = Texture.fromBitmapData(bd2, false);
 			
 			// create starling images			
 			var image = new Image(texture2);
-			image.x = 85 + rnd.Next(200);
-			image.y = 490 + rnd.Next(200);
+			var tx:int = 100;
+			var ty:int = 50;
+			image.x = tx;
+			image.y = ty;
 			addChild(image);
+			tx+=20; ty+=20;
 			
 			image = new Image(texture2);
-			image.x = 85 + rnd.Next(200);
-			image.y = 490 + rnd.Next(200);
+			image.x = tx;
+			image.y = ty;
 			image.setVertexColor(0, 0x00FF00);
 			image.setVertexColor(1, 0x00FF00);
 			addChild(image);
+			tx+=20; ty+=20;
 			
 			image = new Image(texture2);
-			image.x = 85 + rnd.Next(200);
-			image.y = 490 + rnd.Next(200);
+			image.x = tx;
+			image.y = ty;
 			image.setVertexColor(0, 0x0000FF);
 			image.setVertexColor(1, 0x0000FF);
 			addChild(image);
+			tx+=20; ty+=20;
 			
 			/*			
 			for (var i:int=0; i < 32; i++) {

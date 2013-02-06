@@ -162,11 +162,6 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DemoTexture256.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="demo\" />
     <Folder Include="demo_mobile\" />
   </ItemGroup>
@@ -239,6 +234,9 @@
     </BundleResource>
     <BundleResource Include="..\demo\system\startupHD.jpg">
       <Link>demo\system\startupHD.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="DemoTexture256.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </BundleResource>
   </ItemGroup>
 </Project>

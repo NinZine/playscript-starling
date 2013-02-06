@@ -24,6 +24,8 @@
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>True</MtouchProfiling>
     <MtouchLink>None</MtouchLink>
+    <MtouchI18n />
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -121,5 +123,10 @@
       <Project>{F396BFBC-4ACF-42A2-99AA-2D24D5621C27}</Project>
       <Name>starling-monotouch</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\demo_mono\DemoTexture256.png">
+      <Link>DemoTexture256.png</Link>
+    </BundleResource>
   </ItemGroup>
 </Project>
