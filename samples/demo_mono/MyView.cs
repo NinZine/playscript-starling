@@ -11,60 +11,55 @@ using MonoMac.OpenGL;
 
 namespace OpenGLLayer
 {
-        public partial class MyView : MonoMac.AppKit.NSView
-        {
+	public partial class MyView : MonoMac.AppKit.NSView
+	{
 
-                static OpenGLLayer movingLayer;
+		static OpenGLLayer movingLayer;
 
-                #region Constructors
+        #region Constructors
 
-                // Called when created from unmanaged code
-                public MyView (IntPtr handle) : base(handle)
-                {
-                        Initialize ();
-                }
+		// Called when created from unmanaged code
+		public MyView (IntPtr handle) : base(handle)
+		{
+			Initialize ();
+		}
 
-                // Called when created directly from a XIB file
-                [Export("initWithCoder:")]
-                public MyView (NSCoder coder) : base(coder)
-                {
-                        Initialize ();
-                }
+		// Called when created directly from a XIB file
+		[Export("initWithCoder:")]
+		public MyView (NSCoder coder) : base(coder)
+		{
+			Initialize ();
+		}
 
-                // Shared initialization code
-                void Initialize ()
-                {
-                }
+		// Shared initialization code
+		void Initialize ()
+		{
+		}
 
-                #endregion
+        #endregion
 
-                public override void AwakeFromNib ()
-                {
-                        Layer = new CALayer ();
-                        Layer.AddSublayer (MovingLayer);
-                        WantsLayer = true;
-                }
+		public override void AwakeFromNib ()
+		{
+			// create OpenGL layer
+			movingLayer = new OpenGLLayer ();
+			movingLayer.Frame = this.Frame;
 
-                private OpenGLLayer MovingLayer {
-                        get {
-                                if (movingLayer == null) {
-                                        movingLayer = new OpenGLLayer ();
-					movingLayer.Frame = new RectangleF (0, 0, 960, 640);
-                                }
-                                return movingLayer;
-                        }
-                }
+			// create core animation layer
+			Layer = new CALayer ();
+			Layer.AddSublayer (movingLayer);
+			WantsLayer = true;
+		}
 
-                public override void MouseDown (NSEvent theEvent)
-                {
-                        //PointF location =  ConvertPointFromView(theEvent.LocationInWindow, null);
-						//movingLayer.Position = new PointF(location.X, location.Y);
-                }
+		public override void MouseDown (NSEvent theEvent)
+		{
+			//PointF location =  ConvertPointFromView(theEvent.LocationInWindow, null);
+			//movingLayer.Position = new PointF(location.X, location.Y);
+		}
 		
-                partial void toggle (NSButton sender)
-                {
-                        // movingLayer.Animate = !movingLayer.Animate;
-                }
-        }
+		partial void toggle (NSButton sender)
+		{
+			// movingLayer.Animate = !movingLayer.Animate;
+		}
+	}
 }
 

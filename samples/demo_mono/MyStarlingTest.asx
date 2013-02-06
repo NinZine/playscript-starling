@@ -59,20 +59,20 @@ package OpenGLLayer
 
 			// create starling images			
 			var image = new Image(texture2);
-        	image.x = 490 + rnd.Next(200);
-        	image.y = 85 + rnd.Next(200);
+        	image.x = 85 + rnd.Next(200);
+        	image.y = 490 + rnd.Next(200);
         	addChild(image);
 
 			image = new Image(texture2);
-        	image.x = 490 + rnd.Next(200);
-        	image.y = 85 + rnd.Next(200);
+        	image.x = 85 + rnd.Next(200);
+        	image.y = 490 + rnd.Next(200);
         	image.setVertexColor(0, 0x00FF00);
         	image.setVertexColor(1, 0x00FF00);
         	addChild(image);
 
 			image = new Image(texture2);
-        	image.x = 490 + rnd.Next(200);
-        	image.y = 85 + rnd.Next(200);
+        	image.x = 85 + rnd.Next(200);
+        	image.y = 490 + rnd.Next(200);
         	image.setVertexColor(0, 0x0000FF);
         	image.setVertexColor(1, 0x0000FF);
         	addChild(image);
@@ -80,8 +80,8 @@ package OpenGLLayer
 			/*			
 			for (var i:int=0; i < 32; i++) {
 				var image = new Image(texture2);
-            	image.x = 490 + rnd.Next(200);
-            	image.y = 85 + rnd.Next(200);
+            	image.x = 85 + rnd.Next(200);
+            	image.y = 490 + rnd.Next(200);
             	addChild(image);
             }*/
 

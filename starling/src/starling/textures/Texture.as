@@ -193,9 +193,7 @@ package starling.textures
             if (Starling.handleLostContext) 
                 concreteTexture.restoreOnLostContext(atfData);
             
-            throw new System.NotImplementedException();
-            /*
-            var onTextureReady:System.Action.<Event> = function(event:Event):void
+            var onTextureReady:Function = function(event:Event):void
             {
                 nativeTexture.removeEventListener(eventType, onTextureReady);
                 if (loadAsync.length == 1) loadAsync(concreteTexture);
@@ -204,7 +202,6 @@ package starling.textures
             
             if (async)
                 nativeTexture.addEventListener(eventType, onTextureReady);
-            */
             return concreteTexture;
             
         }

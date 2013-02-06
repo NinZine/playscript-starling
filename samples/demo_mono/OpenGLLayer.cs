@@ -9,7 +9,6 @@ using MonoMac.CoreAnimation;
 using MonoMac.CoreGraphics;
 using MonoMac.CoreVideo;
 using MonoMac.OpenGL;
-using MonoMac.Foundation;
 using System.Runtime.InteropServices;
 
 using flash.display;
@@ -67,13 +66,21 @@ namespace OpenGLLayer
 		// this is our starling context
 		starling.core.Starling mStarling;
 
+		_root.Demo_Mobile mDemoMobile;
+
 		public override void DrawInCGLContext (MonoMac.OpenGL.CGLContext glContext, CGLPixelFormat pixelFormat, double timeInterval, CVTimeStamp timeStamp)
 		{
 			if (mStage == null) {
 				// construct flash stage
-				mStage = new flash.display.Stage ();
-				mStage.stageWidth = 960;
-				mStage.stageHeight = 640;
+				// $$TODO handle resizing
+				mStage = new flash.display.Stage ( (int)this.Frame.Width, (int)this.Frame.Height);
+			}
+
+			if (mDemoMobile == null) {
+				// construct starling demo
+				flash.display.DisplayObject.globalStage = mStage;
+				//mDemoMobile = new _root.Demo_Mobile();
+				flash.display.DisplayObject.globalStage = null;
 			}
 
 			if (mStarling == null) {
@@ -105,6 +112,9 @@ namespace OpenGLLayer
 			if (mTutorial != null) {
 				mTutorial.dispatchEvent (new flash.events.Event (flash.events.Event.ENTER_FRAME));
 			}
+
+			// update all timer objects
+			flash.utils.Timer.advanceAllTimers(1000.0 / 60.0);
 
 			GL.Flush ();
 		}

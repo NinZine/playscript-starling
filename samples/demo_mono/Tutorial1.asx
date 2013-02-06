@@ -62,10 +62,10 @@ package OpenGLLayer
 			var program:Program3D = __c3dContext.createProgram();
 			// Assemble vertex shader from its code
 			var vertexAssembler:AGALMiniAssembler = new AGALMiniAssembler();
-			//TODO - vertexAssembler.assemble(Context3DProgramType.VERTEX, vertexShader.join("\n"));
+			vertexAssembler.assemble(Context3DProgramType.VERTEX, vertexShader.join("\n"));
 			// Assemble framgent shader from its code
 			var fragmentAssembler:AGALMiniAssembler = new AGALMiniAssembler();
-			//TODO - fragmentAssembler.assemble(Context3DProgramType.FRAGMENT, fragmentShader.join("\n"));
+			fragmentAssembler.assemble(Context3DProgramType.FRAGMENT, fragmentShader.join("\n"));
 			// Upload vertex/fragment shader to our program
 			program.upload(vertexAssembler.agalcode, fragmentAssembler.agalcode);
 			// Set the program instance as currently active program
