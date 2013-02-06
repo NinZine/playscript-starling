@@ -10,6 +10,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>StarlingDemo</RootNamespace>
     <AssemblyName>StarlingDemo</AssemblyName>
+    <SuppressXamMacUpsell>True</SuppressXamMacUpsell>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>True</DebugSymbols>
@@ -25,6 +26,7 @@
     <CreatePackage>False</CreatePackage>
     <EnablePackageSigning>False</EnablePackageSigning>
     <IncludeMonoRuntime>False</IncludeMonoRuntime>
+    <UseSGen>False</UseSGen>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -38,6 +40,7 @@
     <CreatePackage>False</CreatePackage>
     <EnablePackageSigning>False</EnablePackageSigning>
     <IncludeMonoRuntime>False</IncludeMonoRuntime>
+    <UseSGen>False</UseSGen>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -80,17 +83,17 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\dev\Starling-Framework\starling\src\starling.csproj">
-      <Project>{3B3DD626-A7FA-430E-85FB-C4E553900934}</Project>
-      <Name>starling</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\dev\mono-as3\mcs\class\ascorlib\ascorlib-net_4_0_monomac.csproj">
+    <ProjectReference Include="..\..\..\mono-as3\mcs\class\ascorlib\ascorlib-net_4_0_monomac.csproj">
       <Project>{EDBACFCB-2817-4A2E-8DDF-B24AEFA56352}</Project>
       <Name>ascorlib-net_4_0_monomac</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\dev\mono-as3\mcs\class\ActionScript.Dynamic\ActionScript.Dynamic-net_4_0.csproj">
+    <ProjectReference Include="..\..\..\mono-as3\mcs\class\ActionScript.Dynamic\ActionScript.Dynamic-net_4_0.csproj">
       <Project>{5F7F9AF6-CE83-4F13-A25F-355DB2861D43}</Project>
       <Name>ActionScript.Dynamic-net_4_0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\starling\src\starling-monomac.csproj">
+      <Project>{3B3DD626-A7FA-430E-85FB-C4E553900934}</Project>
+      <Name>starling-monomac</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
