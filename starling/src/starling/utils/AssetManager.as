@@ -256,24 +256,18 @@ package starling.utils
          *  are texture atlases: they will have the same name as the actual texture they are
          *  referencing.
          */
+
+		private function push(asset:Object, name:String):void
+		{
+			if (name == null) name = getName(asset);
+			log("Enqueuing '" + name + "'");
+			
+			var o:Object = {name:name, asset:asset};
+			mRawAssets.push(o); 
+		}
+
         public function enqueue(...rawAssets):void
         {
-#if false
-            var push:Function = function(asset:Object, name:String):void
-            {
-                if (name == null) name = getName(asset);
-                log("Enqueuing '" + name + "'");
-                
-                var o:Object = {name:name, asset:asset};
-                mRawAssets.push(o); 
-                
-                // ?? this doesnt compile
-             /*   mRawAssets.push({ 
-                    name: name, 
-                    asset: asset 
-                });*/
-            };
-            
             for each (var rawAsset:Object in rawAssets)
             {
                 if (rawAsset is Array)
@@ -332,7 +326,6 @@ package starling.utils
                     log("Ignoring unsupported asset type: " + getQualifiedClassName(rawAsset));
                 }
             }
-#endif
         }
         
         /** Loads all enqueued assets asynchronously. The 'onProgress' function will be called
