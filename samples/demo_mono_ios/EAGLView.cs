@@ -150,7 +150,7 @@ namespace StarlingDemo_ios
 
 			if (mStage == null) {
 				// construct flash stage
-				mStage = new flash.display.Stage (960, 640);
+				mStage = new flash.display.Stage (640, 960);
 			}
 
 			if (mTutorial == null) {
