@@ -96,6 +96,9 @@
     <Compile Include="OpenGLViewController.cs" />
     <Compile Include="EAGLView.cs" />
     <Compile Include="MyStarlingTest.asx" />
+    <Compile Include="..\demo_mono\Tutorial1.asx">
+      <Link>Tutorial1.asx</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="OpenGLViewController.xib" />

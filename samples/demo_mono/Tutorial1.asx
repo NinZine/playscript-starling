@@ -26,6 +26,8 @@ package OpenGLLayer
 		// Vertex and index buffer instances
 		private var __i3dBuffer:IndexBuffer3D;
 		private var __v3dBuffer:VertexBuffer3D;
+
+		private var __program:Program3D;
 		
 		private var vertexShader:Array =
 			[
@@ -59,7 +61,7 @@ package OpenGLLayer
 
 			//__c3dContext.enableErrorChecking = true;
 			// Create program 3D instance for shader
-			var program:Program3D = __c3dContext.createProgram();
+			__program = __c3dContext.createProgram();
 			// Assemble vertex shader from its code
 			var vertexAssembler:AGALMiniAssembler = new AGALMiniAssembler();
 			vertexAssembler.assemble(Context3DProgramType.VERTEX, vertexShader.join("\n"));
@@ -67,15 +69,11 @@ package OpenGLLayer
 			var fragmentAssembler:AGALMiniAssembler = new AGALMiniAssembler();
 			fragmentAssembler.assemble(Context3DProgramType.FRAGMENT, fragmentShader.join("\n"));
 			// Upload vertex/fragment shader to our program
-			program.upload(vertexAssembler.agalcode, fragmentAssembler.agalcode);
-			// Set the program instance as currently active program
-			__c3dContext.setProgram(program);
-			
+			__program.upload(vertexAssembler.agalcode, fragmentAssembler.agalcode);
+
 			// Create index buffer
 			__i3dBuffer = __c3dContext.createIndexBuffer(3);
 			// Upload index buffer from predefined values
-			
-			
 			__i3dBuffer.uploadFromVector(new <uint>[0, 1, 2], 0, 3);
 			
 			// Create vertex buffer
@@ -85,17 +83,7 @@ package OpenGLLayer
 				-1, -1, 5, 
 				 1, -1, 5, 
 				 0,  1, 5], 0, 3);
-			// Set vertex buffer, this is what we access in vertex shader register va0
-			__c3dContext.setVertexBufferAt(0, __v3dBuffer, 0, Context3DVertexBufferFormat.FLOAT_3);
-			
-			// Create our projection matrix
-			var projection:PerspectiveMatrix3D = new PerspectiveMatrix3D();
-			// Use a helper function to set up the projection
-			projection.perspectiveFieldOfViewLH(45*Math.PI/180, 1.2, 0.1, 512);
-			// Set the projection matrix as a vertex program constant, this is what we access in vertex shader register vc0
-			__c3dContext.setProgramConstantsFromMatrix(Context3DProgramType.VERTEX, 0, projection, true);
-			// Set the out color for our polygon as fragment program constant, this is what we access in fragment shader register fc0
-			__c3dContext.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT, 0, new <Number>[1, 1, 1, 0]);
+
 			// Hook up enter frame event where we will do our rendering
 			addEventListener(Event.ENTER_FRAME, onRenderFrame);
 		}
@@ -103,6 +91,22 @@ package OpenGLLayer
 		private function onRenderFrame(e:Event):void {
 			// Clear up the context
 			__c3dContext.clear(0, 0, 0, 1);
+
+			__c3dContext.setProgram(__program);
+
+			// Create our projection matrix
+			var projection:PerspectiveMatrix3D = new PerspectiveMatrix3D();
+			// Use a helper function to set up the projection
+			projection.perspectiveFieldOfViewLH(45*Math.PI/180, 1.2, 0.1, 512);
+
+			// Set the projection matrix as a vertex program constant, this is what we access in vertex shader register vc0
+			__c3dContext.setProgramConstantsFromMatrix(Context3DProgramType.VERTEX, 0, projection, true);
+			// Set the out color for our polygon as fragment program constant, this is what we access in fragment shader register fc0
+			__c3dContext.setProgramConstantsFromVector(Context3DProgramType.FRAGMENT, 0, new <Number>[1, 1, 1, 1]);
+
+			// Set vertex buffer, this is what we access in vertex shader register va0
+			__c3dContext.setVertexBufferAt(0, __v3dBuffer, 0, Context3DVertexBufferFormat.FLOAT_3);
+
 			// Draw the index buffer
 			__c3dContext.drawTriangles(__i3dBuffer, 0, 1);
 			// Present it

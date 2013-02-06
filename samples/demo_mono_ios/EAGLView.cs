@@ -26,6 +26,7 @@ namespace StarlingDemo_ios
 		flash.display.Stage    mStage;
 		// this is our starling context
 		starling.core.Starling mStarling;
+		Tutorial1 mTutorial;
 
 		[Export("initWithCoder:")]
 		public EAGLView (NSCoder coder) : base (coder)
@@ -55,14 +56,14 @@ namespace StarlingDemo_ios
 				base.CreateFrameBuffer ();
 			}
 			
-//			if (ContextRenderingApi == EAGLRenderingAPI.OpenGLES2)
-//				LoadShaders ();
+			if (ContextRenderingApi == EAGLRenderingAPI.OpenGLES2)
+				LoadShaders ();
 		}
 		
 		protected override void DestroyFrameBuffer ()
 		{
 			base.DestroyFrameBuffer ();
-//			DestroyShaders ();
+			DestroyShaders ();
 		}
 		
 		#region DisplayLink support
@@ -151,7 +152,14 @@ namespace StarlingDemo_ios
 				// construct flash stage
 				mStage = new flash.display.Stage (960, 640);
 			}
-			
+
+			if (mTutorial == null) {
+				// construct tutorial
+				flash.display.DisplayObject.globalStage = mStage;
+				//mTutorial = new Tutorial1 ();
+				flash.display.DisplayObject.globalStage = null;
+			}
+
 			if (mStarling == null) {
 				// construct starling  instance
 				mStarling = new starling.core.Starling (typeof(MyStarlingTest), mStage);
@@ -170,46 +178,54 @@ namespace StarlingDemo_ios
 				mStarling.stage.advanceTime (1.0 / 60.0);
 			}
 
-//			// Replace the implementation of this method to do your own custom drawing.
-//			GL.ClearColor (0.5f, 0.5f, 0.5f, 1.0f);
-//			GL.Clear (ClearBufferMask.ColorBufferBit);
-//			
-//			if (ContextRenderingApi == EAGLRenderingAPI.OpenGLES2) {
-//				// Use shader program.
-//				GL.UseProgram (program);
-//				
-//				// Update uniform value.
-//				GL.Uniform1 (uniforms [UNIFORM_TRANSLATE], transY);
-//				transY += 0.075f;
-//				
-//				// Update attribute values.
-//				GL.VertexAttribPointer (ATTRIB_VERTEX, 2, VertexAttribPointerType.Float, false, 0, squareVertices);
-//				GL.EnableVertexAttribArray (ATTRIB_VERTEX);
-//				GL.VertexAttribPointer (ATTRIB_COLOR, 4, VertexAttribPointerType.UnsignedByte, true, 0, squareColors);
-//				GL.EnableVertexAttribArray (ATTRIB_COLOR);
-//				
-//				// Validate program before drawing. This is a good check, but only really necessary in a debug build.
-//#if DEBUG
-//				if (!ValidateProgram (program)) {
-//					Console.WriteLine ("Failed to validate program {0:x}", program);
-//					return;
-//				}
-//#endif
-//			} else {
-//				GL1.MatrixMode (All1.Projection);
-//				GL1.LoadIdentity ();
-//				GL1.MatrixMode (All1.Modelview);
-//				GL1.LoadIdentity ();
-//				GL1.Translate (0.0f, (float)Math.Sin (transY) / 2.0f, 0.0f);
-//				transY += 0.075f;
-//				
-//				GL1.VertexPointer (2, All1.Float, 0, squareVertices);
-//				GL1.EnableClientState (All1.VertexArray);
-//				GL1.ColorPointer (4, All1.UnsignedByte, 0, squareColors);
-//				GL1.EnableClientState (All1.ColorArray);
-//			}
-//			
-//			GL.DrawArrays (BeginMode.TriangleStrip, 0, 4);
+			if (mTutorial != null) {
+				mTutorial.dispatchEvent (new flash.events.Event (flash.events.Event.ENTER_FRAME));
+			}
+
+			// update all timer objects
+			flash.utils.Timer.advanceAllTimers (1000.0 / 60.0);
+
+			// Replace the implementation of this method to do your own custom drawing.
+			if (false) {
+				GL.ClearColor (0.5f, 0.5f, 0.5f, 1.0f);
+				GL.Clear (ClearBufferMask.ColorBufferBit);
+				if (ContextRenderingApi == EAGLRenderingAPI.OpenGLES2) {
+					// Use shader program.
+					GL.UseProgram (program);
+				
+					// Update uniform value.
+					GL.Uniform1 (uniforms [UNIFORM_TRANSLATE], transY);
+					transY += 0.075f;
+				
+					// Update attribute values.
+					GL.VertexAttribPointer (ATTRIB_VERTEX, 2, VertexAttribPointerType.Float, false, 0, squareVertices);
+					GL.EnableVertexAttribArray (ATTRIB_VERTEX);
+					GL.VertexAttribPointer (ATTRIB_COLOR, 4, VertexAttribPointerType.UnsignedByte, true, 0, squareColors);
+					GL.EnableVertexAttribArray (ATTRIB_COLOR);
+				
+					// Validate program before drawing. This is a good check, but only really necessary in a debug build.
+#if DEBUG
+					if (!ValidateProgram (program)) {
+						Console.WriteLine ("Failed to validate program {0:x}", program);
+						return;
+					}
+#endif
+				} else {
+					GL1.MatrixMode (All1.Projection);
+					GL1.LoadIdentity ();
+					GL1.MatrixMode (All1.Modelview);
+					GL1.LoadIdentity ();
+					GL1.Translate (0.0f, (float)Math.Sin (transY) / 2.0f, 0.0f);
+					transY += 0.075f;
+				
+					GL1.VertexPointer (2, All1.Float, 0, squareVertices);
+					GL1.EnableClientState (All1.VertexArray);
+					GL1.ColorPointer (4, All1.UnsignedByte, 0, squareColors);
+					GL1.EnableClientState (All1.ColorArray);
+				}
+			
+				GL.DrawArrays (BeginMode.TriangleStrip, 0, 4);
+			}
 			
 			SwapBuffers ();
 		}
