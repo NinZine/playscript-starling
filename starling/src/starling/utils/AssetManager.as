@@ -90,7 +90,10 @@ package starling.utils
                     var texture:Texture = atlas.getTexture(name);
                     if (texture) return texture;
                 }
-                return null;
+                
+				// $$TODO we are autocreating textures here to make the demos work
+                return Texture.fromBitmap(new Bitmap(new flash.display.BitmapData(64,64,false,0xFF00FF)) , mUseMipMaps, false, mScaleFactor);
+            //    return null;
             }
         }
         
@@ -255,6 +258,7 @@ package starling.utils
          */
         public function enqueue(...rawAssets):void
         {
+#if false
             var push:Function = function(asset:Object, name:String):void
             {
                 if (name == null) name = getName(asset);
@@ -328,6 +332,7 @@ package starling.utils
                     log("Ignoring unsupported asset type: " + getQualifiedClassName(rawAsset));
                 }
             }
+#endif
         }
         
         /** Loads all enqueued assets asynchronously. The 'onProgress' function will be called
@@ -357,7 +362,10 @@ package starling.utils
                 if (mRawAssets.length)
                     timeoutID = setTimeout(processNext, 1);
                 else
+                {
+               		// $$TODO not doing XML yet
                     processXmls();
+                }
                 
                 if (onProgress != null)
                     onProgress(currentRatio);

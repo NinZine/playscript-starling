@@ -247,7 +247,9 @@ package starling.text
                 mQuadBatch.reset();
             
             var bitmapFont:BitmapFont = bitmapFonts[mFontName];
-            if (bitmapFont == null) throw new Error("Bitmap font not registered: " + mFontName);
+			if (bitmapFont != null) 
+				// $$TODO we skip font rendering for now 
+				// throw new Error("Bitmap font not registered: " + mFontName);
             
             bitmapFont.fillQuadBatch(mQuadBatch,
                 mHitArea.width, mHitArea.height, mText, mFontSize, mColor, mHAlign, mVAlign,

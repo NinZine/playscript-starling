@@ -178,6 +178,6 @@ Global
 		{45B828B4-E5F7-484E-B5F2-22D0ED0A9B3C} = {E26D56E8-9568-4142-91C4-98C44C7AB284}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = ..\demo_mono_ios\StarlingDemo-monotouch.csproj
+		StartupItem = StarlingDemo-monomac.csproj
 	EndGlobalSection
 EndGlobal

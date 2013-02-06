@@ -10,18 +10,18 @@ package OpenGLLayer
 	{
 		public function MyStarlingTest()
 		{
-			mQuad1 = new starling.display.Quad(400, 300);
-			mQuad1.x = 200;
-			mQuad1.y = 100;
+			mQuad1 = new starling.display.Quad(300, 300);
+			mQuad1.x = 100;
+			mQuad1.y = 200;
 			mQuad1.color = 0x0000FF;
 			mQuad1.rotation = 1;
 			mQuad1.pivotX = mQuad1.width / 2;
 			mQuad1.pivotY = mQuad1.height / 2;
 			this.addChild(mQuad1);
 
-			mQuad2 = new starling.display.Quad(400, 300);
-			mQuad2.x = 250;
-			mQuad2.y = 150;
+			mQuad2 = new starling.display.Quad(300, 300);
+			mQuad2.x = 150;
+			mQuad2.y = 250;
 			mQuad2.color = 0x00FF00;
 			mQuad2.pivotX = mQuad2.width / 2;
 			mQuad2.pivotY = mQuad2.height / 2;
@@ -29,7 +29,7 @@ package OpenGLLayer
 			mQuad2.scaleY = 0.5;
 			this.addChild(mQuad2);
 
-			mQuad3 = new starling.display.Quad(400, 300);
+			mQuad3 = new starling.display.Quad(300, 300);
 			mQuad3.x = 300;
 			mQuad3.y = 200;
 			mQuad3.color = 0xFF0000;
@@ -48,13 +48,13 @@ package OpenGLLayer
 			var texture:Texture = Texture.fromBitmapData(bd, false);
 			mImage = new Image(texture);
             mImage.x = 90;
-            mImage.y = 85;
+            mImage.y = 185;
   			//mImage.color = 0xFFFFFF;
           	addChild(mImage);
           
             // load bitmapdata from file       
 			var rnd = new System.Random();
-			var bd2:BitmapData = bd; // BitmapData.loadFromPath("DemoTexture256.png");
+			var bd2:BitmapData = BitmapData.loadFromPath("DemoTexture256.png");
 			var texture2:Texture = Texture.fromBitmapData(bd2, false);
 
 			// create starling images			
