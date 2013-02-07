@@ -215,7 +215,7 @@ package starling.text
         
         private function autoScaleNativeTextField(textField:flash.text.TextField):void
         {
-            var size:Number   = Number(textField.defaultTextFormat.size);
+			var size:Number   = 12.0; // $$TODO Number(textField.defaultTextFormat.size);
             var maxHeight:int = textField.height - 4;
             var maxWidth:int  = textField.width - 4;
             
@@ -248,8 +248,7 @@ package starling.text
             
             var bitmapFont:BitmapFont = bitmapFonts[mFontName];
 			if (bitmapFont != null) 
-				// $$TODO we skip font rendering for now 
-				// throw new Error("Bitmap font not registered: " + mFontName);
+				 throw new Error("Bitmap font not registered: " + mFontName);
             
             bitmapFont.fillQuadBatch(mQuadBatch,
                 mHitArea.width, mHitArea.height, mText, mFontSize, mColor, mHAlign, mVAlign,
@@ -331,12 +330,14 @@ package starling.text
         {
             if (mFontName != value)
             {
-                if (value == BitmapFont.MINI && bitmapFonts[value] == undefined)
+				var bmd:Dictionary = bitmapFonts;
+
+                if (value == BitmapFont.MINI && !bmd.ContainsKey(value))
                     registerBitmapFont(new BitmapFont());
                 
                 mFontName = value;
                 mRequiresRedraw = true;
-                mIsRenderedText = bitmapFonts[value] == undefined;
+                mIsRenderedText = !bmd.ContainsKey(value);
             }
         }
         

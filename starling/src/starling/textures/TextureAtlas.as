@@ -84,7 +84,6 @@ package starling.textures
          *  (e.g. to support a different file format). */
         protected function parseAtlasXml(atlasXml:XML):void
         {
-        #if false
             var scale:Number = mAtlasTexture.scale;
             
             for each (var subTexture:XML in atlasXml.SubTexture)
@@ -105,8 +104,6 @@ package starling.textures
                 
                 addRegion(name, region, frame);
             }
-            #endif
-            throw new System.NotImplementedException();
         }
         
         /** Retrieves a subtexture by name. Returns <code>null</code> if it is not found. */

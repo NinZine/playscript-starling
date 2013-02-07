@@ -79,19 +79,19 @@ namespace OpenGLLayer
 			if (mDemoMobile == null) {
 				// construct starling demo
 				flash.display.DisplayObject.globalStage = mStage;
-				//mDemoMobile = new _root.Demo_Mobile();
+				mDemoMobile = new _root.Demo_Mobile();
 				flash.display.DisplayObject.globalStage = null;
 			}
 
 			if (mStarling == null) {
 				// construct starling  instance
-				mStarling = new starling.core.Starling (typeof(MyStarlingTest), mStage);
+				//mStarling = new starling.core.Starling (typeof(MyStarlingTest), mStage);
 			}
 
 			if (mTutorial == null) {
 				// construct tutorial
 				flash.display.DisplayObject.globalStage = mStage;
-				// mTutorial = new Tutorial1 ();
+				//mTutorial = new Tutorial1 ();
 				flash.display.DisplayObject.globalStage = null;
 			}
 

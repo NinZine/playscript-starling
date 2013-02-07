@@ -91,9 +91,7 @@ package starling.utils
                     if (texture) return texture;
                 }
                 
-				// $$TODO we are autocreating textures here to make the demos work
-                return Texture.fromBitmap(new Bitmap(new flash.display.BitmapData(64,64,false,0xFF00FF)) , mUseMipMaps, false, mScaleFactor);
-            //    return null;
+            	return null;
             }
         }
         
@@ -333,7 +331,7 @@ package starling.utils
          *
          *  @param onProgress: <code>function(ratio:Number):void;</code> 
          */
-        public function loadQueue(onProgress:Object):void
+        public function loadQueue(onProgress:Function):void
         {
             if (Starling.context == null)
                 throw new Error("The Starling instance needs to be ready before textures can be loaded.");
@@ -356,7 +354,6 @@ package starling.utils
                     timeoutID = setTimeout(processNext, 1);
                 else
                 {
-               		// $$TODO not doing XML yet
                     processXmls();
                 }
                 
@@ -377,9 +374,9 @@ package starling.utils
                 // have to be available for other XMLs. Texture atlases are processed first:
                 // that way, their textures can be referenced, too.
                 
-                xmls.sort(function(a:XML, b:XML):int { 
-                    return a.localName() == "TextureAtlas" ? -1 : 1; 
-                });
+//                xmls.sort(function(a:XML, b:XML):int { 
+//                    return a.localName() == "TextureAtlas" ? -1 : 1; 
+//                });
                 
                 for each (var xml:XML in xmls)
                 {
@@ -388,7 +385,7 @@ package starling.utils
                     
                     if (rootNode == "TextureAtlas")
                     {
-                        name = getName(xml.@imagePath.toString());
+                        name = getName(xml.@imagePath.ToString());
                         
                         var atlasTexture:Texture = getTexture(name);
                         addTextureAtlas(name, new TextureAtlas(atlasTexture, xml));
@@ -396,7 +393,7 @@ package starling.utils
                     }
                     else if (rootNode == "font")
                     {
-                        name = getName(xml.pages.page.@file.toString());
+                        name = getName(xml.pages.page.@file.ToString());
                         
                         var fontTexture:Texture = getTexture(name);
                         TextField.registerBitmapFont(new BitmapFont(fontTexture, xml));
