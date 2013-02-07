@@ -70,6 +70,9 @@ namespace StarlingDemo_ios
 			foreach (UITouch touch in touches) {
 				var p = touch.LocationInView(this);
 				Console.WriteLine ("touches-began {0}", p);
+
+				var te = new flash.events.TouchEvent(flash.events.TouchEvent.TOUCH_BEGIN, true, false, 0, true, p.X, p.Y, 1.0, 1.0, 1.0 );
+				if (mStage!=null) mStage.dispatchEvent (te);
 			}
 		}
 
@@ -80,6 +83,9 @@ namespace StarlingDemo_ios
 			foreach (UITouch touch in touches) {
 				var p = touch.LocationInView(this);
 				Console.WriteLine ("touches-moved {0}", p);
+
+				var te = new flash.events.TouchEvent(flash.events.TouchEvent.TOUCH_MOVE, true, false, 0, true, p.X, p.Y, 1.0, 1.0, 1.0 );
+				if (mStage!=null) mStage.dispatchEvent (te);
 			}
 		}
 
@@ -90,6 +96,9 @@ namespace StarlingDemo_ios
 			foreach (UITouch touch in touches) {
 				var p = touch.LocationInView(this);
 				Console.WriteLine ("touches-ended {0}", p);
+
+				var te = new flash.events.TouchEvent(flash.events.TouchEvent.TOUCH_END, true, false, 0, true, p.X, p.Y, 1.0, 1.0, 1.0 );
+				if (mStage!=null) mStage.dispatchEvent (te);
 			}
 		}
 

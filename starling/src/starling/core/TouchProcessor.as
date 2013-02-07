@@ -136,13 +136,15 @@ package starling.core
         public function enqueue(touchID:int, phase:String, globalX:Number, globalY:Number,
                                 pressure:Number=1.0, width:Number=1.0, height:Number=1.0):void
         {
-            mQueue.unshift([touchID, phase, globalX, globalY, pressure, width, height]);
+			var a:Array = [touchID, phase, globalX, globalY, pressure, width, height];
+            mQueue.unshift(a);
             
             // multitouch simulation (only with mouse)
             if (mCtrlDown && simulateMultitouch && touchID == 0) 
             {
                 mTouchMarker.moveMarker(globalX, globalY, mShiftDown);
-                mQueue.unshift([1, phase, mTouchMarker.mockX, mTouchMarker.mockY]);
+				a = [1, phase, mTouchMarker.mockX, mTouchMarker.mockY];
+                mQueue.unshift(a);
             }
         }
         
