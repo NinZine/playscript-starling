@@ -27,6 +27,7 @@ namespace StarlingDemo_ios
 		// this is our starling context
 		starling.core.Starling mStarling;
 		Tutorial1 mTutorial;
+		_root.Demo_Mobile mDemoMobile;
 
 		[Export("initWithCoder:")]
 		public EAGLView (NSCoder coder) : base (coder)
@@ -162,7 +163,14 @@ namespace StarlingDemo_ios
 
 			if (mStarling == null) {
 				// construct starling  instance
-				mStarling = new starling.core.Starling (typeof(MyStarlingTest), mStage);
+				//mStarling = new starling.core.Starling (typeof(MyStarlingTest), mStage);
+			}
+
+			if (mDemoMobile == null) {
+				// construct starling demo
+				flash.display.DisplayObject.globalStage = mStage;
+				mDemoMobile = new _root.Demo_Mobile();
+				flash.display.DisplayObject.globalStage = null;
 			}
 
 			// Do a clear to check to see if we're working.. (remark out if everything is fine).

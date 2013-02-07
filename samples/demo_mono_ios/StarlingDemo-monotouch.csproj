@@ -88,9 +88,23 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="demo\" />
+    <Folder Include="demo_mobile\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
+    <None Include="..\demo\README.md">
+      <Link>demo\README.md</Link>
+    </None>
+    <None Include="..\demo\assets\fonts\2x\desyrel.fnt">
+      <Link>demo\assets\fonts\2x\desyrel.fnt</Link>
+    </None>
+    <None Include="..\demo_mobile\README.md">
+      <Link>demo_mobile\README.md</Link>
+    </None>
+    <None Include="..\demo_mobile\src\Demo_Mobile-app.xml">
+      <Link>demo_mobile\src\Demo_Mobile-app.xml</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
@@ -101,6 +115,60 @@
     <Compile Include="..\demo_mono\Tutorial1.asx">
       <Link>Tutorial1.asx</Link>
     </Compile>
+    <Compile Include="..\demo\src\Constants.as">
+      <Link>demo\src\Constants.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\Game.as">
+      <Link>demo\src\Game.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\MainMenu.as">
+      <Link>demo\src\MainMenu.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\AnimationScene.as">
+      <Link>demo\src\scenes\AnimationScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\BenchmarkScene.as">
+      <Link>demo\src\scenes\BenchmarkScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\BlendModeScene.as">
+      <Link>demo\src\scenes\BlendModeScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\CustomHitTestScene.as">
+      <Link>demo\src\scenes\CustomHitTestScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\FilterScene.as">
+      <Link>demo\src\scenes\FilterScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\MovieScene.as">
+      <Link>demo\src\scenes\MovieScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\RenderTextureScene.as">
+      <Link>demo\src\scenes\RenderTextureScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\Scene.as">
+      <Link>demo\src\scenes\Scene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\TextScene.as">
+      <Link>demo\src\scenes\TextScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\TextureScene.as">
+      <Link>demo\src\scenes\TextureScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\TouchScene.as">
+      <Link>demo\src\scenes\TouchScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\utils\ProgressBar.as">
+      <Link>demo\src\utils\ProgressBar.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\utils\RoundButton.as">
+      <Link>demo\src\utils\RoundButton.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\utils\TouchSheet.as">
+      <Link>demo\src\utils\TouchSheet.as</Link>
+    </Compile>
+    <Compile Include="..\demo_mobile\src\Demo_Mobile.as">
+      <Link>demo_mobile\src\Demo_Mobile.as</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="OpenGLViewController.xib" />
@@ -108,6 +176,9 @@
   <ItemGroup>
     <Content Include="Shader.fsh" />
     <Content Include="Shader.vsh" />
+    <Content Include="..\demo\assets\fonts\2x\desyrel.png">
+      <Link>demo\assets\fonts\2x\desyrel.png</Link>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -127,6 +198,69 @@
   <ItemGroup>
     <BundleResource Include="..\demo_mono\DemoTexture256.png">
       <Link>DemoTexture256.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\Default-Portrait.png">
+      <Link>demo\system\Default-Portrait.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\Default.png">
+      <Link>demo\system\Default.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\Default%402x.png">
+      <Link>demo\system\Default%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\README.md">
+      <Link>demo\system\README.md</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\icon114.png">
+      <Link>demo\system\icon114.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\icon144.png">
+      <Link>demo\system\icon144.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\icon57.png">
+      <Link>demo\system\icon57.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\icon72.png">
+      <Link>demo\system\icon72.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\startup.jpg">
+      <Link>demo\system\startup.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\startupHD.jpg">
+      <Link>demo\system\startupHD.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\audio\wing_flap.mp3">
+      <Link>demo\assets\audio\wing_flap.mp3</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\fonts\Ubuntu-License.txt">
+      <Link>demo\assets\fonts\Ubuntu-License.txt</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\fonts\Ubuntu-R.ttf">
+      <Link>demo\assets\fonts\Ubuntu-R.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\fonts\1x\desyrel.fnt">
+      <Link>demo\assets\fonts\1x\desyrel.fnt</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\fonts\1x\desyrel.png">
+      <Link>demo\assets\fonts\1x\desyrel.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\textures\1x\atlas.png">
+      <Link>demo\assets\textures\1x\atlas.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\textures\1x\atlas.xml">
+      <Link>demo\assets\textures\1x\atlas.xml</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\textures\1x\compressed_texture.atf">
+      <Link>demo\assets\textures\1x\compressed_texture.atf</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\textures\2x\atlas.png">
+      <Link>demo\assets\textures\2x\atlas.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\textures\2x\atlas.xml">
+      <Link>demo\assets\textures\2x\atlas.xml</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\textures\2x\compressed_texture.atf">
+      <Link>demo\assets\textures\2x\compressed_texture.atf</Link>
     </BundleResource>
   </ItemGroup>
 </Project>
