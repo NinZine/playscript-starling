@@ -106,8 +106,8 @@ package starling.core
                             bubbleChain: touch.bubbleChain 
                         });
                     
-                    throw new System.NotImplementedException();
-                    //processTouch.apply(this, touchArgs);
+					var func:Function = this.processTouch;
+                    func.apply(this, touchArgs);
                     sProcessedTouchIDs.push(touchID);
                 }
                 
@@ -136,8 +136,7 @@ package starling.core
         public function enqueue(touchID:int, phase:String, globalX:Number, globalY:Number,
                                 pressure:Number=1.0, width:Number=1.0, height:Number=1.0):void
         {
-        	throw new System.NotImplementedException();
-            //mQueue.unshift(arguments);
+            mQueue.unshift([touchID, phase, globalX, globalY, pressure, width, height]);
             
             // multitouch simulation (only with mouse)
             if (mCtrlDown && simulateMultitouch && touchID == 0) 
@@ -306,11 +305,10 @@ package starling.core
         {
             // if the application moves into the background or is interrupted (e.g. through
             // an incoming phone call), we need to abort all touches.
-/*            
+            
             try
             {
-                var nativeAppClass:Object = getDefinitionByName("flash.desktop::NativeApplication");
-                var nativeApp:Object = nativeAppClass["nativeApplication"];
+				var nativeApp:flash.desktop.NativeApplication = flash.desktop.NativeApplication.nativeApplication;
 
                 if (enable)
                     nativeApp.addEventListener("deactivate", onInterruption, false, 0, true);
@@ -318,7 +316,7 @@ package starling.core
                     nativeApp.removeEventListener("activate", onInterruption);
             }
             catch (e:Error) {} // we're not running in AIR
-            */
+            
         }
         
         private function onInterruption(event:Object):void
