@@ -295,10 +295,10 @@ package com.adobe.utils
 					{
 						regmask = 0;
 						var cv:uint; 
-						var maskLength:uint = maskmatch[0].length;
+						var maskLength:uint = String(maskmatch[0]).length;
 						for ( k = 1; k < maskLength; k++ )
 						{
-							cv = maskmatch[0].charCodeAt(k) - "x".charCodeAt(0);
+							cv = String(maskmatch[0]).charCodeAt(k) - "x".charCodeAt(0);
 							if ( cv > 2 )
 								cv = 3;
 							if ( isDest )
