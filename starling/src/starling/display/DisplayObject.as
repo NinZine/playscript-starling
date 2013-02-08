@@ -183,7 +183,7 @@ package starling.display
             {
                 return resultMatrix;
             }
-            else if (targetSpace == mParent || (targetSpace == null && mParent == null))
+			else if (System.Object(targetSpace) == System.Object(mParent) || (targetSpace == null && mParent == null))
             {
                 resultMatrix.copyFrom(transformationMatrix);
                 return resultMatrix;
