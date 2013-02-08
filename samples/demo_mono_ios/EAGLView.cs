@@ -167,7 +167,7 @@ namespace StarlingDemo_ios
 
 			if (mStage == null) {
 				// construct flash stage
-				mStage = new flash.display.Stage ( (int)this.Frame.Width, (int)this.Frame.Height);
+				mStage = new flash.display.Stage (320, 480 ) ;// (int)this.Frame.Width, (int)this.Frame.Height);
 			}
 
 			if (mTutorial == null) {
@@ -179,7 +179,9 @@ namespace StarlingDemo_ios
 
 			if (mStarling == null) {
 				// construct starling  instance
+				//starling.core.Starling.multitouchEnabled = true;
 				//mStarling = new starling.core.Starling (typeof(MyStarlingTest), mStage);
+				//mStarling.start();
 			}
 
 			if (mDemoMobile == null) {

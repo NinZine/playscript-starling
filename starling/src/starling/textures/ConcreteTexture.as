@@ -62,9 +62,9 @@ package starling.textures
          *  can be either BitmapData or a ByteArray with ATF data. */ 
         public function restoreOnLostContext(data:Object):void
         {
-            if (mData == null && data != null)
+			if (System.Object(mData) == null && System.Object(data) != null)
                 Starling.current.addEventListener(Event.CONTEXT3D_CREATE, onContextCreated);
-            else if (data == null)
+			else if (System.Object(data) == null)
                 Starling.current.removeEventListener(Event.CONTEXT3D_CREATE, onContextCreated);
             
             mData = data;
