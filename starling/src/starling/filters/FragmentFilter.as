@@ -396,9 +396,8 @@ package starling.filters
                 resultRect.y -= mMarginY + deltaMargin;
                 resultRect.width  += 2 * (mMarginX + deltaMargin);
                 resultRect.height += 2 * (mMarginY + deltaMargin);
-                throw new System.NotImplementedException();
-                // resultRect.width  = getNextPowerOfTwo(resultRect.width  * mResolution) / mResolution;
-                // resultRect.height = getNextPowerOfTwo(resultRect.height * mResolution) / mResolution;
+                resultRect.width  = getNextPowerOfTwo(resultRect.width  * mResolution) / mResolution;
+                resultRect.height = getNextPowerOfTwo(resultRect.height * mResolution) / mResolution;
             }
         }
         

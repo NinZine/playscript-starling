@@ -374,9 +374,9 @@ package starling.utils
                 // have to be available for other XMLs. Texture atlases are processed first:
                 // that way, their textures can be referenced, too.
                 
-//                xmls.sort(function(a:XML, b:XML):int { 
-//                    return a.localName() == "TextureAtlas" ? -1 : 1; 
-//                });
+                xmls.sort(function(a:XML, b:XML):int { 
+                    return a.localName() == "TextureAtlas" ? -1 : 1; 
+                });
                 
                 for each (var xml:XML in xmls)
                 {

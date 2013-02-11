@@ -59,7 +59,7 @@ package starling.animation
         /** Adds an object to the juggler. */
         public function add(object:IAnimatable):void
         {
-            if (object && mObjects.indexOf(object) == -1) 
+            if (object!=null && mObjects.indexOf(object) == -1) 
             {
                 mObjects.push(object);
             

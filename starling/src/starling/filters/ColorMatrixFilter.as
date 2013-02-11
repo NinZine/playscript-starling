@@ -47,7 +47,7 @@ package starling.filters
         private var mShaderMatrix:Vector.<Number>; // offset in range 0-1, changed order
         
         private static var MIN_COLOR:Vector.<Number> = new <Number>[0, 0, 0, 0.0001];
-        private static var IDENTITY:Array = [1,0,0,0,0,  0,1,0,0,0,  0,0,1,0,0,  0,0,0,1,0];
+		private static var IDENTITY:Vector.<Number>  = new <Number>[1,0,0,0,0,  0,1,0,0,0,  0,0,1,0,0,  0,0,0,1,0];
         private static const LUMA_R:Number = 0.299;
         private static const LUMA_G:Number = 0.587;
         private static const LUMA_B:Number = 0.114;
@@ -249,14 +249,9 @@ package starling.filters
             
             if (value == null)
             {
-                mUserMatrix.length = 0;
-                throw new System.NotImplementedException();
-                
-                //var p = mUserMatrix.push;
-                //p.apply(mUserMatrix, IDENTITY);
-                
-                //mUserMatrix.push.apply(mUserMatrix, IDENTITY);
-            }
+				mUserMatrix.length = IDENTITY.length;
+				copyMatrix(IDENTITY, mUserMatrix);
+			}
             else
             {
                 copyMatrix(value, mUserMatrix);
