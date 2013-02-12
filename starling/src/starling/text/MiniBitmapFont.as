@@ -8,8 +8,6 @@
 //
 // =================================================================================================
 
-#if MINI_FONT
-
 package starling.text
 {
     import flash.display.BitmapData;
@@ -293,5 +291,3 @@ package starling.text
         public static function get xml():XML { return XML_DATA; }
     }
 }
-
-#endif

@@ -94,10 +94,10 @@
     <Compile Include="starling\utils\rad2deg.as" />
     <Compile Include="starling\utils\formatString.as" />
     <Compile Include="starling\utils\AssetManager.as" />
+    <Compile Include="starling\text\MiniBitmapFont.as" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="starling\text\MiniBitmapFont.as" />
     <None Include="starling\utils\transformCoords.as" />
   </ItemGroup>
   <ItemGroup>

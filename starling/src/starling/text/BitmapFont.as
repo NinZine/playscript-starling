@@ -81,9 +81,8 @@ package starling.text
             // if no texture is passed in, we create the minimal, embedded font
             if (texture == null && fontXml == null)
             {
-            	throw new System.NotImplementedException();
-                // texture = MiniBitmapFont.texture;
-                // fontXml = MiniBitmapFont.xml;
+                texture = MiniBitmapFont.texture;
+                fontXml = MiniBitmapFont.xml;
             }
             
             mName = "unknown";
