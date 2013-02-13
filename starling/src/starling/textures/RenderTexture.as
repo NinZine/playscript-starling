@@ -123,9 +123,8 @@ package starling.textures
                              antiAliasing:int=0):void
         {
             if (object == null) return;
-           throw new System.NotImplementedException();
-           /*
-            var render:Function = function():void
+
+			var render:Function = function():void
             {
                 mSupport.loadIdentity();
                 mSupport.blendMode = object.blendMode;
@@ -140,8 +139,6 @@ package starling.textures
                 render();
             else
                 drawBundled(render, antiAliasing);
-            */
-           
         }
         
         /** Bundles several calls to <code>draw</code> together in a block. This avoids buffer 
