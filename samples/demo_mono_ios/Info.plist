@@ -8,5 +8,7 @@
 	<array>
 		<integer>1</integer>
 	</array>
+	<key>UIStatusBarHidden</key>
+	<true/>
 </dict>
 </plist>
