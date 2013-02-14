@@ -111,9 +111,7 @@ package
         {
             if (mCurrentScene) return;
             
-            //var sceneClass:Class = getDefinitionByName(name) as Class;
-			var sceneClass:System.Type = System.Type.GetType(name.Replace("::", "."));
-
+            var sceneClass:Class = getDefinitionByName(name) as Class;
 			mCurrentScene = new sceneClass() as Scene;
             mMainMenu.removeFromParent();
             addChild(mCurrentScene);
