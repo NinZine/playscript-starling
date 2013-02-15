@@ -69,7 +69,7 @@ package scenes
                     var location:Point = touch.getLocation(mCanvas);
                     mBrush.x = location.x;
                     mBrush.y = location.y;
-                    mBrush.color = mColors[touch.id];
+                    mBrush.color = uint(Number(mColors[touch.id]));
                     mBrush.rotation = Math.random() * Math.PI * 2.0;
                     
                     mRenderTexture.draw(mBrush);

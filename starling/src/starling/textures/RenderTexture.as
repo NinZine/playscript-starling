@@ -85,7 +85,17 @@ package starling.textures
             mActiveTexture = texture;
             
             mSupport = new RenderSupport();
-            mSupport.setOrthographicProjection(0, 0, nativeWidth/scale, nativeHeight/scale);
+
+			if (Starling.context.driverInfo == "MonoGL")
+			{
+				// this is a terrible hack because the texture origin needs to be corrected in openGL
+				// $$TODO see if this can be fixed at the stage3D level
+				mSupport.setOrthographicProjection(0, nativeHeight/scale, nativeWidth/scale, -nativeHeight/scale);
+			}
+			else 
+			{
+				mSupport.setOrthographicProjection(0, 0, nativeWidth/scale, nativeHeight/scale);
+			}
             
             if (persistent)
             {
@@ -169,7 +179,7 @@ package starling.textures
             
             // draw buffer
             if (isPersistent && mBufferReady)
-                mHelperImage.render(mSupport, 1.0);
+				mHelperImage.render(mSupport, 1.0);
             else
                 mBufferReady = true;
             
