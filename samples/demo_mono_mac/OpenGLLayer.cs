@@ -56,7 +56,7 @@ namespace OpenGLLayer
 			set { animate = value; }
 		}
 
-		public override bool CanDrawInCGLContext (CGLContext glContext, CGLPixelFormat pixelFormat, double timeInterval, ref CVTimeStamp timeStamp)
+		public override bool CanDrawInCGLContext (CGLContext glContext, CGLPixelFormat pixelFormat, double timeInterval, CVTimeStamp timeStamp)
 		{
 			return animate;
 		}
@@ -68,7 +68,7 @@ namespace OpenGLLayer
 
 		_root.Demo_Mobile mDemoMobile;
 
-		public override void DrawInCGLContext (CGLContext glContext, CGLPixelFormat pixelFormat, double timeInterval, ref CVTimeStamp timeStamp)
+		public override void DrawInCGLContext (MonoMac.OpenGL.CGLContext glContext, CGLPixelFormat pixelFormat, double timeInterval, CVTimeStamp timeStamp)
 		{
 			if (mStage == null) {
 				// construct flash stage
