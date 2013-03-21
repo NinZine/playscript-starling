@@ -221,15 +221,25 @@ package starling.core
                         mTouchMarker.moveMarker(mouseTouch.globalX, mouseTouch.globalY);
                     
                     // end active touch ...
+					var a:Array;
                     if (wasCtrlDown && mockedTouch && mockedTouch.phase != TouchPhase.ENDED)
-                        mQueue.unshift([1, TouchPhase.ENDED, mockedTouch.globalX, mockedTouch.globalY]);
+					{
+						a = [1, TouchPhase.ENDED, mockedTouch.globalX, mockedTouch.globalY];
+                        mQueue.unshift(a);
+					}
                     // ... or start new one
                     else if (mCtrlDown && mouseTouch)
                     {
                         if (mouseTouch.phase == TouchPhase.HOVER || mouseTouch.phase == TouchPhase.ENDED)
-                            mQueue.unshift([1, TouchPhase.HOVER, mTouchMarker.mockX, mTouchMarker.mockY]);
+						{
+							a = [1, TouchPhase.HOVER, mTouchMarker.mockX, mTouchMarker.mockY];
+                            mQueue.unshift(a);
+						}
                         else
-                            mQueue.unshift([1, TouchPhase.BEGAN, mTouchMarker.mockX, mTouchMarker.mockY]);
+						{
+							a = [1, TouchPhase.BEGAN, mTouchMarker.mockX, mTouchMarker.mockY];
+                            mQueue.unshift(a);
+						}
                     }
                 }
             }
