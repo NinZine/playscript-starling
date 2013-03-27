@@ -421,7 +421,9 @@ package starling.utils
             var onUrlLoaderComplete:Function;
             var onLoaderComplete:Function;
             var extension:String = null;
-            
+			var urlLoader:URLLoader;
+			var bytes:ByteArray;
+
             onIoError = function(event:IOErrorEvent):void
             {
                 log("IO error: " + event.text);
@@ -435,8 +437,8 @@ package starling.utils
             
             onUrlLoaderComplete = function(event:Event):void
             {
-                var urlLoader:URLLoader = event.target as URLLoader;
-                var bytes:ByteArray = urlLoader.data as ByteArray;
+                urlLoader = event.target as URLLoader;
+                bytes = urlLoader.data as ByteArray;
                 var sound:Sound;
                 
                 urlLoader.removeEventListener(IOErrorEvent.IO_ERROR, onIoError);
@@ -500,7 +502,7 @@ package starling.utils
                 }
                 else if (asset is ByteArray)
                 {
-                    var bytes:ByteArray = asset as ByteArray;
+                    bytes = asset as ByteArray;
                     var signature:String = String.fromCharCode(bytes[0], bytes[1], bytes[2]);
                     
                     if (signature == "ATF")
@@ -525,7 +527,7 @@ package starling.utils
                 var url:String = rawAsset as String;
                 extension = String(url.split(".").pop()).toLowerCase();
                 
-                var urlLoader:URLLoader = new URLLoader();
+                urlLoader = new URLLoader();
                 urlLoader.dataFormat = URLLoaderDataFormat.BINARY;
                 urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onIoError);
                 urlLoader.addEventListener(ProgressEvent.PROGRESS, onLoadProgress);
