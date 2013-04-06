@@ -125,7 +125,7 @@ package starling.animation
         {
             if (call == null) return null;
             
-            var delayedCall:DelayedCall = new DelayedCall(call, delay, args);
+            var delayedCall:DelayedCall = new DelayedCall(call, delay, new Array(args));
             add(delayedCall);
             return delayedCall;
         }
@@ -148,7 +148,7 @@ package starling.animation
          */
         public function tween(target:Object, time:Number, properties:Object):void
         {
-            var tween:Tween = Tween.starling_internal::fromPool(target, time);
+            var tween:Tween = Tween.fromPool(target, time);
             
             for (var property:String in properties)
             {
@@ -168,7 +168,7 @@ package starling.animation
         
         private function onPooledTweenComplete(event:Event):void
         {
-            Tween.starling_internal::toPool(event.target as Tween);
+            Tween.toPool(event.target as Tween);
         }
         
         /** Advances all objects by a certain time (in seconds). */

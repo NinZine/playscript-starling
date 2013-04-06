@@ -451,7 +451,7 @@ package starling.display
                     }
                 }
             }
-            else if (quad || batch)
+            else if (quad!=null || batch!=null)
             {
                 var texture:Texture;
                 var smoothing:String;

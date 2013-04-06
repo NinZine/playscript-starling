@@ -341,7 +341,7 @@ package starling.core
         }
         
         /** Clears the render context with a certain color and alpha value. */
-        public static function clear(rgb:uint=0, alpha:Number=0.0):void
+        public static function context_clear(rgb:uint=0, alpha:Number=0.0):void
         {
             Starling.context.clear(
                 Color.getRed(rgb)   / 255.0, 
@@ -353,7 +353,7 @@ package starling.core
         /** Clears the render context with a certain color and alpha value. */
         public function clear(rgb:uint=0, alpha:Number=0.0):void
         {
-            RenderSupport.clear(rgb, alpha);
+            RenderSupport.context_clear(rgb, alpha);
         }
         
         /** Assembles fragment- and vertex-shaders, passed as Strings, to a Program3D. If you

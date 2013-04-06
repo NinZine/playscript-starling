@@ -379,7 +379,7 @@ package starling.core
             mSupport.nextFrame();
             
             if (!mShareContext)
-                RenderSupport.clear(mStage.color, 1.0);
+                RenderSupport.context_clear(mStage.color, 1.0);
             
             var scaleX:Number = mViewPort.width  / mStage.stageWidth;
             var scaleY:Number = mViewPort.height / mStage.stageHeight;
@@ -667,10 +667,10 @@ package starling.core
         public function get isStarted():Boolean { return mStarted; }
         
         /** The default juggler of this instance. Will be advanced once per frame. */
-        public function get juggler():Juggler { return mJuggler; }
+        public function get this_juggler():Juggler { return mJuggler; }
         
         /** The render context of this instance. */
-        public function get context():Context3D { return mContext; }
+        public function get this_context():Context3D { return mContext; }
         
         /** A dictionary that can be used to save custom data related to the current context. 
          *  If you need to share data that is bound to a specific stage3D instance
@@ -717,7 +717,7 @@ package starling.core
         
         /** The ratio between viewPort width and stage width. Useful for choosing a different
          *  set of textures depending on the display resolution. */
-        public function get contentScaleFactor():Number
+        public function get this_contentScaleFactor():Number
         {
             return mViewPort.width / mStage.stageWidth;
         }
@@ -770,12 +770,13 @@ package starling.core
                 else if (vAlign == VAlign.BOTTOM) mStatsDisplay.y = stageHeight - mStatsDisplay.height;
                 else mStatsDisplay.y = int((stageHeight - mStatsDisplay.height) / 2);
             }
-            
-            function onRootCreated():void
+        
+            var onRootCreated:Function;    
+            onRootCreated = function():void
             {
                 showStatsAt(hAlign, vAlign, scale);
                 removeEventListener(starling.events.Event.ROOT_CREATED, onRootCreated);
-            }
+            };
         }
         
         /** The Starling stage object, which is the root of the display tree that is rendered. */
@@ -818,15 +819,15 @@ package starling.core
         public static function get current():Starling { return sCurrent; }
         
         /** The render context of the currently active Starling instance. */
-        public static function get context():Context3D { return sCurrent ? sCurrent.context : null; }
+        public static function get context():Context3D { return sCurrent ? sCurrent.mContext : null; }
         
         /** The default juggler of the currently active Starling instance. */
-        public static function get juggler():Juggler { return sCurrent ? sCurrent.juggler : null; }
+        public static function get juggler():Juggler { return sCurrent ? sCurrent.mJuggler : null; }
         
         /** The contentScaleFactor of the currently active Starling instance. */
         public static function get contentScaleFactor():Number 
         {
-            return sCurrent ? sCurrent.contentScaleFactor : 1.0;
+            return sCurrent ? sCurrent.this_contentScaleFactor : 1.0;
         }
         
         /** Indicates if multitouch input should be supported. */

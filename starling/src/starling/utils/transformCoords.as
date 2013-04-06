@@ -18,12 +18,12 @@ package starling.utils
     public function transformCoords(matrix:Matrix, x:Number, y:Number,
                                     resultPoint:Point=null):Point
     {
-        if (!deprecationNotified)
-        {
-            deprecationNotified = true;
-            trace("[Starling] The method 'transformCoords' is deprecated. " + 
-                  "Please use 'MatrixUtil.transformCoords' instead.");
-        }
+//        if (!deprecationNotified)
+//        {
+//            deprecationNotified = true;
+//            trace("[Starling] The method 'transformCoords' is deprecated. " + 
+//                  "Please use 'MatrixUtil.transformCoords' instead.");
+//        }
         
         if (resultPoint == null) resultPoint = new Point();   
         
@@ -34,4 +34,4 @@ package starling.utils
     }
 }
 
-var deprecationNotified:Boolean = false;
+//var deprecationNotified:Boolean = false;

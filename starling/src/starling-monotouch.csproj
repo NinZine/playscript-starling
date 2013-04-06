@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F396BFBC-4ACF-42A2-99AA-2D24D5621C27}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>starlingmonotouch</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>starling-monotouch</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+    <Folder Include="starling\" />
+    <Folder Include="com\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Compile Include="starling\animation\DelayedCall.as" />
+    <Compile Include="starling\animation\IAnimatable.as" />
+    <Compile Include="starling\animation\Juggler.as" />
+    <Compile Include="starling\animation\Transitions.as" />
+    <Compile Include="starling\animation\Tween.as" />
+    <Compile Include="starling\core\RenderSupport.as" />
+    <Compile Include="starling\core\Starling.as" />
+    <Compile Include="starling\core\StatsDisplay.as" />
+    <Compile Include="starling\core\TouchMarker.as" />
+    <Compile Include="starling\core\TouchProcessor.as" />
+    <Compile Include="starling\core\starling_internal.as" />
+    <Compile Include="starling\display\BlendMode.as" />
+    <Compile Include="starling\display\Button.as" />
+    <Compile Include="starling\display\DisplayObject.as" />
+    <Compile Include="starling\display\DisplayObjectContainer.as" />
+    <Compile Include="starling\display\Image.as" />
+    <Compile Include="starling\display\MovieClip.as" />
+    <Compile Include="starling\display\Quad.as" />
+    <Compile Include="starling\display\QuadBatch.as" />
+    <Compile Include="starling\display\Sprite.as" />
+    <Compile Include="starling\display\Stage.as" />
+    <Compile Include="starling\errors\AbstractClassError.as" />
+    <Compile Include="starling\errors\AbstractMethodError.as" />
+    <Compile Include="starling\errors\MissingContextError.as" />
+    <Compile Include="starling\events\EnterFrameEvent.as" />
+    <Compile Include="starling\events\Event.as" />
+    <Compile Include="starling\events\EventDispatcher.as" />
+    <Compile Include="starling\events\KeyboardEvent.as" />
+    <Compile Include="starling\events\ResizeEvent.as" />
+    <Compile Include="starling\events\Touch.as" />
+    <Compile Include="starling\events\TouchEvent.as" />
+    <Compile Include="starling\events\TouchPhase.as" />
+    <Compile Include="starling\filters\BlurFilter.as" />
+    <Compile Include="starling\filters\ColorMatrixFilter.as" />
+    <Compile Include="starling\filters\FragmentFilter.as" />
+    <Compile Include="starling\filters\FragmentFilterMode.as" />
+    <Compile Include="starling\text\BitmapChar.as" />
+    <Compile Include="starling\text\BitmapFont.as" />
+    <Compile Include="starling\text\MiniBitmapFont.as" />
+    <Compile Include="starling\text\TextField.as" />
+    <Compile Include="starling\textures\AtfData.as" />
+    <Compile Include="starling\textures\ConcreteTexture.as" />
+    <Compile Include="starling\textures\RenderTexture.as" />
+    <Compile Include="starling\textures\SubTexture.as" />
+    <Compile Include="starling\textures\Texture.as" />
+    <Compile Include="starling\textures\TextureAtlas.as" />
+    <Compile Include="starling\textures\TextureSmoothing.as" />
+    <Compile Include="starling\utils\AssetManager.as" />
+    <Compile Include="starling\utils\Color.as" />
+    <Compile Include="starling\utils\HAlign.as" />
+    <Compile Include="starling\utils\MatrixUtil.as" />
+    <Compile Include="starling\utils\RectangleUtil.as" />
+    <Compile Include="starling\utils\ScaleMode.as" />
+    <Compile Include="starling\utils\VAlign.as" />
+    <Compile Include="starling\utils\VertexData.as" />
+    <Compile Include="starling\utils\deg2rad.as" />
+    <Compile Include="starling\utils\formatString.as" />
+    <Compile Include="starling\utils\getNextPowerOfTwo.as" />
+    <Compile Include="starling\utils\rad2deg.as" />
+    <Compile Include="starling\utils\transformCoords.as" />
+    <Compile Include="com\adobe\utils\AGALMiniAssembler.as" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\playscript-mono\mcs\class\pscorlib_aot\pscorlib_aot-monotouch.csproj">
+      <Project>{876BFFD1-CEFA-44DD-9243-A50958EF65DD}</Project>
+      <Name>pscorlib_aot-monotouch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\playscript-mono\mcs\class\PlayScript.Dynamic_aot\PlayScript.Dynamic_aot-monotouch.csproj">
+      <Project>{CC73D545-B7C7-4FB4-996A-C76E8B0D5B81}</Project>
+      <Name>PlayScript.Dynamic_aot-monotouch</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

@@ -259,7 +259,7 @@ package starling.utils
             {
                 if (rawAsset is Array)
                 {
-                    enqueue.apply(this, rawAsset);
+                    Function(enqueue).apply(this, Array(rawAsset));
                 }
                 else if (rawAsset is Class)
                 {
@@ -285,12 +285,12 @@ package starling.utils
                     else if (!rawAsset["isHidden"])
                     {
                         if (rawAsset["isDirectory"])
-                            enqueue.apply(this, rawAsset["getDirectoryListing"]());
+                            Function(enqueue).apply(this, Array(rawAsset["getDirectoryListing"]()));
                         else
                         {
                             var extension:String = rawAsset["extension"].toLowerCase();
                             if (SUPPORTED_EXTENSIONS.indexOf(extension) != -1)
-                                push(rawAsset["url"]);
+                               {}// push(rawAsset["url"], null);
                             else
                                 log("Ignoring unsupported file '" + rawAsset["name"] + "'");
                         }
@@ -298,7 +298,7 @@ package starling.utils
                 }
                 else if (rawAsset is String)
                 {
-                    push(rawAsset);
+                    //push(Object(rawAsset), null);
                 }
                 else
                 {
@@ -306,7 +306,7 @@ package starling.utils
                 }
             }
             
-            function push(asset:Object, name:String=null):void
+            function push(asset:Object, name:String /*=null*/):void
             {
                 if (name == null) name = getName(asset);
                 log("Enqueuing '" + name + "'");
@@ -333,9 +333,11 @@ package starling.utils
             var currentRatio:Number = 0.0;
             var timeoutID:uint;
             
+            var resume:Function;
+            
             resume();
             
-            function resume():void
+            resume = function():void
             {
                 currentRatio = 1.0 - (mRawAssets.length / numElements);
                 
@@ -346,14 +348,15 @@ package starling.utils
                 
                 if (onProgress != null)
                     onProgress(currentRatio);
-            }
-            
-            function processNext():void
+            };
+
+            var processNext:Function;            
+            processNext = function():void
             {
                 var assetInfo:Object = mRawAssets.pop();
                 clearTimeout(timeoutID);
                 loadRawAsset(assetInfo.name, assetInfo.asset, xmls, progress, resume);
-            }
+            };
             
             function processXmls():void
             {
@@ -462,7 +465,8 @@ package starling.utils
                 onProgress(event.bytesLoaded / event.bytesTotal);
             }
             
-            function onUrlLoaderComplete(event:Event):void
+            var onUrlLoaderComplete:Function;
+            onUrlLoaderComplete = function(event:Event):void
             {
                 var urlLoader:URLLoader = event.target as URLLoader;
                 var bytes:ByteArray = urlLoader.data as ByteArray;
@@ -496,9 +500,10 @@ package starling.utils
                         loader.loadBytes(urlLoader.data as ByteArray, loaderContext);
                         break;
                 }
-            }
+            };
             
-            function onLoaderComplete(event:Event):void
+            var onLoaderComplete:Function;
+            onLoaderComplete = function(event:Event):void
             {
                 event.target.removeEventListener(Event.COMPLETE, onLoaderComplete);
                 var content:Object = event.target.content;
@@ -510,7 +515,7 @@ package starling.utils
                     throw new Error("Unsupported asset type: " + getQualifiedClassName(content));
                 
                 onComplete();
-            }
+            };
         }
         
         // helpers

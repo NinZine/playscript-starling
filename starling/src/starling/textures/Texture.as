@@ -199,12 +199,13 @@ package starling.textures
             
             return concreteTexture;
             
-            function onTextureReady(event:Event):void
+            var onTextureReady:Function;
+            onTextureReady = function(event:Event):void
             {
                 nativeTexture.removeEventListener(eventType, onTextureReady);
                 if (loadAsync.length == 1) loadAsync(concreteTexture);
                 else loadAsync();
-            }
+            };
         }
         
         /** Creates a texture with a certain size and color.

@@ -106,7 +106,7 @@ package starling.core
                             bubbleChain: touch.bubbleChain 
                         });
                     
-                    processTouch.apply(this, touchArgs);
+                    Function(processTouch).apply(this, touchArgs);
                     sProcessedTouchIDs.push(touchID);
                 }
                 
@@ -135,13 +135,13 @@ package starling.core
         public function enqueue(touchID:int, phase:String, globalX:Number, globalY:Number,
                                 pressure:Number=1.0, width:Number=1.0, height:Number=1.0):void
         {
-            mQueue.unshift(arguments);
+            mQueue.unshift(Array([touchID, phase, globalX, globalY, pressure, width, height]));        
             
             // multitouch simulation (only with mouse)
             if (mCtrlDown && simulateMultitouch && touchID == 0) 
             {
                 mTouchMarker.moveMarker(globalX, globalY, mShiftDown);
-                mQueue.unshift([1, phase, mTouchMarker.mockX, mTouchMarker.mockY]);
+                mQueue.unshift(Array([1, phase, mTouchMarker.mockX, mTouchMarker.mockY]));
             }
         }
         
@@ -219,14 +219,14 @@ package starling.core
                     
                     // end active touch ...
                     if (wasCtrlDown && mockedTouch && mockedTouch.phase != TouchPhase.ENDED)
-                        mQueue.unshift([1, TouchPhase.ENDED, mockedTouch.globalX, mockedTouch.globalY]);
+                        mQueue.unshift(Array([1, TouchPhase.ENDED, mockedTouch.globalX, mockedTouch.globalY]));
                     // ... or start new one
                     else if (mCtrlDown && mouseTouch)
                     {
                         if (mouseTouch.phase == TouchPhase.HOVER || mouseTouch.phase == TouchPhase.ENDED)
-                            mQueue.unshift([1, TouchPhase.HOVER, mTouchMarker.mockX, mTouchMarker.mockY]);
+                            mQueue.unshift(Array([1, TouchPhase.HOVER, mTouchMarker.mockX, mTouchMarker.mockY]));
                         else
-                            mQueue.unshift([1, TouchPhase.BEGAN, mTouchMarker.mockX, mTouchMarker.mockY]);
+                            mQueue.unshift(Array([1, TouchPhase.BEGAN, mTouchMarker.mockX, mTouchMarker.mockY]));
                     }
                 }
             }
@@ -311,9 +311,9 @@ package starling.core
                 var nativeApp:Object = nativeAppClass["nativeApplication"];
                 
                 if (enable)
-                    nativeApp.addEventListener("deactivate", onInterruption, false, 0, true);
+                    nativeApp.addEventListener("deactivate", Function(onInterruption), false, 0, true);
                 else
-                    nativeApp.removeEventListener("activate", onInterruption);
+                    nativeApp.removeEventListener("activate", Function(onInterruption));
             }
             catch (e:Error) {} // we're not running in AIR
         }

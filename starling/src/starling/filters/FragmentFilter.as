@@ -198,7 +198,7 @@ package starling.filters
             var cacheTexture:Texture = null;
             var stage:Stage = object.stage;
             var context:Context3D = Starling.context;
-            var scale:Number = Starling.current.contentScaleFactor;
+            var scale:Number = Starling.current.this_contentScaleFactor;
             
             if (stage   == null) throw new Error("Filtered object must be on the stage.");
             if (context == null) throw new MissingContextError();

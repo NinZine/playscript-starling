@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3B3DD626-A7FA-430E-85FB-C4E553900934}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>starling</RootNamespace>
+    <AssemblyName>starling</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;PLATFORM_MONOMAC</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <DefineConstants>PLATFORM_MONOMAC</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="com\adobe\utils\PerspectiveMatrix3D.as" />
+    <Compile Include="starling\errors\AbstractClassError.as" />
+    <Compile Include="starling\errors\AbstractMethodError.as" />
+    <Compile Include="starling\errors\MissingContextError.as" />
+    <Compile Include="starling\utils\Color.as" />
+    <Compile Include="starling\utils\HAlign.as" />
+    <Compile Include="starling\utils\MatrixUtil.as" />
+    <Compile Include="starling\utils\RectangleUtil.as" />
+    <Compile Include="starling\utils\ScaleMode.as" />
+    <Compile Include="starling\utils\VertexData.as" />
+    <Compile Include="starling\core\starling_internal.as" />
+    <Compile Include="starling\display\BlendMode.as" />
+    <Compile Include="starling\display\DisplayObject.as" />
+    <Compile Include="starling\core\RenderSupport.as" />
+    <Compile Include="starling\display\Button.as" />
+    <Compile Include="starling\display\DisplayObjectContainer.as" />
+    <Compile Include="starling\display\Image.as" />
+    <Compile Include="starling\display\MovieClip.as" />
+    <Compile Include="starling\display\Quad.as" />
+    <Compile Include="starling\display\QuadBatch.as" />
+    <Compile Include="starling\display\Sprite.as" />
+    <Compile Include="starling\display\Stage.as" />
+    <Compile Include="starling\textures\AtfData.as" />
+    <Compile Include="starling\textures\ConcreteTexture.as" />
+    <Compile Include="starling\textures\RenderTexture.as" />
+    <Compile Include="starling\textures\SubTexture.as" />
+    <Compile Include="starling\textures\Texture.as" />
+    <Compile Include="starling\textures\TextureAtlas.as" />
+    <Compile Include="starling\textures\TextureSmoothing.as" />
+    <Compile Include="starling\events\EnterFrameEvent.as" />
+    <Compile Include="starling\events\Event.as" />
+    <Compile Include="starling\events\EventDispatcher.as" />
+    <Compile Include="starling\events\KeyboardEvent.as" />
+    <Compile Include="starling\events\ResizeEvent.as" />
+    <Compile Include="starling\events\Touch.as" />
+    <Compile Include="starling\events\TouchEvent.as" />
+    <Compile Include="starling\events\TouchPhase.as" />
+    <Compile Include="starling\text\BitmapChar.as" />
+    <Compile Include="starling\text\BitmapFont.as" />
+    <Compile Include="starling\text\TextField.as" />
+    <Compile Include="starling\utils\VAlign.as" />
+    <Compile Include="starling\filters\BlurFilter.as" />
+    <Compile Include="starling\filters\ColorMatrixFilter.as" />
+    <Compile Include="starling\filters\FragmentFilter.as" />
+    <Compile Include="starling\filters\FragmentFilterMode.as" />
+    <Compile Include="starling\animation\DelayedCall.as" />
+    <Compile Include="starling\animation\IAnimatable.as" />
+    <Compile Include="starling\animation\Juggler.as" />
+    <Compile Include="starling\animation\Transitions.as" />
+    <Compile Include="starling\animation\Tween.as" />
+    <Compile Include="starling\core\StatsDisplay.as" />
+    <Compile Include="starling\core\TouchMarker.as" />
+    <Compile Include="starling\core\Starling.as" />
+    <Compile Include="com\adobe\utils\AGALMiniAssembler.as" />
+    <Compile Include="starling\utils\getNextPowerOfTwo.as" />
+    <Compile Include="starling\core\TouchProcessor.as" />
+    <Compile Include="starling\utils\deg2rad.as" />
+    <Compile Include="starling\utils\rad2deg.as" />
+    <Compile Include="starling\utils\formatString.as" />
+    <Compile Include="starling\utils\AssetManager.as" />
+    <Compile Include="starling\text\MiniBitmapFont.as" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="starling\utils\transformCoords.as" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\mono-as3\mcs\class\ascorlib\ascorlib-net_4_0_monomac.csproj">
+      <Project>{EDBACFCB-2817-4A2E-8DDF-B24AEFA56352}</Project>
+      <Name>ascorlib-net_4_0_monomac</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\mono-as3\mcs\class\ActionScript.Dynamic\ActionScript.Dynamic-net_4_0.csproj">
+      <Project>{5F7F9AF6-CE83-4F13-A25F-355DB2861D43}</Project>
+      <Name>ActionScript.Dynamic-net_4_0</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
