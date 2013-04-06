@@ -20,7 +20,7 @@ package
     {
         // Embed the Ubuntu Font. Beware: the 'embedAsCFF'-part IS REQUIRED!!!
         [Embed(source="../../demo/assets/fonts/Ubuntu-R.ttf", embedAsCFF="false", fontFamily="Ubuntu")]
-        private static const UbuntuRegular:Class;
+        private static var UbuntuRegular:Class;
         
         private var mLoadingProgress:ProgressBar;
         private var mMainMenu:MainMenu;

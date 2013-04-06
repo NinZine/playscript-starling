@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9E10B61F-1E32-42B1-9E60-902CE90A9038}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>demo_playscript</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>demo_playscript</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+    <MtouchDebug>true</MtouchDebug>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <BuildIpa>true</BuildIpa>
+    <ConsolePause>false</ConsolePause>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="..\demo\README.md">
+      <Link>demo\README.md</Link>
+    </None>
+    <None Include="..\demo\assets\audio\wing_flap.mp3">
+      <Link>demo\assets\audio\wing_flap.mp3</Link>
+    </None>
+    <None Include="..\demo\assets\fonts\.DS_Store">
+      <Link>demo\assets\fonts\.DS_Store</Link>
+    </None>
+    <None Include="..\demo\assets\fonts\Ubuntu-License.txt">
+      <Link>demo\assets\fonts\Ubuntu-License.txt</Link>
+    </None>
+    <None Include="..\demo\assets\fonts\Ubuntu-R.ttf">
+      <Link>demo\assets\fonts\Ubuntu-R.ttf</Link>
+    </None>
+    <None Include="..\demo\assets\fonts\1x\desyrel.fnt">
+      <Link>demo\assets\fonts\1x\desyrel.fnt</Link>
+    </None>
+    <None Include="..\demo\assets\fonts\2x\desyrel.fnt">
+      <Link>demo\assets\fonts\2x\desyrel.fnt</Link>
+    </None>
+    <None Include="..\demo\assets\textures\.DS_Store">
+      <Link>demo\assets\textures\.DS_Store</Link>
+    </None>
+    <None Include="..\demo\assets\textures\1x\atlas.xml">
+      <Link>demo\assets\textures\1x\atlas.xml</Link>
+    </None>
+    <None Include="..\demo\assets\textures\1x\compressed_texture.atf">
+      <Link>demo\assets\textures\1x\compressed_texture.atf</Link>
+    </None>
+    <None Include="..\demo\assets\textures\2x\atlas.xml">
+      <Link>demo\assets\textures\2x\atlas.xml</Link>
+    </None>
+    <None Include="..\demo\assets\textures\2x\compressed_texture.atf">
+      <Link>demo\assets\textures\2x\compressed_texture.atf</Link>
+    </None>
+    <None Include="..\demo\system\README.md">
+      <Link>demo\system\README.md</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="..\demo\assets\fonts\1x\desyrel.png">
+      <Link>demo\assets\fonts\1x\desyrel.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\fonts\2x\desyrel.png">
+      <Link>demo\assets\fonts\2x\desyrel.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\textures\1x\atlas.png">
+      <Link>demo\assets\textures\1x\atlas.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\textures\2x\atlas.png">
+      <Link>demo\assets\textures\2x\atlas.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\Default-Portrait.png">
+      <Link>demo\system\Default-Portrait.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\Default.png">
+      <Link>demo\system\Default.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\Default%402x.png">
+      <Link>demo\system\Default%402x.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\icon114.png">
+      <Link>demo\system\icon114.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\icon144.png">
+      <Link>demo\system\icon144.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\icon57.png">
+      <Link>demo\system\icon57.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\icon72.png">
+      <Link>demo\system\icon72.png</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\startup.jpg">
+      <Link>demo\system\startup.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\system\startupHD.jpg">
+      <Link>demo\system\startupHD.jpg</Link>
+    </BundleResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\demo_mobile\src\Demo_Mobile.as">
+      <Link>demo_mobile\src\Demo_Mobile.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\Constants.as">
+      <Link>demo\src\Constants.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\Game.as">
+      <Link>demo\src\Game.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\MainMenu.as">
+      <Link>demo\src\MainMenu.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\AnimationScene.as">
+      <Link>demo\src\scenes\AnimationScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\BenchmarkScene.as">
+      <Link>demo\src\scenes\BenchmarkScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\BlendModeScene.as">
+      <Link>demo\src\scenes\BlendModeScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\CustomHitTestScene.as">
+      <Link>demo\src\scenes\CustomHitTestScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\FilterScene.as">
+      <Link>demo\src\scenes\FilterScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\MovieScene.as">
+      <Link>demo\src\scenes\MovieScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\RenderTextureScene.as">
+      <Link>demo\src\scenes\RenderTextureScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\Scene.as">
+      <Link>demo\src\scenes\Scene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\TextScene.as">
+      <Link>demo\src\scenes\TextScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\TextureScene.as">
+      <Link>demo\src\scenes\TextureScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\TouchScene.as">
+      <Link>demo\src\scenes\TouchScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\utils\ProgressBar.as">
+      <Link>demo\src\utils\ProgressBar.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\utils\RoundButton.as">
+      <Link>demo\src\utils\RoundButton.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\utils\TouchSheet.as">
+      <Link>demo\src\utils\TouchSheet.as</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\starling\src\starling-monotouch.csproj">
+      <Project>{F396BFBC-4ACF-42A2-99AA-2D24D5621C27}</Project>
+      <Name>starling-monotouch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\playscript-mono\mcs\class\pscorlib_aot\pscorlib_aot-monotouch.csproj">
+      <Project>{876BFFD1-CEFA-44DD-9243-A50958EF65DD}</Project>
+      <Name>pscorlib_aot-monotouch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\playscript-mono\mcs\class\PlayScript.Dynamic_aot\PlayScript.Dynamic_aot-monotouch.csproj">
+      <Project>{CC73D545-B7C7-4FB4-996A-C76E8B0D5B81}</Project>
+      <Name>PlayScript.Dynamic_aot-monotouch</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>
