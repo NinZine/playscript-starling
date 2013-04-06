@@ -101,13 +101,13 @@
     <None Include="starling\utils\transformCoords.as" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\mono-as3\mcs\class\ascorlib\ascorlib-net_4_0_monomac.csproj">
+    <ProjectReference Include="..\..\..\playscript-mono\mcs\class\pscorlib\pscorlib-net_4_0_monomac.csproj">
       <Project>{EDBACFCB-2817-4A2E-8DDF-B24AEFA56352}</Project>
-      <Name>ascorlib-net_4_0_monomac</Name>
+      <Name>pscorlib-net_4_0_monomac</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\mono-as3\mcs\class\ActionScript.Dynamic\ActionScript.Dynamic-net_4_0.csproj">
+    <ProjectReference Include="..\..\..\playscript-mono\mcs\class\PlayScript.Dynamic\PlayScript.Dynamic-net_4_0.csproj">
       <Project>{5F7F9AF6-CE83-4F13-A25F-355DB2861D43}</Project>
-      <Name>ActionScript.Dynamic-net_4_0</Name>
+      <Name>PlayScript.Dynamic-net_4_0</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

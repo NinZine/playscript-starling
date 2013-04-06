@@ -108,13 +108,13 @@
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\mono-as3\mcs\class\ActionScript.Dynamic_aot\ActionScript.Dynamic_aot-monotouch.csproj">
+    <ProjectReference Include="..\..\..\playscript-mono\mcs\class\PlayScript.Dynamic_aot\PlayScript.Dynamic_aot-monotouch.csproj">
       <Project>{CC73D545-B7C7-4FB4-996A-C76E8B0D5B81}</Project>
-      <Name>ActionScript.Dynamic_aot-monotouch</Name>
+      <Name>PlayScript.Dynamic_aot-monotouch</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\mono-as3\mcs\class\ascorlib_aot\ascorlib_aot-monotouch.csproj">
+    <ProjectReference Include="..\..\..\playscript-mono\mcs\class\pscorlib_aot\pscorlib_aot-monotouch.csproj">
       <Project>{876BFFD1-CEFA-44DD-9243-A50958EF65DD}</Project>
-      <Name>ascorlib_aot-monotouch</Name>
+      <Name>pscorlib_aot-monotouch</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

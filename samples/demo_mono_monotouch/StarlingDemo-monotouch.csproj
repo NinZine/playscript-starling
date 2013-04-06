@@ -111,7 +111,10 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="OpenGLViewController.cs" />
     <Compile Include="EAGLView.cs" />
-    <Compile Include="MyStarlingTest.asx" />
+    <Compile Include="MyStarlingTest.play" />
+    <Compile Include="..\demo_mono_monotouch\Tutorial1.play">
+      <Link>Tutorial1.play</Link>
+    </Compile>
     <Compile Include="..\demo\src\Constants.as">
       <Link>demo\src\Constants.as</Link>
     </Compile>
@@ -166,7 +169,6 @@
     <Compile Include="..\demo_mobile\src\Demo_Mobile.as">
       <Link>demo_mobile\src\Demo_Mobile.as</Link>
     </Compile>
-    <Compile Include="Tutorial1.asx" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="OpenGLViewController.xib" />
@@ -180,13 +182,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\..\..\mono-as3\mcs\class\ascorlib_aot\ascorlib_aot-monotouch.csproj">
+    <ProjectReference Include="..\..\..\playscript-mono\mcs\class\pscorlib_aot\pscorlib_aot-monotouch.csproj">
       <Project>{876BFFD1-CEFA-44DD-9243-A50958EF65DD}</Project>
-      <Name>ascorlib_aot-monotouch</Name>
+      <Name>pscorlib_aot-monotouch</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\mono-as3\mcs\class\ActionScript.Dynamic_aot\ActionScript.Dynamic_aot-monotouch.csproj">
+    <ProjectReference Include="..\..\..\playscript-mono\mcs\class\PlayScript.Dynamic_aot\PlayScript.Dynamic_aot-monotouch.csproj">
       <Project>{CC73D545-B7C7-4FB4-996A-C76E8B0D5B81}</Project>
-      <Name>ActionScript.Dynamic_aot-monotouch</Name>
+      <Name>PlayScript.Dynamic_aot-monotouch</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\starling\src\starling-monotouch.csproj">
       <Project>{F396BFBC-4ACF-42A2-99AA-2D24D5621C27}</Project>
@@ -194,6 +196,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <BundleResource Include="..\demo_mono_monotouch\DemoTexture256.png">
+      <Link>DemoTexture256.png</Link>
+    </BundleResource>
     <BundleResource Include="..\demo\system\Default-Portrait.png">
       <Link>demo\system\Default-Portrait.png</Link>
     </BundleResource>
@@ -257,6 +262,5 @@
     <BundleResource Include="..\demo\assets\textures\2x\compressed_texture.atf">
       <Link>demo\assets\textures\2x\compressed_texture.atf</Link>
     </BundleResource>
-    <BundleResource Include="DemoTexture256.png" />
   </ItemGroup>
 </Project>
