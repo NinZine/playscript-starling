@@ -255,6 +255,8 @@ package starling.utils
          */
         public function enqueue(...rawAssets):void
         {
+            var push:Function;            
+            
             for each (var rawAsset:Object in rawAssets)
             {
                 if (rawAsset is Array)
@@ -290,7 +292,7 @@ package starling.utils
                         {
                             var extension:String = rawAsset["extension"].toLowerCase();
                             if (SUPPORTED_EXTENSIONS.indexOf(extension) != -1)
-                               {}// push(rawAsset["url"], null);
+                            	push(rawAsset["url"], null);
                             else
                                 log("Ignoring unsupported file '" + rawAsset["name"] + "'");
                         }
@@ -298,15 +300,15 @@ package starling.utils
                 }
                 else if (rawAsset is String)
                 {
-                    //push(Object(rawAsset), null);
+                    push(rawAsset, null);
                 }
                 else
                 {
                     log("Ignoring unsupported asset type: " + getQualifiedClassName(rawAsset));
                 }
             }
-            
-            function push(asset:Object, name:String /*=null*/):void
+
+            push = function(asset:Object, name:String /*=null*/):void
             {
                 if (name == null) name = getName(asset);
                 log("Enqueuing '" + name + "'");
@@ -315,7 +317,7 @@ package starling.utils
                     name: name, 
                     asset: asset 
                 });
-            }
+            };
         }
         
         /** Loads all enqueued assets asynchronously. The 'onProgress' function will be called

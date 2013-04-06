@@ -14,11 +14,10 @@ package starling.utils
     
     /** Formats a String in .Net-style, with curly braces ("{0}"). Does not support any 
      *  number formatting options yet. */
-    public function formatString(format:String, ..._args):String
+    public function formatString(format:String, ...args):String
     {
-        var args:Array = new Array(_args);
-        for (var i:int=0; i<args.length; ++i)
-            format = format.replace(new RegExp("\\{"+i+"\\}", "g"), String(args[i]));
+        for (var i:int=0; i<args.Length; ++i)
+            format = format.replace(new RegExp("\\{"+i+"\\}", "g"), args[i]);
         
         return format;
     }
