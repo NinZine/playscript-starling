@@ -2,6 +2,11 @@
 bin-debug/
 bin-release/
 starling/doc/html/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+*.userprefs
+*.pidb
 
 # Project property files
 .settings/
