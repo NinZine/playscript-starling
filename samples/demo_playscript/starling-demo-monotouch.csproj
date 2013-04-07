@@ -89,39 +89,6 @@
     <None Include="..\demo\README.md">
       <Link>demo\README.md</Link>
     </None>
-    <None Include="..\demo\assets\audio\wing_flap.mp3">
-      <Link>demo\assets\audio\wing_flap.mp3</Link>
-    </None>
-    <None Include="..\demo\assets\fonts\.DS_Store">
-      <Link>demo\assets\fonts\.DS_Store</Link>
-    </None>
-    <None Include="..\demo\assets\fonts\Ubuntu-License.txt">
-      <Link>demo\assets\fonts\Ubuntu-License.txt</Link>
-    </None>
-    <None Include="..\demo\assets\fonts\Ubuntu-R.ttf">
-      <Link>demo\assets\fonts\Ubuntu-R.ttf</Link>
-    </None>
-    <None Include="..\demo\assets\fonts\1x\desyrel.fnt">
-      <Link>demo\assets\fonts\1x\desyrel.fnt</Link>
-    </None>
-    <None Include="..\demo\assets\fonts\2x\desyrel.fnt">
-      <Link>demo\assets\fonts\2x\desyrel.fnt</Link>
-    </None>
-    <None Include="..\demo\assets\textures\.DS_Store">
-      <Link>demo\assets\textures\.DS_Store</Link>
-    </None>
-    <None Include="..\demo\assets\textures\1x\atlas.xml">
-      <Link>demo\assets\textures\1x\atlas.xml</Link>
-    </None>
-    <None Include="..\demo\assets\textures\1x\compressed_texture.atf">
-      <Link>demo\assets\textures\1x\compressed_texture.atf</Link>
-    </None>
-    <None Include="..\demo\assets\textures\2x\atlas.xml">
-      <Link>demo\assets\textures\2x\atlas.xml</Link>
-    </None>
-    <None Include="..\demo\assets\textures\2x\compressed_texture.atf">
-      <Link>demo\assets\textures\2x\compressed_texture.atf</Link>
-    </None>
     <None Include="..\demo\system\README.md">
       <Link>demo\system\README.md</Link>
     </None>
@@ -165,6 +132,33 @@
     </BundleResource>
     <BundleResource Include="..\demo\system\startupHD.jpg">
       <Link>demo\system\startupHD.jpg</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\audio\wing_flap.mp3">
+      <Link>demo\assets\audio\wing_flap.mp3</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\fonts\Ubuntu-License.txt">
+      <Link>demo\assets\fonts\Ubuntu-License.txt</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\fonts\Ubuntu-R.ttf">
+      <Link>demo\assets\fonts\Ubuntu-R.ttf</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\fonts\1x\desyrel.fnt">
+      <Link>demo\assets\fonts\1x\desyrel.fnt</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\fonts\2x\desyrel.fnt">
+      <Link>demo\assets\fonts\2x\desyrel.fnt</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\textures\1x\atlas.xml">
+      <Link>demo\assets\textures\1x\atlas.xml</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\textures\1x\compressed_texture.atf">
+      <Link>demo\assets\textures\1x\compressed_texture.atf</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\textures\2x\atlas.xml">
+      <Link>demo\assets\textures\2x\atlas.xml</Link>
+    </BundleResource>
+    <BundleResource Include="..\demo\assets\textures\2x\compressed_texture.atf">
+      <Link>demo\assets\textures\2x\compressed_texture.atf</Link>
     </BundleResource>
   </ItemGroup>
   <ItemGroup>
