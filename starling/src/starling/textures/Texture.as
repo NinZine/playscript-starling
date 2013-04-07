@@ -193,12 +193,7 @@ package starling.textures
             
             if (Starling.handleLostContext) 
                 concreteTexture.restoreOnLostContext(atfData);
-            
-            if (async)
-                nativeTexture.addEventListener(eventType, onTextureReady);
-            
-            return concreteTexture;
-            
+ 
             var onTextureReady:Function;
             onTextureReady = function(event:Event):void
             {
@@ -206,7 +201,12 @@ package starling.textures
                 if (loadAsync.length == 1) loadAsync(concreteTexture);
                 else loadAsync();
             };
-        }
+           
+            if (async)
+                nativeTexture.addEventListener(eventType, onTextureReady);
+            
+            return concreteTexture;
+         }
         
         /** Creates a texture with a certain size and color.
          *  

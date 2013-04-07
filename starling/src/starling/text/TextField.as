@@ -329,12 +329,12 @@ package starling.text
         {
             if (mFontName != value)
             {
-                if (value == BitmapFont.MINI && bitmapFonts[value] == undefined)
+                if (value == BitmapFont.MINI && bitmapFonts[value] == null)
                     registerBitmapFont(new BitmapFont());
                 
                 mFontName = value;
                 mRequiresRedraw = true;
-                mIsRenderedText = bitmapFonts[value] == undefined;
+                mIsRenderedText = bitmapFonts[value] == null;
             }
         }
         
@@ -495,7 +495,7 @@ package starling.text
         /** Unregisters the bitmap font and, optionally, disposes it. */
         public static function unregisterBitmapFont(name:String, dispose:Boolean=true):void
         {
-            if (dispose && bitmapFonts[name] != undefined)
+            if (dispose && bitmapFonts[name] != null)
                 bitmapFonts[name].dispose();
             
             delete bitmapFonts[name];

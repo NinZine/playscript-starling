@@ -204,7 +204,7 @@ package com.adobe.utils
 				for ( var j:int = 0; j < regLength; j++ )
 				{
 					var isRelative:Boolean = false;
-					var relreg:Array = regs[ j ].match( /\[.*\]/ig );
+					var relreg:Array = String(regs[ j ]).match( /\[.*\]/ig );
 					if ( relreg && relreg.length > 0 )
 					{
 						regs[ j ] = regs[ j ].replace( relreg[ 0 ], "0" );
@@ -214,7 +214,7 @@ package com.adobe.utils
 						isRelative = true;
 					}
 					
-					var res:Array = regs[j].match( /^\b[A-Za-z]{1,2}/ig );
+					var res:Array = String(regs[j]).match( /^\b[A-Za-z]{1,2}/ig );
 					if ( !res ) 
 					{
 						_error = "error: could not parse operand "+j+" ("+regs[j]+").";
@@ -259,13 +259,13 @@ package com.adobe.utils
 						}
 					}
 					
-					regs[j] = regs[j].slice( regs[j].search( regFound.name ) + regFound.name.length );
+					regs[j] = String(regs[j]).slice( String(regs[j]).search( regFound.name ) + regFound.name.length );
 					//trace( "REGNUM: " +regs[j] );
-					var idxmatch:Array = isRelative ? relreg[0].match( /\d+/ ) : regs[j].match( /\d+/ );
+					var idxmatch:Array = isRelative ? String(relreg[0]).match( /\d+/ ) : String(regs[j]).match( /\d+/ );
 					var regidx:uint = 0;
 					
 					if ( idxmatch )
-						regidx = uint( idxmatch[0] );
+						regidx = uint( parseInt(String(idxmatch[0])) );
 					
 					if ( regFound.range < regidx )
 					{
@@ -275,7 +275,7 @@ package com.adobe.utils
 					}
 					
 					var regmask:uint		= 0;
-					var maskmatch:Array		= regs[j].match( /(\.[xyzw]{1,4})/ );
+					var maskmatch:Array		= String(regs[j]).match( /(\.[xyzw]{1,4})/ );
 					var isDest:Boolean		= ( j == 0 && !( opFound.flags & OP_NO_DEST ) );
 					var isSampler:Boolean	= ( j == 2 && ( opFound.flags & OP_SPECIAL_TEX ) );
 					var reltype:uint		= 0;
@@ -293,10 +293,10 @@ package com.adobe.utils
 					{
 						regmask = 0;
 						var cv:uint; 
-						var maskLength:uint = maskmatch[0].length;
+						var maskLength:uint = String(maskmatch[0]).length;
 						for ( var k:int = 1; k < maskLength; k++ )
 						{
-							cv = maskmatch[0].charCodeAt(k) - "x".charCodeAt(0);
+							cv = String(maskmatch[0]).charCodeAt(k) - "x".charCodeAt(0);
 							if ( cv > 2 )
 								cv = 3;
 							if ( isDest )
@@ -315,7 +315,7 @@ package com.adobe.utils
 					
 					if ( isRelative )
 					{
-						var relname:Array = relreg[0].match( /[A-Za-z]{1,2}/ig );						
+						var relname:Array = String(relreg[0]).match( /[A-Za-z]{1,2}/ig );						
 						var regFoundRel:Register = REGMAP[ relname[0]];						
 						if ( regFoundRel == null )
 						{ 
@@ -324,7 +324,7 @@ package com.adobe.utils
 							break;
 						}
 						reltype = regFoundRel.emitCode;
-						var selmatch:Array = relreg[0].match( /(\.[xyzw]{1,1})/ );						
+						var selmatch:Array = String(relreg[0]).match( /(\.[xyzw]{1,1})/ );						
 						if ( selmatch.length==0 )
 						{
 							_error = "error: bad index register select"; 

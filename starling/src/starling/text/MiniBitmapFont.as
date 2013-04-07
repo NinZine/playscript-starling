@@ -27,7 +27,7 @@ package starling.text
     {
         private static const BITMAP_WIDTH:int = 128;
         private static const BITMAP_HEIGHT:int = 64;
-        private static const BITMAP_DATA:Array = [ 
+        private static const BITMAP_DATA:Vector.<uint> = new <uint>[ 
             2027613533, 3413039936,  202148514, 2266925598, 4206886452, 4286853117,    2034947, 
             3202703399,  352977282, 2957757964, 3113652880, 2158068882, 1468709156, 2268063717, 
             2779310143, 2101025806, 3416509055, 4215794539, 3602168838, 1038056207, 1932393374, 

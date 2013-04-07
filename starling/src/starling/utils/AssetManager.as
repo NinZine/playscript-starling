@@ -235,7 +235,20 @@ package starling.utils
         }
         
         // queued adding
-        
+
+        // this method never needed to be a closure and was causing problems with PlayScript
+        private function push(asset:Object, name:String=null):void
+        {
+            if (name == null) name = getName(asset);
+            log("Enqueuing '" + name + "'");
+            
+            mRawAssets.push({ 
+                name: name, 
+                asset: asset 
+            });
+        }
+
+                        
         /** Enqueues one or more raw assets; they will only be available after successfully 
          *  executing the "loadQueue" method. This method accepts a variety of different objects:
          *  
@@ -253,18 +266,21 @@ package starling.utils
          *  are texture atlases: they will have the same name as the actual texture they are
          *  referencing.
          */
+         
         public function enqueue(...rawAssets):void
         {
-            var push:Function;            
-            
             for each (var rawAsset:Object in rawAssets)
             {
                 if (rawAsset is Array)
                 {
-                    Function(enqueue).apply(this, Array(rawAsset));
+                    var ra:Array = rawAsset as Array;
+                    for each (var o:Object in ra) 
+                        enqueue(System.Object(o));
                 }
                 else if (rawAsset is Class)
                 {
+                    throw new System.NotImplementedException();
+                /*
                     var typeXml:XML = describeType(rawAsset);
                     var childNode:XML;
                     
@@ -277,47 +293,40 @@ package starling.utils
                     
                     for each (childNode in typeXml.variable.(@type == "Class"))
                         push(rawAsset[childNode.@name], childNode.@name);
+                        */
                 }
-                else if (getQualifiedClassName(rawAsset) == "flash.filesystem::File")
+                else if (rawAsset is flash.filesystem.File)
                 {
-                    if (!rawAsset["exists"])
+                    var file:flash.filesystem.File = rawAsset as flash.filesystem.File;
+                    
+                    if (!file.exists)
                     {
-                        log("File or directory not found: '" + rawAsset["url"] + "'");
+                        log("File or directory not found: '" + file.url + "'");
                     }
-                    else if (!rawAsset["isHidden"])
+                    else if (!file.isHidden)
                     {
-                        if (rawAsset["isDirectory"])
-                            Function(enqueue).apply(this, Array(rawAsset["getDirectoryListing"]()));
-                        else
+                        if (file.isDirectory)
                         {
-                            var extension:String = rawAsset["extension"].toLowerCase();
+                            this.enqueue(file.getDirectoryListing());
+                        } else
+                        {
+                            var extension:String = file.extension.toLowerCase();
                             if (SUPPORTED_EXTENSIONS.indexOf(extension) != -1)
-                            	push(rawAsset["url"], null);
+                                push(file.url, null);
                             else
-                                log("Ignoring unsupported file '" + rawAsset["name"] + "'");
+                                log("Ignoring unsupported file '" + file.name + "'");
                         }
                     }
                 }
                 else if (rawAsset is String)
                 {
-                    push(rawAsset, null);
+                    push(rawAsset);
                 }
                 else
                 {
                     log("Ignoring unsupported asset type: " + getQualifiedClassName(rawAsset));
                 }
             }
-
-            push = function(asset:Object, name:String /*=null*/):void
-            {
-                if (name == null) name = getName(asset);
-                log("Enqueuing '" + name + "'");
-                
-                mRawAssets.push({ 
-                    name: name, 
-                    asset: asset 
-                });
-            };
         }
         
         /** Loads all enqueued assets asynchronously. The 'onProgress' function will be called
@@ -336,9 +345,6 @@ package starling.utils
             var timeoutID:uint;
             
             var resume:Function;
-            
-            resume();
-            
             resume = function():void
             {
                 currentRatio = 1.0 - (mRawAssets.length / numElements);
@@ -377,7 +383,7 @@ package starling.utils
                     
                     if (rootNode == "TextureAtlas")
                     {
-                        name = getName(xml.@imagePath.toString());
+                        name = getName(xml.@imagePath.ToString());
                         
                         var atlasTexture:Texture = getTexture(name);
                         addTextureAtlas(name, new TextureAtlas(atlasTexture, xml));
@@ -385,7 +391,7 @@ package starling.utils
                     }
                     else if (rootNode == "font")
                     {
-                        name = getName(xml.pages.page.@file.toString());
+                        name = getName(xml.pages.page.@file.ToString());
                         
                         var fontTexture:Texture = getTexture(name);
                         TextField.registerBitmapFont(new BitmapFont(fontTexture, xml));
@@ -400,62 +406,15 @@ package starling.utils
             {
                 onProgress(currentRatio + (1.0 / numElements) * Math.min(1.0, ratio) * 0.99);
             }
+
+            resume();
         }
         
         private function loadRawAsset(name:String, rawAsset:Object, xmls:Vector.<XML>,
                                       onProgress:Function, onComplete:Function):void
         {
             var extension:String = null;
-            
-            if (rawAsset is Class)
-            {
-                var asset:Object = new rawAsset();
-                
-                if (asset is Sound)
-                {
-                    addSound(name, asset as Sound);
-                    onComplete();
-                }
-                else if (asset is Bitmap)
-                {
-                    addTexture(name, Texture.fromBitmap(asset as Bitmap, mUseMipMaps, false, mScaleFactor));
-                    onComplete();
-                }
-                else if (asset is ByteArray)
-                {
-                    var bytes:ByteArray = asset as ByteArray;
-                    var signature:String = String.fromCharCode(bytes[0], bytes[1], bytes[2]);
-                    
-                    if (signature == "ATF")
-                    {
-                        addTexture(name, Texture.fromAtfData(asset as ByteArray, mScaleFactor, 
-                            mUseMipMaps, onComplete));
-                    }
-                    else
-                    {
-                        xmls.push(new XML(bytes));
-                        onComplete();
-                    }
-                }
-                else
-                {
-                    log("Ignoring unsupported asset type: " + getQualifiedClassName(asset));
-                    onComplete();
-                }
-            }
-            else if (rawAsset is String)
-            {
-                var url:String = rawAsset as String;
-                extension = url.split(".").pop().toLowerCase();
-                
-                var urlLoader:URLLoader = new URLLoader();
-                urlLoader.dataFormat = URLLoaderDataFormat.BINARY;
-                urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onIoError);
-                urlLoader.addEventListener(ProgressEvent.PROGRESS, onLoadProgress);
-                urlLoader.addEventListener(Event.COMPLETE, onUrlLoaderComplete);
-                urlLoader.load(new URLRequest(url));
-            }
-            
+
             function onIoError(event:IOErrorEvent):void
             {
                 log("IO error: " + event.text);
@@ -518,6 +477,56 @@ package starling.utils
                 
                 onComplete();
             };
+
+            if (rawAsset is Class)
+            {
+                var asset:Object = new rawAsset();
+                
+                if (asset is Sound)
+                {
+                    addSound(name, asset as Sound);
+                    onComplete();
+                }
+                else if (asset is Bitmap)
+                {
+                    addTexture(name, Texture.fromBitmap(asset as Bitmap, mUseMipMaps, false, mScaleFactor));
+                    onComplete();
+                }
+                else if (asset is ByteArray)
+                {
+                    bytes = asset as ByteArray;
+                    var signature:String = String.fromCharCode(bytes[0], bytes[1], bytes[2]);
+                    
+                    if (signature == "ATF")
+                    {
+                        addTexture(name, Texture.fromAtfData(asset as ByteArray, mScaleFactor, 
+                            mUseMipMaps, onComplete));
+                    }
+                    else
+                    {
+                        xmls.push(new XML(bytes));
+                        onComplete();
+                    }
+                }
+                else
+                {
+                    log("Ignoring unsupported asset type: " + getQualifiedClassName(asset));
+                    onComplete();
+                }
+            }
+            else if (rawAsset is String)
+            {
+                var url:String = rawAsset as String;
+                extension = String(url.split(".").pop()).toLowerCase();
+                
+                urlLoader = new URLLoader();
+                urlLoader.dataFormat = URLLoaderDataFormat.BINARY;
+                urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onIoError);
+                urlLoader.addEventListener(ProgressEvent.PROGRESS, onLoadProgress);
+                urlLoader.addEventListener(Event.COMPLETE, onUrlLoaderComplete);
+                urlLoader.load(new URLRequest(url));
+            }
+            
         }
         
         // helpers

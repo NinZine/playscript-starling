@@ -16,9 +16,12 @@ package starling.utils
      *  number formatting options yet. */
     public function formatString(format:String, ...args):String
     {
-        for (var i:int=0; i<args.Length; ++i)
-            format = format.replace(new RegExp("\\{"+i+"\\}", "g"), args[i]);
-        
+        var i:int = 0;
+        var re = new RegExp("\\{"+i+"\\}", "g");
+        for each (var arg:Object in args) {
+            format = re.replace(format, arg.ToString());
+            i++;
+        }
         return format;
     }
 }

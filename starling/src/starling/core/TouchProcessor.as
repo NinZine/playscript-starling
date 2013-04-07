@@ -307,8 +307,7 @@ package starling.core
             
             try
             {
-                var nativeAppClass:Object = getDefinitionByName("flash.desktop::NativeApplication");
-                var nativeApp:Object = nativeAppClass["nativeApplication"];
+                var nativeApp:flash.desktop.NativeApplication = flash.desktop.NativeApplication.nativeApplication;
                 
                 if (enable)
                     nativeApp.addEventListener("deactivate", Function(onInterruption), false, 0, true);
