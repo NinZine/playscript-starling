@@ -52,7 +52,7 @@ package starling.text
         /** Retrieve kerning information relative to the given character ID. */
         public function getKerning(charID:int):Number
         {
-            if (mKernings == null || mKernings[charID] == undefined) return 0.0;
+            if (mKernings == null || mKernings[charID] == null) return 0.0;
             else return mKernings[charID];
         }
         
