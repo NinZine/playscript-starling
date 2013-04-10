@@ -35,7 +35,7 @@ package scenes
             mBrush.pivotY = mBrush.height / 2;
             mBrush.blendMode = BlendMode.NORMAL;
             
-            var infoText:TextField = new TextField(256, 128, "Touch the screen\nto draw!");
+            var infoText:TextField = new TextField(256, 128, "Touch the screen!");
             infoText.fontSize = 24;
             infoText.x = Constants.CenterX - infoText.width / 2;
             infoText.y = Constants.CenterY - infoText.height / 2;

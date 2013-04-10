@@ -104,15 +104,6 @@ namespace OpenGLLayer
 				mStage.onEnterFrame ();
 			}
 
-			if (mStarling != null) {
-				// $$TODO use timeInterval
-				mStarling.stage.advanceTime (1.0 / 60.0);
-			}
-
-			if (mTutorial != null) {
-				mTutorial.dispatchEvent (new flash.events.Event (flash.events.Event.ENTER_FRAME));
-			}
-
 			// update all timer objects
 			flash.utils.Timer.advanceAllTimers();
 

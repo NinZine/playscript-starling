@@ -112,9 +112,6 @@
     <Compile Include="OpenGLViewController.cs" />
     <Compile Include="EAGLView.cs" />
     <Compile Include="MyStarlingTest.play" />
-    <Compile Include="..\demo_mono_monotouch\Tutorial1.play">
-      <Link>Tutorial1.play</Link>
-    </Compile>
     <Compile Include="..\demo\src\Constants.as">
       <Link>demo\src\Constants.as</Link>
     </Compile>
@@ -169,13 +166,14 @@
     <Compile Include="..\demo_mobile\src\Demo_Mobile.as">
       <Link>demo_mobile\src\Demo_Mobile.as</Link>
     </Compile>
+    <Compile Include="Tutorial1.play">
+      <Link>Tutorial1.play</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="OpenGLViewController.xib" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Shader.fsh" />
-    <Content Include="Shader.vsh" />
     <Content Include="..\demo\assets\fonts\2x\desyrel.png">
       <Link>demo\assets\fonts\2x\desyrel.png</Link>
     </Content>
@@ -196,9 +194,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="..\demo_mono_monotouch\DemoTexture256.png">
-      <Link>DemoTexture256.png</Link>
-    </BundleResource>
     <BundleResource Include="..\demo\system\Default-Portrait.png">
       <Link>demo\system\Default-Portrait.png</Link>
     </BundleResource>
@@ -261,6 +256,9 @@
     </BundleResource>
     <BundleResource Include="..\demo\assets\textures\2x\compressed_texture.atf">
       <Link>demo\assets\textures\2x\compressed_texture.atf</Link>
+    </BundleResource>
+    <BundleResource Include="DemoTexture256.png">
+      <Link>DemoTexture256.png</Link>
     </BundleResource>
   </ItemGroup>
 </Project>

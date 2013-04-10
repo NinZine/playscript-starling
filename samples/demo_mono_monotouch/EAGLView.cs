@@ -167,7 +167,7 @@ namespace StarlingDemo_ios
 
 			if (mStage == null) {
 				// construct flash stage
-				mStage = new flash.display.Stage (320, 480 ) ;// (int)this.Frame.Width, (int)this.Frame.Height);
+				mStage = new flash.display.Stage ((int)this.Frame.Width, (int)this.Frame.Height);
 			}
 
 			if (mTutorial == null) {
@@ -192,22 +192,13 @@ namespace StarlingDemo_ios
 			}
 
 			// Do a clear to check to see if we're working.. (remark out if everything is fine).
-			GL.ClearColor (0.5f, 0.5f, 0.5f, 1.0f);
-			GL.Clear (ClearBufferMask.ColorBufferBit);
+			// GL.ClearColor (0.5f, 0.5f, 0.5f, 1.0f);
+			// GL.Clear (ClearBufferMask.ColorBufferBit);
 
 			if (mStage != null) {
 				mStage.onEnterFrame ();
 			}
 			
-			if (mStarling != null) {
-				// $$TODO use timeInterval
-				mStarling.stage.advanceTime (1.0 / 60.0);
-			}
-
-			if (mTutorial != null) {
-				mTutorial.dispatchEvent (new flash.events.Event (flash.events.Event.ENTER_FRAME));
-			}
-
 			// update all timer objects
 			flash.utils.Timer.advanceAllTimers();
 
