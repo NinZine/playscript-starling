@@ -114,7 +114,7 @@ namespace OpenGLLayer
 			}
 
 			// update all timer objects
-			flash.utils.Timer.advanceAllTimers(1000.0 / 60.0);
+			flash.utils.Timer.advanceAllTimers();
 
 			GL.Flush ();
 		}
