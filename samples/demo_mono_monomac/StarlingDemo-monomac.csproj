@@ -67,8 +67,6 @@
     <Compile Include="MainMenu.xib.designer.cs">
       <DependentUpon>MainMenu.xib</DependentUpon>
     </Compile>
-    <Compile Include="MyView.cs" />
-    <Compile Include="OpenGLLayer.cs" />
     <Compile Include="Tutorial1.play" />
     <Compile Include="MyStarlingTest.play" />
     <Compile Include="..\demo\src\Constants.as">
@@ -125,6 +123,8 @@
     <Compile Include="..\demo_mobile\src\Demo_Mobile.as">
       <Link>demo_mobile\src\Demo_Mobile.as</Link>
     </Compile>
+    <Compile Include="MyOpenGLView.cs" />
+    <Compile Include="Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" xmlns="" />

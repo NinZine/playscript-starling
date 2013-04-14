@@ -1,4 +1,4 @@
-package OpenGLLayer
+package PlayScriptApp
 {
 	import flash.events.Event;
 	import starling.display.*;

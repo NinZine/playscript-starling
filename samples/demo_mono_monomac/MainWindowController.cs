@@ -2,45 +2,81 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Drawing;
+
 using MonoMac.Foundation;
 using MonoMac.AppKit;
 
-namespace OpenGLLayer
+namespace PlayScriptApp
 {
-	public partial class MainWindowController : MonoMac.AppKit.NSWindowController
-	{
-		#region Constructors
+        public partial class MainWindowController : MonoMac.AppKit.NSWindowController
+        {
 
-		// Called when created from unmanaged code
-		public MainWindowController (IntPtr handle) : base(handle)
+                Player player;
+		bool isAnimating;
+
+                #region Constructors
+
+                // Call to load from the XIB/NIB file
+                public MainWindowController () : base("MainWindow")
+                {
+ 
+                }
+
+                #endregion
+
+                //strongly typed window accessor
+                public new MainWindow Window {
+                        get { return (MainWindow)base.Window; }
+                }
+
+		public override void AwakeFromNib ()
 		{
-			Initialize ();
+			// Allocate the Player object
+			player = new Player (openGLView.Bounds);
+
+			// set window title
+			Window.Title = Player.Title;
+
+			// Assign the view's MainController to us
+			openGLView.MainController = this;
+			
+			// reset the viewport and update OpenGL Context
+			openGLView.UpdateView ();
+			
+			// Activate the display link now
+			openGLView.StartAnimation ();
+			
+			isAnimating = true;
 		}
 
-		// Called when created directly from a XIB file
-		[Export("initWithCoder:")]
-		public MainWindowController (NSCoder coder) : base(coder)
+
+		public void startAnimation ()
 		{
-			Initialize ();
+			if (isAnimating)
+				return;
+			
+			openGLView.StartAnimation ();
+
+			isAnimating = true;
 		}
 
-		// Call to load from the XIB/NIB file
-		public MainWindowController () : base("MainWindow")
+		public void stopAnimation ()
 		{
-			Initialize ();
+			if (!isAnimating)
+				return;
+			
+			openGLView.StopAnimation ();
+
+			isAnimating = false;
 		}
 
-		// Shared initialization code
-		void Initialize ()
-		{
-		}
-
-		#endregion
-
-		//strongly typed window accessor
-		public new MainWindow Window {
-			get { return (MainWindow)base.Window; }
-		}
-	}
+                // Accessor property for our Player object
+                public Player Player {
+                        get { return player; }
+                }
+                
+        
+        }
 }
 

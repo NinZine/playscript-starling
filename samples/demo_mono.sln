@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Starling MonoTouch", "Starling MonoTouch", "{8B5D72EC-B2E9-481B-97D5-7C1E7E4CE0B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarlingDemo-monotouch", ".\demo_mono_monotouch\StarlingDemo-monotouch.csproj", "{4AF1F498-2745-4F09-8649-CCC0BA031B5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarlingDemo-monotouch", "demo_mono_monotouch\StarlingDemo-monotouch.csproj", "{4AF1F498-2745-4F09-8649-CCC0BA031B5C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "starling-monotouch", "..\starling\src\starling-monotouch.csproj", "{F396BFBC-4ACF-42A2-99AA-2D24D5621C27}"
 EndProject
@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.CSharp-net_4_0", "..\.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "starling-monomac", "..\starling\src\starling-monomac.csproj", "{3B3DD626-A7FA-430E-85FB-C4E553900934}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarlingDemo-monomac", ".\demo_mono_monomac\StarlingDemo-monomac.csproj", "{45B828B4-E5F7-484E-B5F2-22D0ED0A9B3C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StarlingDemo-monomac", "demo_mono_monomac\StarlingDemo-monomac.csproj", "{45B828B4-E5F7-484E-B5F2-22D0ED0A9B3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -178,6 +178,6 @@ Global
 		{45B828B4-E5F7-484E-B5F2-22D0ED0A9B3C} = {E26D56E8-9568-4142-91C4-98C44C7AB284}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = StarlingDemo-monotouch.csproj
+		StartupItem = demo_mono_monomac\StarlingDemo-monomac.csproj
 	EndGlobalSection
 EndGlobal

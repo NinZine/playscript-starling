@@ -1,4 +1,4 @@
-package OpenGLLayer
+package PlayScriptApp
 {
 	import com.adobe.utils.AGALMiniAssembler;
 	import com.adobe.utils.PerspectiveMatrix3D;

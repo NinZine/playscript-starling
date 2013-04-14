@@ -4,15 +4,15 @@ using MonoMac.Foundation;
 using MonoMac.AppKit;
 using MonoMac.ObjCRuntime;
 
-namespace OpenGLLayer
+namespace PlayScriptApp
 {
-	class MainClass
-	{
-		static void Main (string[] args)
-		{
-			NSApplication.Init ();
-			NSApplication.Main (args);
-		}
-	}
+        class MainClass
+        {
+                static void Main (string[] args)
+                {
+                        NSApplication.Init ();
+                        NSApplication.Main (args);
+                }
+        }
 }
 
