@@ -12,7 +12,7 @@ namespace PlayScriptApp
         public partial class MainWindowController : MonoMac.AppKit.NSWindowController
         {
 
-                Player player;
+                PlayScript.Player player;
 		bool isAnimating;
 
                 #region Constructors
@@ -33,14 +33,19 @@ namespace PlayScriptApp
 		public override void AwakeFromNib ()
 		{
 			// Allocate the Player object
-			player = new Player (openGLView.Bounds);
+			player = new PlayScript.Player (openGLView.Bounds);
+
+			// load the main application class
+			player.LoadClass(typeof(_root.Demo_Mobile));
+			//player.LoadClass(typeof(_root.Tutorial1));
+			//player.LoadClass(typeof(_root.MyStarlingTest));
 
 			// set window title
-			Window.Title = Player.Title;
+			Window.Title = player.Title;
 
-			// Assign the view's MainController to us
-			openGLView.MainController = this;
-			
+			// Assign the player to the view
+			openGLView.Player = player;
+
 			// reset the viewport and update OpenGL Context
 			openGLView.UpdateView ();
 			
@@ -71,11 +76,6 @@ namespace PlayScriptApp
 			isAnimating = false;
 		}
 
-                // Accessor property for our Player object
-                public Player Player {
-                        get { return player; }
-                }
-                
         
         }
 }

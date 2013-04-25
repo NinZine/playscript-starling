@@ -124,7 +124,6 @@
       <Link>demo_mobile\src\Demo_Mobile.as</Link>
     </Compile>
     <Compile Include="MyOpenGLView.cs" />
-    <Compile Include="Player.cs" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" xmlns="" />

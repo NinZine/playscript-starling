@@ -40,6 +40,7 @@ using MonoMac.AppKit;
 using MonoMac.CoreVideo;
 using MonoMac.CoreGraphics;
 using MonoMac.OpenGL;
+using PlayScript;
 
 namespace PlayScriptApp
 {
@@ -49,7 +50,7 @@ namespace PlayScriptApp
 		NSOpenGLContext openGLContext;
 		NSOpenGLPixelFormat pixelFormat;
 
-		MainWindowController controller;
+		Player 			     player;
 
 		CVDisplayLink displayLink;
 		
@@ -92,7 +93,7 @@ namespace PlayScriptApp
 		public override void DrawRect (RectangleF dirtyRect)
 		{
 			// Ignore if the display link is still running
-			if (!displayLink.IsRunning && controller != null)
+			if (!displayLink.IsRunning && player != null)
 				DrawView ();
 		}
 
@@ -111,14 +112,12 @@ namespace PlayScriptApp
 
 		public override void KeyDown (NSEvent theEvent)
 		{
-			controller.KeyDown (theEvent);
-
-			controller.Player.OnKeyDown (theEvent.Characters[0], theEvent.KeyCode);
+			player.OnKeyDown (theEvent.Characters[0], theEvent.KeyCode);
 		}
 
 		public override void KeyUp (NSEvent theEvent)
 		{
-			controller.Player.OnKeyUp (theEvent.Characters[0], theEvent.KeyCode);
+			player.OnKeyUp (theEvent.Characters[0], theEvent.KeyCode);
 		}
 
 		private PointF GetLocationForEvent(NSEvent theEvent)
@@ -128,22 +127,22 @@ namespace PlayScriptApp
 
 		public override void MouseDown (NSEvent theEvent)
 		{
-			controller.Player.OnMouseDown (GetLocationForEvent(theEvent), theEvent.ButtonMask);
+			player.OnMouseDown (GetLocationForEvent(theEvent), theEvent.ButtonMask);
 		}
 
 		public override void MouseUp (NSEvent theEvent)
 		{
-			controller.Player.OnMouseUp (GetLocationForEvent(theEvent), theEvent.ButtonMask);
+			player.OnMouseUp (GetLocationForEvent(theEvent), theEvent.ButtonMask);
 		}
 
 		public override void MouseDragged(NSEvent theEvent)
 		{
-			controller.Player.OnMouseMoved (GetLocationForEvent(theEvent), theEvent.ButtonMask);
+			player.OnMouseMoved (GetLocationForEvent(theEvent), theEvent.ButtonMask);
 		}
 
 		public override void MouseMoved(NSEvent theEvent)
 		{
-			controller.Player.OnMouseMoved (GetLocationForEvent(theEvent), theEvent.ButtonMask);
+			player.OnMouseMoved (GetLocationForEvent(theEvent), theEvent.ButtonMask);
 		}
 
 
@@ -158,7 +157,7 @@ namespace PlayScriptApp
 			openGLContext.MakeCurrentContext ();
 			
 			// Delegate to the scene object for rendering
-			controller.Player.OnFrame();
+			player.OnFrame();
 			
 			openGLContext.FlushBuffer ();
 			
@@ -214,8 +213,8 @@ namespace PlayScriptApp
 			get { return pixelFormat; }
 		}
 
-		public MainWindowController MainController {
-			set { controller = value; }
+		public Player Player {
+			set { player = value; }
 		}
 
 		public void UpdateView ()
@@ -225,7 +224,7 @@ namespace PlayScriptApp
 			openGLContext.CGLContext.Lock ();
 			
 			// Delegate to the scene object to update for a change in the view size
-			controller.Player.OnResize(Bounds);
+			player.OnResize(Bounds);
 			openGLContext.Update ();
 			
 			openGLContext.CGLContext.Unlock ();
@@ -259,12 +258,6 @@ namespace PlayScriptApp
 			
 			NSNotificationCenter.DefaultCenter.RemoveObserver(notificationProxy); 
 		}
-
-        [Export("toggleFullScreen:")]
-        public void toggleFullScreen (NSObject sender)
-        {
-                //controller.toggleFullScreen (sender);
-        }		
 	}
 }
 

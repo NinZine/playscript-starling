@@ -105,13 +105,18 @@
     <None Include="..\demo_mobile\src\Demo_Mobile-app.xml">
       <Link>demo_mobile\src\Demo_Mobile-app.xml</Link>
     </None>
+    <None Include="..\demo_mono_monomac\MyStarlingTest.play">
+      <Link>MyStarlingTest.play</Link>
+    </None>
+    <None Include="..\demo_mono_monomac\Tutorial1.play">
+      <Link>Tutorial1.play</Link>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="OpenGLViewController.cs" />
     <Compile Include="EAGLView.cs" />
-    <Compile Include="MyStarlingTest.play" />
     <Compile Include="..\demo\src\Constants.as">
       <Link>demo\src\Constants.as</Link>
     </Compile>
@@ -165,9 +170,6 @@
     </Compile>
     <Compile Include="..\demo_mobile\src\Demo_Mobile.as">
       <Link>demo_mobile\src\Demo_Mobile.as</Link>
-    </Compile>
-    <Compile Include="Tutorial1.play">
-      <Link>Tutorial1.play</Link>
     </Compile>
   </ItemGroup>
   <ItemGroup>

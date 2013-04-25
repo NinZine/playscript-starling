@@ -12,22 +12,13 @@ using MonoTouch.ObjCRuntime;
 using MonoTouch.OpenGLES;
 using MonoTouch.UIKit;
 
-using flash.display;
-using flash.display3D;
-using starling.display;
-using OpenGLLayer;
-
 namespace StarlingDemo_ios
 {
 	[Register ("EAGLView")]
 	public class EAGLView : iPhoneOSGameView
 	{
-		// this is our flash display stage
-		flash.display.Stage    mStage;
-		// this is our starling context
-		starling.core.Starling mStarling;
-		Tutorial1 mTutorial;
-		_root.Demo_Mobile mDemoMobile;
+		// this is our playscript player
+		PlayScript.Player      mPlayer;
 
 		[Export("initWithCoder:")]
 		public EAGLView (NSCoder coder) : base (coder)
@@ -66,40 +57,22 @@ namespace StarlingDemo_ios
 		public override void TouchesBegan (NSSet touches, UIEvent evt)
 		{
 			base.TouchesBegan (touches, evt);
-		
-			foreach (UITouch touch in touches) {
-				var p = touch.LocationInView(this);
-				Console.WriteLine ("touches-began {0}", p);
 
-				var te = new flash.events.TouchEvent(flash.events.TouchEvent.TOUCH_BEGIN, true, false, 0, true, p.X, p.Y, 1.0, 1.0, 1.0 );
-				if (mStage!=null) mStage.dispatchEvent (te);
-			}
+			mPlayer.OnTouchesBegan(touches, evt);
 		}
 
 		public override void TouchesMoved (NSSet touches, UIEvent evt)
 		{
 			base.TouchesMoved (touches, evt);
 		
-			foreach (UITouch touch in touches) {
-				var p = touch.LocationInView(this);
-				Console.WriteLine ("touches-moved {0}", p);
-
-				var te = new flash.events.TouchEvent(flash.events.TouchEvent.TOUCH_MOVE, true, false, 0, true, p.X, p.Y, 1.0, 1.0, 1.0 );
-				if (mStage!=null) mStage.dispatchEvent (te);
-			}
+			mPlayer.OnTouchesMoved(touches, evt);
 		}
 
 		public override void TouchesEnded (NSSet touches, UIEvent evt)
 		{
 			base.TouchesEnded (touches, evt);
 
-			foreach (UITouch touch in touches) {
-				var p = touch.LocationInView(this);
-				Console.WriteLine ("touches-ended {0}", p);
-
-				var te = new flash.events.TouchEvent(flash.events.TouchEvent.TOUCH_END, true, false, 0, true, p.X, p.Y, 1.0, 1.0, 1.0 );
-				if (mStage!=null) mStage.dispatchEvent (te);
-			}
+			mPlayer.OnTouchesEnded(touches, evt);
 		}
 
 
@@ -137,7 +110,11 @@ namespace StarlingDemo_ios
 			displayLink.FrameInterval = frameInterval;
 			displayLink.AddToRunLoop (NSRunLoop.Current, NSRunLoop.NSDefaultRunLoopMode);
 			this.displayLink = displayLink;
-			
+
+			if (mPlayer == null) {
+				InitPlayer();
+			}
+
 			IsAnimating = true;
 		}
 		
@@ -159,48 +136,26 @@ namespace StarlingDemo_ios
 		
 		#endregion
 
+		protected void InitPlayer()
+		{
+			// create player
+			mPlayer = new PlayScript.Player(this.Frame);
+			
+			// load swf application
+			mPlayer.LoadClass(typeof(_root.Demo_Mobile));
+			//mPlayer.LoadClass(typeof(_root.Tutorial1));
+			//mPlayer.LoadClass(typeof(_root.MyStarlingTest));
+		}
+
 		protected override void OnRenderFrame (FrameEventArgs e)
 		{
 			base.OnRenderFrame (e);
 			
 			MakeCurrent ();
 
-			if (mStage == null) {
-				// construct flash stage
-				mStage = new flash.display.Stage ((int)this.Frame.Width, (int)this.Frame.Height);
+			if (mPlayer != null) {
+				mPlayer.OnFrame();
 			}
-
-			if (mTutorial == null) {
-				// construct tutorial
-				flash.display.DisplayObject.globalStage = mStage;
-				//mTutorial = new Tutorial1 ();
-				flash.display.DisplayObject.globalStage = null;
-			}
-
-			if (mStarling == null) {
-				// construct starling  instance
-				//starling.core.Starling.multitouchEnabled = true;
-				//mStarling = new starling.core.Starling (typeof(MyStarlingTest), mStage);
-				//mStarling.start();
-			}
-
-			if (mDemoMobile == null) {
-				// construct starling demo
-				flash.display.DisplayObject.globalStage = mStage;
-				mDemoMobile = new _root.Demo_Mobile();
-				flash.display.DisplayObject.globalStage = null;
-			}
-
-			// Do a clear to check to see if we're working.. (remark out if everything is fine).
-			// GL.ClearColor (0.5f, 0.5f, 0.5f, 1.0f);
-			// GL.Clear (ClearBufferMask.ColorBufferBit);
-
-			if (mStage != null) {
-				mStage.onEnterFrame ();
-			}
-			
-			// update all timer objects
-			flash.utils.Timer.advanceAllTimers();
 
 			SwapBuffers ();
 		}
