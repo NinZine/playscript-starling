@@ -86,16 +86,7 @@ package starling.textures
             
             mSupport = new RenderSupport();
 
-			if (Starling.context.driverInfo == "MonoGL")
-			{
-				// this is a terrible hack because the texture origin needs to be corrected in openGL
-				// $$TODO see if this can be fixed at the stage3D level
-				mSupport.setOrthographicProjection(0, nativeHeight/scale, nativeWidth/scale, -nativeHeight/scale);
-			}
-			else 
-			{
-				mSupport.setOrthographicProjection(0, 0, nativeWidth/scale, nativeHeight/scale);
-			}
+			mSupport.setOrthographicProjection(0, 0, nativeWidth/scale, nativeHeight/scale);
             
             if (persistent)
             {
