@@ -81,8 +81,7 @@ package
             // Note that we cannot embed "Default.png" (or its siblings), because any embedded
             // files will vanish from the application package, and those are picked up by the OS!
             
-            // var background:Bitmap = scaleFactor == 1 ? new Background() : new BackgroundHD();
-			var background:Bitmap = new Bitmap(flash.display.BitmapData.loadFromPath(scaleFactor == 1 ? "demo/system/startup.jpg" : "demo/system/startupHD.jpg")); 
+            var background:Bitmap = scaleFactor == 1 ? new Background() : new BackgroundHD();
             Background = BackgroundHD = null; // no longer needed!
             
             background.x = viewPort.x;
