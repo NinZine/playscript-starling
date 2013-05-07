@@ -1,0 +1,15 @@
+package {
+
+	import playscript.Application;
+
+	class MainClass
+	{
+		public static function Main (args:String[]):void
+		{
+			Application.run (args, Demo_Mobile);
+			// Application.Run (args, typeof(_root.Tutorial1) );
+			// Application.Run (args, typeof(_root.MyStarlingTest) );
+		}
+	}
+}
+

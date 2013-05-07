@@ -22,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
     <MtouchDebug>True</MtouchDebug>
-    <MtouchProfiling>True</MtouchProfiling>
     <MtouchLink>None</MtouchLink>
     <MtouchI18n />
     <MtouchArch>ARMv7</MtouchArch>
@@ -112,7 +111,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
     <Compile Include="..\demo\src\Constants.as">
       <Link>demo\src\Constants.as</Link>
     </Compile>
@@ -167,6 +165,7 @@
     <Compile Include="..\demo_mobile\src\Demo_Mobile.as">
       <Link>demo_mobile\src\Demo_Mobile.as</Link>
     </Compile>
+    <Compile Include="Main.play" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\demo\assets\fonts\2x\desyrel.png">
@@ -187,7 +186,7 @@
       <Project>{F396BFBC-4ACF-42A2-99AA-2D24D5621C27}</Project>
       <Name>starling-monotouch</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\playscript\PlayScript.Application.iOS\PlayScript.Application.iOS.csproj">
+    <ProjectReference Include="..\..\..\playscript-base\PlayScript.Application.iOS\PlayScript.Application.iOS.csproj">
       <Project>{20E6592F-EC79-4750-A9B4-86C31F2B87A8}</Project>
       <Name>PlayScript.Application.iOS</Name>
     </ProjectReference>

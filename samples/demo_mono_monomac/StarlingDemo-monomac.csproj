@@ -51,9 +51,6 @@
     <Reference Include="MonoMac" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main.cs" />
-    <Compile Include="Tutorial1.play" />
-    <Compile Include="MyStarlingTest.play" />
     <Compile Include="..\demo\src\Constants.as">
       <Link>demo\src\Constants.as</Link>
     </Compile>
@@ -108,6 +105,9 @@
     <Compile Include="..\demo_mobile\src\Demo_Mobile.as">
       <Link>demo_mobile\src\Demo_Mobile.as</Link>
     </Compile>
+    <Compile Include="Main.play" />
+    <Compile Include="MyStarlingTest.play" />
+    <Compile Include="Tutorial1.play" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -137,7 +137,7 @@
       <Project>{EDBAC91B-2817-479E-8DDF-B24ADDA563A6}</Project>
       <Name>pscorlib_aot-net_4_0_monomac</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\playscript\PlayScript.Application.OSX\PlayScript.Application.OSX.csproj">
+    <ProjectReference Include="..\..\..\playscript-base\PlayScript.Application.OSX\PlayScript.Application.OSX.csproj">
       <Project>{3829D8CC-3505-48B2-B5A9-18CD9DCCA192}</Project>
       <Name>PlayScript.Application.OSX</Name>
     </ProjectReference>

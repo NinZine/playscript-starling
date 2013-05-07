@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pscorlib_aot-monotouch", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayScript.Dynamic_aot-monotouch", "..\..\playscript-mono\mcs\class\PlayScript.Dynamic_aot\PlayScript.Dynamic_aot-monotouch.csproj", "{CC73D545-B7C7-4FB4-996A-C76E8B0D5B81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayScript.Application.iOS", "..\..\playscript\PlayScript.Application.iOS\PlayScript.Application.iOS.csproj", "{20E6592F-EC79-4750-A9B4-86C31F2B87A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayScript.Application.iOS", "..\..\playscript-base\PlayScript.Application.iOS\PlayScript.Application.iOS.csproj", "{20E6592F-EC79-4750-A9B4-86C31F2B87A8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Starling OSX", "Starling OSX", "{E26D56E8-9568-4142-91C4-98C44C7AB284}"
 EndProject
@@ -23,15 +23,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayScript.Dynamic_aot-net_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pscorlib_aot-net_4_0_monomac", "..\..\playscript-mono\mcs\class\pscorlib_aot\pscorlib_aot-net_4_0_monomac.csproj", "{EDBAC91B-2817-479E-8DDF-B24ADDA563A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayScript.Application.OSX", "..\..\playscript\PlayScript.Application.OSX\PlayScript.Application.OSX.csproj", "{3829D8CC-3505-48B2-B5A9-18CD9DCCA192}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayScript.Application.OSX", "..\..\playscript-base\PlayScript.Application.OSX\PlayScript.Application.OSX.csproj", "{3829D8CC-3505-48B2-B5A9-18CD9DCCA192}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Starling Windows", "Starling Windows", "{1CB487E3-8E76-4D03-BF92-CA6107BA8C97}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayScript.Application.Windows", "..\..\playscript\PlayScript.Application.Windows\PlayScript.Application.Windows.csproj", "{EDEE389F-53D1-4A0F-901E-47C9BD636330}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayScript.Application.Windows", "..\..\playscript-base\PlayScript.Application.Windows\PlayScript.Application.Windows.csproj", "{EDEE389F-53D1-4A0F-901E-47C9BD636330}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Starling Android", "Starling Android", "{2D61D0A2-D600-41F7-9041-270E32AC475B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayScript.Application.Android", "..\..\playscript\PlayScript.Application.Android\PlayScript.Application.Android.csproj", "{F811F67C-16A6-4716-8A2C-6C2CF1373BCB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayScript.Application.Android", "..\..\playscript-base\PlayScript.Application.Android\PlayScript.Application.Android.csproj", "{F811F67C-16A6-4716-8A2C-6C2CF1373BCB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -275,6 +275,6 @@ Global
 		{F811F67C-16A6-4716-8A2C-6C2CF1373BCB} = {2D61D0A2-D600-41F7-9041-270E32AC475B}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = demo_mono_monotouch\StarlingDemo-monotouch.csproj
+		StartupItem = demo_mono_monomac\StarlingDemo-monomac.csproj
 	EndGlobalSection
 EndGlobal
