@@ -215,6 +215,8 @@ package starling.text
         
         private function autoScaleNativeTextField(textField:flash.text.TextField):void
         {
+			// $$TODO
+			return; /*
 			var size:Number   = Number(textField.defaultTextFormat.size);
             var maxHeight:int = textField.height - 4;
             var maxWidth:int  = textField.width - 4;
@@ -226,7 +228,7 @@ package starling.text
                 var format:TextFormat = textField.defaultTextFormat;
                 format.size = size--;
                 textField.setTextFormat(format);
-            }
+            }*/
         }
         
         private function createComposedContents():void

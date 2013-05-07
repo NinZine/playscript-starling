@@ -1,20 +1,17 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Drawing;
+using PlayScript.Application;
 
-using MonoTouch.Foundation;
-using MonoTouch.UIKit;
-
-namespace StarlingDemo_ios
+namespace StarlingDemo
 {
-	public class Application
+	class MainClass
 	{
-		// This is the main entry point of the application.
 		static void Main (string[] args)
 		{
-			// if you want to use a different Application Delegate class from "AppDelegate"
-			// you can specify it here.
-			UIApplication.Main (args, null, "AppDelegate");
+			Application.Run (args, typeof(_root.Demo_Mobile) );
+			// Application.Run (args, typeof(_root.Tutorial1) );
+			// Application.Run (args, typeof(_root.MyStarlingTest) );
 		}
 	}
 }
+

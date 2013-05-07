@@ -87,7 +87,6 @@
     <Reference Include="OpenTK-1.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
     <Folder Include="demo\" />
     <Folder Include="demo_mobile\" />
   </ItemGroup>
@@ -114,9 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
-    <Compile Include="AppDelegate.cs" />
-    <Compile Include="OpenGLViewController.cs" />
-    <Compile Include="EAGLView.cs" />
     <Compile Include="..\demo\src\Constants.as">
       <Link>demo\src\Constants.as</Link>
     </Compile>
@@ -173,9 +169,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <InterfaceDefinition Include="OpenGLViewController.xib" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="..\demo\assets\fonts\2x\desyrel.png">
       <Link>demo\assets\fonts\2x\desyrel.png</Link>
     </Content>
@@ -193,6 +186,10 @@
     <ProjectReference Include="..\..\starling\src\starling-monotouch.csproj">
       <Project>{F396BFBC-4ACF-42A2-99AA-2D24D5621C27}</Project>
       <Name>starling-monotouch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\playscript\PlayScript.Application.iOS\PlayScript.Application.iOS.csproj">
+      <Project>{20E6592F-EC79-4750-A9B4-86C31F2B87A8}</Project>
+      <Name>PlayScript.Application.iOS</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

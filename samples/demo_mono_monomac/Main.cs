@@ -1,17 +1,16 @@
 using System;
 using System.Drawing;
-using MonoMac.Foundation;
-using MonoMac.AppKit;
-using MonoMac.ObjCRuntime;
+using PlayScript.Application;
 
-namespace PlayScriptApp
+namespace StarlingDemo
 {
         class MainClass
         {
                 static void Main (string[] args)
                 {
-                        NSApplication.Init ();
-                        NSApplication.Main (args);
+					Application.Run (args, typeof(_root.Demo_Mobile) );
+					// Application.Run (args, typeof(_root.Tutorial1) );
+					// Application.Run (args, typeof(_root.MyStarlingTest) );
                 }
         }
 }
