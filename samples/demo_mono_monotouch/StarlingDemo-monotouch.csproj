@@ -103,12 +103,6 @@
     <None Include="..\demo_mobile\src\Demo_Mobile-app.xml">
       <Link>demo_mobile\src\Demo_Mobile-app.xml</Link>
     </None>
-    <None Include="..\demo_mono_monomac\MyStarlingTest.play">
-      <Link>MyStarlingTest.play</Link>
-    </None>
-    <None Include="..\demo_mono_monomac\Tutorial1.play">
-      <Link>Tutorial1.play</Link>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\demo\src\Constants.as">
@@ -166,6 +160,12 @@
       <Link>demo_mobile\src\Demo_Mobile.as</Link>
     </Compile>
     <Compile Include="Main.play" />
+    <Compile Include="..\demo_mono_monomac\Tutorial1.play">
+      <Link>Tutorial1.play</Link>
+    </Compile>
+    <Compile Include="..\demo_mono_monomac\MyStarlingTest.play">
+      <Link>MyStarlingTest.play</Link>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\demo\assets\fonts\2x\desyrel.png">

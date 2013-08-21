@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="demo_mono_monodroid.demo_mono_monodroid">
+	<application android:label="demo_mono_monodroid2">
+	</application>
+	<uses-feature android:glEsVersion="0x00020000">
+	</uses-feature>
+	<uses-sdk android:targetSdkVersion="12" android:minSdkVersion="12">
+	</uses-sdk>
+</manifest>
