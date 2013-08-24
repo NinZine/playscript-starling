@@ -705,7 +705,7 @@ package com.adobe.utils
 		// ======================================================================
 		//	Methods
 		// ----------------------------------------------------------------------
-		public override function ToString():String
+		public override function toString():String
 		{
 			return "[OpCode name=\""+_name+"\", numRegister="+_numRegister+", emitCode="+_emitCode+", flags="+_flags+"]";
 		}
@@ -749,7 +749,7 @@ package com.adobe.utils
 		// ======================================================================
 		//	Methods
 		// ----------------------------------------------------------------------
-		public override function ToString():String
+		public override function toString():String
 		{
 			return "[Register name=\""+_name+"\", longName=\""+_longName+"\", emitCode="+_emitCode+", range="+_range+", flags="+ _flags+"]";
 		}
@@ -787,7 +787,7 @@ package com.adobe.utils
 		// ======================================================================
 		//	Methods
 		// ----------------------------------------------------------------------
-		public override function ToString():String
+		public override function toString():String
 		{
 			return "[Sampler name=\""+_name+"\", flag=\""+_flag+"\", mask="+mask+"]";
 		}

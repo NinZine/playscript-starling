@@ -23,6 +23,9 @@ namespace demo_mono_monodroid
 		{
 			base.OnCreate (bundle);
 
+			RequestWindowFeature (WindowFeatures.NoTitle);
+			this.Window.SetFlags (WindowManagerFlags.Fullscreen, WindowManagerFlags.Fullscreen);
+
 			// Create our OpenGL view, and display it
 			view = new GLView1 (this);
 			SetContentView (view);

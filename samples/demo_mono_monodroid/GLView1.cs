@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+
 using OpenTK;
 using OpenTK.Graphics;
 using OpenTK.Graphics.ES11;
@@ -7,16 +9,18 @@ using OpenTK.Platform.Android;
 using Android.Views;
 using Android.Content;
 using Android.Util;
+using Android.App;
 
 namespace demo_mono_monodroid
 {
-	class GLView1 : AndroidGameView
+	class GLView1 : AndroidGameView, View.IOnTouchListener
 	{
 		private PlayScript.Player mPlayer;
 
 		public GLView1 (Context context) : base (context)
 		{
 			Init ();
+			SetOnTouchListener (this);
 		}
 
 		// This gets called when the drawing surface is ready
@@ -30,8 +34,9 @@ namespace demo_mono_monodroid
 		{
 			var rect = GetScaledFrame ();
 
+			PlayScript.Player.ApplicationClass = typeof(_root.Demo_Mobile);
 			//PlayScript.Player.ApplicationClass = typeof(_root.Tutorial1);
-			PlayScript.Player.ApplicationClass = typeof(_root.MyStarlingTest);
+			//PlayScript.Player.ApplicationClass = typeof(_root.MyStarlingTest);
 
 			mPlayer = new PlayScript.Player( rect );
 		}
@@ -92,13 +97,43 @@ namespace demo_mono_monodroid
 			}
 		}
 
+		public bool OnTouch(View v, MotionEvent e)
+		{
+
+			switch (e.Action)
+			{
+			case MotionEventActions.Down:
+				mPlayer.OnTouchesBegan ( CreateTouchEvents(flash.events.TouchEvent.TOUCH_BEGIN, e) );
+				break;
+
+			case MotionEventActions.Move:
+				mPlayer.OnTouchesMoved ( CreateTouchEvents(flash.events.TouchEvent.TOUCH_MOVE, e) );
+				break;
+
+			case MotionEventActions.Up:
+				mPlayer.OnTouchesEnded ( CreateTouchEvents(flash.events.TouchEvent.TOUCH_END, e) );
+				break;
+			}
+			return true;
+		}
+
+		private List<flash.events.TouchEvent> CreateTouchEvents(String action, MotionEvent e)
+		{
+			flash.events.TouchEvent touchEvent = new flash.events.TouchEvent(action, true, false, 0, true, e.GetX(), e.GetY(), 1.0, 1.0, 1.0 );
+			List<flash.events.TouchEvent> touchEvents = new List<flash.events.TouchEvent> ();
+			touchEvents.Add (touchEvent);
+			return touchEvents;
+		}
+
 		private System.Drawing.RectangleF GetScaledFrame()
 		{
 			var rect = new System.Drawing.RectangleF ();
+			var scale = 1;
+
 			rect.X 		= 0;
 			rect.Y      = 0;
-			rect.Width  = this.Width;
-			rect.Height = this.Height;
+			rect.Width  = this.Width * scale;
+			rect.Height = this.Height * scale;
 			return rect;
 		}
 
