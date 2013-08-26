@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A3EA064F-2B6E-450E-9FFA-2439D38F0E6A}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>demo_mono_monodroid</RootNamespace>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
+    <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
+    <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
+    <AssemblyName>demo_mono_monodroid</AssemblyName>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Mono.Android" />
+    <Reference Include="OpenTK-1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="GLView1.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="MyStarlingTest.play" />
+    <Compile Include="Tutorial1.play" />
+    <Compile Include="..\demo_mobile\src\Demo_Mobile.as">
+      <Link>demo_mobile\src\Demo_Mobile.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\Constants.as">
+      <Link>demo\src\Constants.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\Game.as">
+      <Link>demo\src\Game.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\MainMenu.as">
+      <Link>demo\src\MainMenu.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\AnimationScene.as">
+      <Link>demo\src\scenes\AnimationScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\BenchmarkScene.as">
+      <Link>demo\src\scenes\BenchmarkScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\BlendModeScene.as">
+      <Link>demo\src\scenes\BlendModeScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\CustomHitTestScene.as">
+      <Link>demo\src\scenes\CustomHitTestScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\FilterScene.as">
+      <Link>demo\src\scenes\FilterScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\MovieScene.as">
+      <Link>demo\src\scenes\MovieScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\RenderTextureScene.as">
+      <Link>demo\src\scenes\RenderTextureScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\Scene.as">
+      <Link>demo\src\scenes\Scene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\TextScene.as">
+      <Link>demo\src\scenes\TextScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\TextureScene.as">
+      <Link>demo\src\scenes\TextureScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\scenes\TouchScene.as">
+      <Link>demo\src\scenes\TouchScene.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\utils\ProgressBar.as">
+      <Link>demo\src\utils\ProgressBar.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\utils\RoundButton.as">
+      <Link>demo\src\utils\RoundButton.as</Link>
+    </Compile>
+    <Compile Include="..\demo\src\utils\TouchSheet.as">
+      <Link>demo\src\utils\TouchSheet.as</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+    <None Include="Properties\AndroidManifest.xml" />
+    <None Include="..\demo\README.md">
+      <Link>demo\README.md</Link>
+    </None>
+    <None Include="..\demo_mobile\README.md">
+      <Link>demo_mobile\README.md</Link>
+    </None>
+    <None Include="..\demo_mobile\src\Demo_Mobile-app.xml">
+      <Link>demo_mobile\src\Demo_Mobile-app.xml</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Main.axml" />
+    <AndroidResource Include="Resources\values\Strings.xml" />
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\playscript-mono\mcs\class\PlayScript.Dynamic_aot\PlayScript.Dynamic_aot-monodroid.csproj">
+      <Project>{4973150C-B48B-4A3B-987F-230517E1DF86}</Project>
+      <Name>PlayScript.Dynamic_aot-monodroid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\starling\src\starling-monodroid.csproj">
+      <Project>{B3E0633A-0659-464F-879B-1C5FAFC16435}</Project>
+      <Name>starling-monodroid</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\playscript-mono\mcs\class\pscorlib_aot\pscorlib_aot-monodroid.csproj">
+      <Project>{B5CEE056-4092-477A-82B8-6494EA651287}</Project>
+      <Name>pscorlib_aot-monodroid</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="Assets\DemoTexture256.png" />
+    <AndroidAsset Include="..\demo\system\Default-Portrait.png">
+      <Link>demo\system\Default-Portrait.png</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\system\Default.png">
+      <Link>demo\system\Default.png</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\system\Default%402x.png">
+      <Link>demo\system\Default%402x.png</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\system\README.md">
+      <Link>demo\system\README.md</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\system\icon114.png">
+      <Link>demo\system\icon114.png</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\system\icon144.png">
+      <Link>demo\system\icon144.png</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\system\icon57.png">
+      <Link>demo\system\icon57.png</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\system\icon72.png">
+      <Link>demo\system\icon72.png</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\system\startup.jpg">
+      <Link>demo\system\startup.jpg</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\system\startupHD.jpg">
+      <Link>demo\system\startupHD.jpg</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\audio\wing_flap.mp3">
+      <Link>Assets\audio\wing_flap.mp3</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\fonts\Ubuntu-License.txt">
+      <Link>Assets\fonts\Ubuntu-License.txt</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\fonts\Ubuntu-R.ttf">
+      <Link>Assets\fonts\Ubuntu-R.ttf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\fonts\1x\desyrel.fnt">
+      <Link>Assets\fonts\1x\desyrel.fnt</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\fonts\1x\desyrel.png">
+      <Link>Assets\fonts\1x\desyrel.png</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\fonts\2x\desyrel.fnt">
+      <Link>Assets\fonts\2x\desyrel.fnt</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\fonts\2x\desyrel.png">
+      <Link>Assets\fonts\2x\desyrel.png</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\textures\1x\atlas.png">
+      <Link>Assets\textures\1x\atlas.png</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\textures\1x\atlas.xml">
+      <Link>Assets\textures\1x\atlas.xml</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\textures\1x\compressed_texture.atf">
+      <Link>Assets\textures\1x\compressed_texture.atf</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\textures\2x\atlas.png">
+      <Link>Assets\textures\2x\atlas.png</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\textures\2x\atlas.xml">
+      <Link>Assets\textures\2x\atlas.xml</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\demo\assets\textures\2x\compressed_texture.atf">
+      <Link>Assets\textures\2x\compressed_texture.atf</Link>
+    </AndroidAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="demo\" />
+    <Folder Include="demo_mobile\" />
+    <Folder Include="Assets\audio\" />
+    <Folder Include="Assets\fonts\" />
+    <Folder Include="Assets\textures\" />
+  </ItemGroup>
+</Project>

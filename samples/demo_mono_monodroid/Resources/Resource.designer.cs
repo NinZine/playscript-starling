@@ -47,9 +47,6 @@ namespace demo_mono_monodroid
 			// aapt resource value: 0x7f020000
 			public const int Icon = 2130837504;
 			
-			// aapt resource value: 0x7f020001
-			public const int monoandroidsplash = 2130837505;
-			
 			static Drawable()
 			{
 				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
@@ -79,8 +76,8 @@ namespace demo_mono_monodroid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int app_name = 2131034112;
+			// aapt resource value: 0x7f040000
+			public const int app_name = 2130968576;
 			
 			static String()
 			{
@@ -88,22 +85,6 @@ namespace demo_mono_monodroid
 			}
 			
 			private String()
-			{
-			}
-		}
-		
-		public partial class Style
-		{
-			
-			// aapt resource value: 0x7f040000
-			public const int Mono_Android_Theme_Splash = 2130968576;
-			
-			static Style()
-			{
-				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
-			}
-			
-			private Style()
 			{
 			}
 		}
