@@ -184,7 +184,6 @@ package starling.textures
             var nativeTexture:flash.display3D.textures.Texture = context.createTexture(
                     atfData.width, atfData.height, atfData.format, false);
             
-            uploadAtfData(nativeTexture, data, 0, async);
             
             var concreteTexture:ConcreteTexture = new ConcreteTexture(nativeTexture, atfData.format, 
                 atfData.width, atfData.height, useMipMaps && atfData.numTextures > 1, 
@@ -202,6 +201,9 @@ package starling.textures
             
             if (async)
                 nativeTexture.addEventListener(eventType, onTextureReady);
+
+            uploadAtfData(nativeTexture, data, 0, async);
+
             return concreteTexture;
             
         }
